@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calculadora Laboral y Tributaria Peru 2026 - SUNAT Gratis | Deiner Villegas</title>
 <meta name="description" content="Calculadora IGV, CTS, gratificaciones, liquidacion laboral, planilla, multas SUNAT Peru 2026. Herramienta gratuita para emprendedores y trabajadores peruanos.">
-<meta name="keywords" content="calculadora IGV Peru 2026, SUNAT 2026, CTS Peru, gratificaciones Peru, liquidacion laboral Peru, impuesto renta Peru, detracciones SUNAT, multas SUNAT, regimen tributario Peru, UIT 2026, calculadora planilla Peru">
+<meta name="keywords" content="calculadora IGV Peru 2026, SUNAT 2026, CTS Peru, gratificaciones Peru, liquidacion laboral Peru, impuesto renta Peru, detracciones SUNAT, multas SUNAT, regimen tributario Peru, UIT 2026, vacaciones Peru, blog tributario Peru">
 <meta name="author" content="Deiner Cleison Villegas Villegas">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
@@ -32,16 +32,16 @@ input,select{width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;fon
 .resultado .monto{font-size:22px;font-weight:bold;color:#003087}
 .alerta{background:#fdecea;border-left:4px solid #C8102E;padding:12px;border-radius:0 8px 8px 0;margin-top:10px;font-size:13px}
 .verde{background:#e8f5e9;border-left:4px solid #0D7A3E;padding:12px;border-radius:0 8px 8px 0;margin-top:10px;font-size:13px}
-table{width:100%;border-collapse:collapse;font-size:13px}
-th{background:#003087;color:white;padding:8px;text-align:left}
-td{padding:8px;border-bottom:1px solid #eee}
-tr:nth-child(even){background:#f5f5f5}
-.whatsapp-btn{position:fixed;bottom:20px;right:20px;background:#25D366;color:white;border:none;border-radius:50px;padding:14px 20px;font-size:15px;font-weight:bold;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:999}
-.perfil-foto{width:80px;height:80px;border-radius:50%;background:#F5A623;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:bold;color:white;margin:0 auto 15px}
 .noticia{background:white;border-left:4px solid #F5A623;padding:15px;border-radius:0 8px 8px 0;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,0.08)}
 .noticia h3{color:#003087;font-size:14px;margin-bottom:5px}
 .noticia p{font-size:12px;color:#555}
 .noticia a{color:#C8102E;font-size:12px;font-weight:bold;text-decoration:none}
+.blog-art{background:white;border-radius:10px;padding:20px;margin-bottom:15px;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
+.blog-art h3{color:#003087;font-size:15px;margin-bottom:8px}
+.blog-art p{font-size:13px;color:#555;line-height:1.7}
+.blog-tag{display:inline-block;background:#e8f0fb;color:#003087;font-size:11px;padding:3px 8px;border-radius:10px;margin-right:5px;margin-bottom:8px;font-weight:bold}
+.whatsapp-btn{position:fixed;bottom:20px;right:20px;background:#25D366;color:white;border:none;border-radius:50px;padding:14px 20px;font-size:15px;font-weight:bold;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:999}
+.perfil-foto{width:80px;height:80px;border-radius:50%;background:#F5A623;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:bold;color:white;margin:0 auto 15px}
 footer{background:#003087;color:#aac4ff;text-align:center;padding:15px;font-size:12px;margin-top:20px;padding-bottom:80px}
 </style>
 </head>
@@ -67,6 +67,7 @@ footer{background:#003087;color:#aac4ff;text-align:center;padding:15px;font-size
 <button onclick="mostrar('vacaciones',this)">Vacaciones</button>
 <button onclick="mostrar('fraccionamiento',this)">Fraccionamiento</button>
 <button onclick="mostrar('glosario',this)">Glosario</button>
+<button onclick="mostrar('blog',this)">Blog SEO</button>
 <button onclick="mostrar('noticias',this)">Noticias SUNAT</button>
 <button onclick="mostrar('quiensoy',this)">Quien Soy</button>
 </nav>
@@ -134,7 +135,7 @@ footer{background:#003087;color:#aac4ff;text-align:center;padding:15px;font-size
 <option value="50">Durante fiscalizacion (50% descuento)</option>
 <option value="25">Despues de fiscalizacion (25% descuento)</option>
 </select>
-<label>Ingresos netos del mes (S/) - solo para multa de libros:</label>
+<label>Ingresos netos del mes (S/):</label>
 <input type="number" id="ingresosMulta" placeholder="Ejemplo: 10000">
 <button class="btn" onclick="calcularMulta()">Calcular multa</button>
 <div id="resultadoMulta"></div>
@@ -227,14 +228,14 @@ footer{background:#003087;color:#aac4ff;text-align:center;padding:15px;font-size
 <div class="tarjeta">
 <h2>Calculadora de CTS 2026</h2>
 <h3>Compensacion por Tiempo de Servicios</h3>
-<p style="font-size:12px;color:#555;margin-bottom:10px">La CTS se deposita en mayo (por nov-abr) y noviembre (por may-oct). Equivale a 1 sueldo por ano trabajado.</p>
+<p style="font-size:12px;color:#555;margin-bottom:10px">La CTS se deposita en mayo y noviembre. Equivale a 1 sueldo por ano trabajado.</p>
 <label>Sueldo bruto mensual (S/):</label>
 <input type="number" id="sueldoCts" placeholder="Ejemplo: 2000">
 <label>Asignacion familiar mensual (S/) - si aplica:</label>
 <input type="number" id="asignacionCts" placeholder="Ejemplo: 102.50 o 0">
 <label>Meses trabajados en el semestre (1 a 6):</label>
 <input type="number" id="mesesCts" placeholder="Ejemplo: 6" min="1" max="6">
-<label>Dias adicionales trabajados (0 a 30):</label>
+<label>Dias adicionales (0 a 30):</label>
 <input type="number" id="diasCts" placeholder="Ejemplo: 15" min="0" max="30">
 <button class="btn" onclick="calcularCts()">Calcular CTS</button>
 <div id="resultadoCts"></div>
@@ -245,7 +246,6 @@ footer{background:#003087;color:#aac4ff;text-align:center;padding:15px;font-size
 <div class="tarjeta">
 <h2>Calculadora de Gratificaciones 2026</h2>
 <h3>Julio y Diciembre</h3>
-<p style="font-size:12px;color:#555;margin-bottom:10px">La gratificacion equivale a 1 sueldo completo en julio y 1 sueldo completo en diciembre. Incluye bonificacion extraordinaria del 9%.</p>
 <label>Sueldo bruto mensual (S/):</label>
 <input type="number" id="sueldoGrat" placeholder="Ejemplo: 2000">
 <label>Asignacion familiar (S/) - si aplica:</label>
@@ -267,8 +267,6 @@ footer{background:#003087;color:#aac4ff;text-align:center;padding:15px;font-size
 <input type="number" id="anosLiq" placeholder="Ejemplo: 2">
 <label>Meses adicionales (0 a 11):</label>
 <input type="number" id="mesesLiq" placeholder="Ejemplo: 3" min="0" max="11">
-<label>Dias adicionales (0 a 30):</label>
-<input type="number" id="diasLiq" placeholder="Ejemplo: 15" min="0" max="30">
 <label>Tipo de cese:</label>
 <select id="tipoCese">
 <option value="renuncia">Renuncia voluntaria</option>
@@ -286,7 +284,6 @@ footer{background:#003087;color:#aac4ff;text-align:center;padding:15px;font-size
 <div class="tarjeta">
 <h2>Calculadora de Descuento por Faltas 2026</h2>
 <h3>¿Cuanto te descuentan si faltas?</h3>
-<p style="font-size:12px;color:#555;margin-bottom:10px">Cada dia de falta injustificada se descuenta del sueldo mensual. Tambien afecta CTS y gratificaciones.</p>
 <label>Sueldo bruto mensual (S/):</label>
 <input type="number" id="sueldoFaltas" placeholder="Ejemplo: 2000">
 <label>Numero de dias de falta en el mes:</label>
@@ -294,7 +291,7 @@ footer{background:#003087;color:#aac4ff;text-align:center;padding:15px;font-size
 <label>Dias laborables del mes:</label>
 <select id="diasLaborables">
 <option value="26">26 dias (lunes a sabado)</option>
-<option value="30">30 dias (incluye domingos)</option>
+<option value="30">30 dias (todos los dias)</option>
 <option value="25">25 dias</option>
 </select>
 <button class="btn" onclick="calcularFaltas()">Calcular descuento</button>
@@ -306,15 +303,24 @@ footer{background:#003087;color:#aac4ff;text-align:center;padding:15px;font-size
 <div class="tarjeta">
 <h2>Calculadora de Vacaciones 2026</h2>
 <h3>¿Cuanto valen tus vacaciones?</h3>
-<p style="font-size:12px;color:#555;margin-bottom:10px">Todo trabajador tiene derecho a 30 dias de vacaciones por cada ano completo trabajado (15 dias en regimen MYPE).</p>
 <label>Sueldo bruto mensual (S/):</label>
 <input type="number" id="sueldoVacs" placeholder="Ejemplo: 2000">
-<label>Meses trabajados en el ano (1 a 12):</label>
+<label>Meses trabajados (1 a 12):</label>
 <input type="number" id="mesesVacs" placeholder="Ejemplo: 12" min="1" max="12">
 <label>Regimen laboral:</label>
 <select id="regimenVacs">
-<option value="30">Regimen General (30 dias)</option>
-<option value="15">Regimen MYPE (15 dias)</option>
+<option value="30">Regimen General (30 dias) - empleados privados</option>
+<option value="15">Regimen MYPE (15 dias) - micro y pequena empresa</option>
+<option value="30">Construccion Civil (30 dias) - obreros construccion</option>
+<option value="15">Trabajadores del Hogar (15 dias)</option>
+<option value="30">Trabajadores Portuarios (30 dias)</option>
+<option value="30">Docentes sector privado (30 dias)</option>
+<option value="7">Trabajadores part-time (proporcional a 30 dias)</option>
+</select>
+<label>¿Tienes vacaciones no gozadas del ano anterior?</label>
+<select id="vacsDoble">
+<option value="no">No</option>
+<option value="si">Si — me corresponde doble pago</option>
 </select>
 <button class="btn" onclick="calcularVacaciones()">Calcular vacaciones</button>
 <div id="resultadoVacs"></div>
@@ -344,6 +350,52 @@ footer{background:#003087;color:#aac4ff;text-align:center;padding:15px;font-size
 </div>
 </div>
 
+<div id="blog" class="seccion">
+<div class="tarjeta">
+<h2>Blog SEO - Tributacion Peru 2026</h2>
+<h3>Guias y articulos para emprendedores, estudiantes y empresarios</h3>
+</div>
+<div class="blog-art">
+<span class="blog-tag">IGV</span><span class="blog-tag">SUNAT 2026</span><span class="blog-tag">Emprendedores</span>
+<h3>¿Como calcular el IGV en Peru 2026? Guia paso a paso</h3>
+<p>El IGV es el 18% que pagas sobre casi todo lo que vendes. Si vendes S/ 1,000, el IGV es S/ 180 y el precio total es S/ 1,180. Este IGV no es tuyo: debes declararlo y pagarlo a SUNAT cada mes antes de tu fecha de vencimiento segun el ultimo digito de tu RUC. Si compras insumos tambien pagas IGV — ese IGV de compras lo descontas del IGV de ventas y solo pagas la diferencia. Eso se llama credito fiscal y es uno de los beneficios mas importantes de estar en un regimen que emite facturas.</p>
+</div>
+<div class="blog-art">
+<span class="blog-tag">Regimen tributario</span><span class="blog-tag">MYPE</span><span class="blog-tag">NRUS</span>
+<h3>¿En que regimen tributario debo estar? NRUS vs RER vs MYPE Tributario 2026</h3>
+<p>Si vendes menos de S/ 8,000 al mes y no necesitas emitir facturas: NRUS — pagas S/ 20 fijo al mes. Si vendes a empresas que piden facturas: MYPE Tributario — pagas 1% de tus ventas como adelanto del impuesto a la renta y solo 10% sobre los primeros S/ 82,500 de utilidad anual. Si contratas con el Estado o exportas: Regimen General. Elegir mal el regimen puede costarte dinero innecesario. Usa el simulador de esta pagina para saber cual te conviene.</p>
+</div>
+<div class="blog-art">
+<span class="blog-tag">CTS</span><span class="blog-tag">Gratificaciones</span><span class="blog-tag">Trabajadores</span>
+<h3>¿Cuanto me corresponde de CTS y gratificaciones en 2026?</h3>
+<p>La CTS equivale a 1 sueldo por ano trabajado y se deposita en mayo (por nov-abr) y noviembre (por may-oct). La gratificacion es 1 sueldo completo en julio y 1 sueldo en diciembre mas una bonificacion extraordinaria del 9%. Si trabajaste menos de 6 meses en el semestre, te corresponde proporcional. Usa las calculadoras de esta pagina para saber exactamente cuanto te debe depositar tu empleador.</p>
+</div>
+<div class="blog-art">
+<span class="blog-tag">Despido</span><span class="blog-tag">Liquidacion</span><span class="blog-tag">Derechos laborales</span>
+<h3>Te despidieron en Peru — ¿Cuanto te deben pagar? 2026</h3>
+<p>Si te despiden sin causa justa (despido arbitrario) tienes derecho a indemnizacion: 1.5 sueldos por cada ano trabajado. Ademas te deben pagar la CTS acumulada y las vacaciones no gozadas. Tienes 30 dias para reclamar ante el Ministerio de Trabajo o el Poder Judicial. Si renuncias voluntariamente no hay indemnizacion, pero si cobras CTS y vacaciones pendientes. Usa la calculadora de liquidacion de esta pagina.</p>
+</div>
+<div class="blog-art">
+<span class="blog-tag">Multas SUNAT</span><span class="blog-tag">Infracciones</span><span class="blog-tag">Gradualidad</span>
+<h3>¿Cuanto cuesta no declarar a SUNAT a tiempo en 2026?</h3>
+<p>Si no declaras a tiempo la multa es S/ 2,750 (50% de la UIT 2026 = S/ 5,500). Pero si te das cuenta antes de que SUNAT te notifique, puedes subsanar con 95% de descuento y pagar solo S/ 137.50. Mientras mas rapido corriges, menos pagas. Usa la calculadora de multas de esta pagina para saber exactamente cuanto pagaras segun cuando subsanes.</p>
+</div>
+<div class="blog-art">
+<span class="blog-tag">Detracciones</span><span class="blog-tag">SPOT</span><span class="blog-tag">Banco Nacion</span>
+<h3>¿Que son las detracciones SUNAT y como funcionan en 2026?</h3>
+<p>Cuando vendes un servicio incluido en el sistema de detracciones, tu cliente no te paga el 100%. Deposita un porcentaje (entre 4% y 12% segun el tipo de servicio) en tu cuenta del Banco de la Nacion. Ese dinero es tuyo pero solo puedes usarlo para pagar impuestos SUNAT. Si tienes exceso puedes pedir liberacion 3 veces al ano: enero, mayo y septiembre. Usa la calculadora de detracciones de esta pagina.</p>
+</div>
+<div class="blog-art">
+<span class="blog-tag">Vacaciones Peru</span><span class="blog-tag">Derechos</span><span class="blog-tag">Regimenes</span>
+<h3>Vacaciones en Peru 2026 — ¿Cuantos dias te corresponden segun tu regimen?</h3>
+<p>Regimen General: 30 dias por ano. Regimen MYPE: 15 dias. Construccion civil: 30 dias con reglas especiales. Trabajadores del hogar: 15 dias. Si no gozaste tus vacaciones tienes derecho al doble: te pagan las vacaciones y ademas recibes tu sueldo normal por trabajar esos dias. Eso se llama vacaciones dobles o doble beneficio vacacional. Usa la calculadora de vacaciones de esta pagina para saber cuanto te corresponde.</p>
+</div>
+<div class="verde" style="margin-top:10px">
+¿Tienes dudas sobre tu situacion tributaria o laboral? <strong>Consultame directamente al WhatsApp.</strong>
+<br><button class="btn" style="background:#25D366;margin-top:10px;max-width:300px" onclick="window.open('https://wa.me/51927107627')">💬 Consultar ahora</button>
+</div>
+</div>
+
 <div id="noticias" class="seccion">
 <div class="tarjeta">
 <h2>Noticias SUNAT 2026</h2>
@@ -351,12 +403,12 @@ footer{background:#003087;color:#aac4ff;text-align:center;padding:15px;font-size
 </div>
 <div class="noticia">
 <h3>UIT 2026 fijada en S/ 5,500</h3>
-<p>El MEF aprobo la Unidad Impositiva Tributaria para el ano 2026 mediante D.S. 301-2025-EF vigente desde el 1 de enero de 2026.</p>
+<p>El MEF aprobo la UIT para 2026 mediante D.S. 301-2025-EF vigente desde el 1 de enero de 2026.</p>
 <a href="https://www.mef.gob.pe" target="_blank">Ver en MEF</a>
 </div>
 <div class="noticia">
 <h3>Cronograma de vencimientos SUNAT 2026</h3>
-<p>SUNAT publico el cronograma oficial de obligaciones tributarias para el periodo enero a diciembre 2026.</p>
+<p>SUNAT publico el cronograma oficial de obligaciones tributarias para enero a diciembre 2026.</p>
 <a href="https://www.sunat.gob.pe" target="_blank">Ver en SUNAT</a>
 </div>
 <div class="noticia">
@@ -433,10 +485,10 @@ var facturas=document.getElementById('facturas').value;
 var estado=document.getElementById('estado').value;
 var rec,det;
 if(estado=='si'){rec='REGIMEN GENERAL';det='Contratas con el Estado o exportas: necesitas Regimen General.';}
-else if(facturas=='si'){rec='MYPE TRIBUTARIO';det='Necesitas facturas. MYPE Tributario 2026: 1% adelanto del IR y solo 10% sobre los primeros S/ 82,500 de utilidad (15 UIT).';}
+else if(facturas=='si'){rec='MYPE TRIBUTARIO';det='Necesitas facturas. MYPE Tributario 2026: 1% adelanto del IR y 10% sobre los primeros S/ 82,500 de utilidad.';}
 else if(ventas=='1'){rec='NRUS';det='Ventas menores a S/ 8,000 al mes. Pagas S/ 20 fijo al mes. Solo emites boletas.';}
-else if(ventas=='2'){rec='MYPE TRIBUTARIO';det='El MYPE Tributario te conviene para crecer sin limite y emitir facturas.';}
-else{rec='MYPE TRIBUTARIO o REGIMEN GENERAL';det='Con altos ingresos el MYPE Tributario te da 10% sobre los primeros S/ 82,500 de utilidad.';}
+else if(ventas=='2'){rec='MYPE TRIBUTARIO';det='El MYPE Tributario te conviene para crecer sin limite.';}
+else{rec='MYPE TRIBUTARIO o REGIMEN GENERAL';det:'Con altos ingresos el MYPE Tributario te da 10% sobre los primeros S/ 82,500 de utilidad.';}
 document.getElementById('resultadoRegimen').innerHTML='<div class="resultado"><h3>Te recomendamos:</h3><p class="monto">'+rec+'</p><p style="margin-top:10px">'+det+'</p></div><div class="alerta">Puedes cambiar de regimen el 1 de enero de cada ano.</div>';
 }
 function calcularMulta(){
@@ -450,7 +502,7 @@ else if(tipo=='nolibros'){multaBase=ingresos*0.003||UIT*0.3;nombre='No llevar li
 else{multaBase=UIT*0.5;nombre='Declarar datos falsos';}
 var descuentoMonto=multaBase*(descuento/100);
 var multaFinal=multaBase-descuentoMonto;
-document.getElementById('resultadoMulta').innerHTML='<div class="resultado"><h3>'+nombre+'</h3><p>Multa original: <span class="monto">S/ '+multaBase.toFixed(2)+'</span></p><p>Descuento ('+descuento+'%): - S/ '+descuentoMonto.toFixed(2)+'</p><p>Multa final: <span class="monto">S/ '+multaFinal.toFixed(2)+'</span></p></div><div class="verde">Subsana antes de cualquier notificacion SUNAT para obtener 95% de descuento.</div>';
+document.getElementById('resultadoMulta').innerHTML='<div class="resultado"><h3>'+nombre+'</h3><p>Multa original: <span class="monto">S/ '+multaBase.toFixed(2)+'</span></p><p>Descuento ('+descuento+'%): - S/ '+descuentoMonto.toFixed(2)+'</p><p>Multa final: <span class="monto">S/ '+multaFinal.toFixed(2)+'</span></p></div><div class="verde">Subsana antes de cualquier notificacion SUNAT para 95% de descuento.</div>';
 }
 function mostrarVencimiento(){
 var digito=document.getElementById('digitoRuc').value;
@@ -493,7 +545,7 @@ var neto=sueldo-descAfp;
 var costoTotal=sueldo+essalud;
 var cts=sueldo/12;
 var grat=sueldo/6;
-document.getElementById('resultadoPlanilla').innerHTML='<div class="resultado"><h3>Planilla 2026</h3><p>Sueldo bruto: S/ '+sueldo.toFixed(2)+'</p><p>AFP/ONP ('+afp+'%): - S/ '+descAfp.toFixed(2)+'</p><p>Neto del trabajador: <span class="monto">S/ '+neto.toFixed(2)+'</span></p><hr style="margin:10px 0"><p>ESSALUD (9%): S/ '+essalud.toFixed(2)+'</p><p>Costo total empresa: <span class="monto">S/ '+costoTotal.toFixed(2)+'</span></p><hr style="margin:10px 0"><p>CTS mensual a provisionar: S/ '+cts.toFixed(2)+'</p><p>Gratificacion mensual a provisionar: S/ '+grat.toFixed(2)+'</p></div>';
+document.getElementById('resultadoPlanilla').innerHTML='<div class="resultado"><h3>Planilla 2026</h3><p>Sueldo bruto: S/ '+sueldo.toFixed(2)+'</p><p>AFP/ONP ('+afp+'%): - S/ '+descAfp.toFixed(2)+'</p><p>Neto del trabajador: <span class="monto">S/ '+neto.toFixed(2)+'</span></p><hr style="margin:10px 0"><p>ESSALUD (9%): S/ '+essalud.toFixed(2)+'</p><p>Costo total empresa: <span class="monto">S/ '+costoTotal.toFixed(2)+'</span></p><hr style="margin:10px 0"><p>CTS mensual: S/ '+cts.toFixed(2)+'</p><p>Gratificacion mensual: S/ '+grat.toFixed(2)+'</p></div>';
 }
 function calcularHonorarios(){
 var neto=parseFloat(document.getElementById('netoHonorarios').value);
@@ -502,7 +554,7 @@ if(!neto||neto<=0){alert('Ingresa un monto valido');return;}
 var bruto,ret;
 if(retencion=='si'){bruto=neto/0.92;ret=bruto*0.08;}
 else{bruto=neto;ret=0;}
-document.getElementById('resultadoHonorarios').innerHTML='<div class="resultado"><h3>Tu Recibo por Honorarios 2026</h3><p>Monto en el recibo: <span class="monto">S/ '+bruto.toFixed(2)+'</span></p><p>Retencion IR 8%: - S/ '+ret.toFixed(2)+'</p><p>Lo que recibes: <span class="monto">S/ '+neto.toFixed(2)+'</span></p></div><div class="verde">Emite tu recibo por S/ '+bruto.toFixed(2)+' en SUNAT SOL.</div>';
+document.getElementById('resultadoHonorarios').innerHTML='<div class="resultado"><h3>Recibo por Honorarios 2026</h3><p>Monto en el recibo: <span class="monto">S/ '+bruto.toFixed(2)+'</span></p><p>Retencion IR 8%: - S/ '+ret.toFixed(2)+'</p><p>Lo que recibes: <span class="monto">S/ '+neto.toFixed(2)+'</span></p></div><div class="verde">Emite tu recibo por S/ '+bruto.toFixed(2)+' en SUNAT SOL.</div>';
 }
 function calcularCts(){
 var sueldo=parseFloat(document.getElementById('sueldoCts').value)||0;
@@ -510,49 +562,41 @@ var asignacion=parseFloat(document.getElementById('asignacionCts').value)||0;
 var meses=parseInt(document.getElementById('mesesCts').value)||0;
 var dias=parseInt(document.getElementById('diasCts').value)||0;
 if(!sueldo||sueldo<=0){alert('Ingresa un sueldo valido');return;}
-if(meses<1||meses>6){alert('Los meses deben ser entre 1 y 6');return;}
-var remuneracionComputable=sueldo+asignacion;
-var ctsMensual=remuneracionComputable/12;
-var ctsDiaria=remuneracionComputable/360;
+var rem=sueldo+asignacion;
+var ctsMensual=rem/12;
+var ctsDiaria=rem/360;
 var ctsTotal=(ctsMensual*meses)+(ctsDiaria*dias);
-document.getElementById('resultadoCts').innerHTML='<div class="resultado"><h3>CTS 2026</h3><p>Remuneracion computable: S/ '+remuneracionComputable.toFixed(2)+'</p><p>CTS por '+meses+' meses: S/ '+(ctsMensual*meses).toFixed(2)+'</p><p>CTS por '+dias+' dias: S/ '+(ctsDiaria*dias).toFixed(2)+'</p><p>CTS total a depositar: <span class="monto">S/ '+ctsTotal.toFixed(2)+'</span></p></div><div class="verde">El empleador deposita la CTS en mayo (por nov-abr) y noviembre (por may-oct) en el banco elegido por el trabajador.</div>';
+document.getElementById('resultadoCts').innerHTML='<div class="resultado"><h3>CTS 2026</h3><p>Remuneracion computable: S/ '+rem.toFixed(2)+'</p><p>CTS por '+meses+' meses: S/ '+(ctsMensual*meses).toFixed(2)+'</p><p>CTS por '+dias+' dias: S/ '+(ctsDiaria*dias).toFixed(2)+'</p><p>CTS total: <span class="monto">S/ '+ctsTotal.toFixed(2)+'</span></p></div><div class="verde">El empleador deposita la CTS en mayo y noviembre en el banco elegido por el trabajador.</div>';
 }
 function calcularGratificacion(){
 var sueldo=parseFloat(document.getElementById('sueldoGrat').value)||0;
 var asignacion=parseFloat(document.getElementById('asignacionGrat').value)||0;
 var meses=parseInt(document.getElementById('mesesGrat').value)||0;
 if(!sueldo||sueldo<=0){alert('Ingresa un sueldo valido');return;}
-if(meses<1||meses>6){alert('Los meses deben ser entre 1 y 6');return;}
-var remuneracionComputable=sueldo+asignacion;
-var gratProporcional=(remuneracionComputable/6)*meses;
-var bonificacion=gratProporcional*0.09;
-var totalGrat=gratProporcional+bonificacion;
-document.getElementById('resultadoGrat').innerHTML='<div class="resultado"><h3>Gratificacion 2026</h3><p>Remuneracion computable: S/ '+remuneracionComputable.toFixed(2)+'</p><p>Gratificacion proporcional ('+meses+'/6): <span class="monto">S/ '+gratProporcional.toFixed(2)+'</span></p><p>Bonificacion extraordinaria (9%): S/ '+bonificacion.toFixed(2)+'</p><p>Total a recibir: <span class="monto">S/ '+totalGrat.toFixed(2)+'</span></p></div><div class="verde">La gratificacion se paga en julio (hasta el 15) y diciembre (hasta el 15). La bonificacion del 9% va directo al trabajador, no a ESSALUD.</div>';
+var rem=sueldo+asignacion;
+var gratProp=(rem/6)*meses;
+var bono=gratProp*0.09;
+var total=gratProp+bono;
+document.getElementById('resultadoGrat').innerHTML='<div class="resultado"><h3>Gratificacion 2026</h3><p>Remuneracion computable: S/ '+rem.toFixed(2)+'</p><p>Gratificacion proporcional: <span class="monto">S/ '+gratProp.toFixed(2)+'</span></p><p>Bonificacion extraordinaria 9%: S/ '+bono.toFixed(2)+'</p><p>Total a recibir: <span class="monto">S/ '+total.toFixed(2)+'</span></p></div><div class="verde">Se paga hasta el 15 de julio y 15 de diciembre. La bonificacion del 9% va directo al trabajador.</div>';
 }
 function calcularLiquidacion(){
 var sueldo=parseFloat(document.getElementById('sueldoLiq').value)||0;
 var anos=parseInt(document.getElementById('anosLiq').value)||0;
 var meses=parseInt(document.getElementById('mesesLiq').value)||0;
-var dias=parseInt(document.getElementById('diasLiq').value)||0;
 var tipoCese=document.getElementById('tipoCese').value;
 var vacsPend=parseInt(document.getElementById('vacsPendientes').value)||0;
 if(!sueldo||sueldo<=0){alert('Ingresa un sueldo valido');return;}
-var totalMeses=anos*12+meses+(dias/30);
+var totalMeses=anos*12+meses;
 var cts=(sueldo/12)*totalMeses;
-var vacaciones=(sueldo/30)*vacsPend;
-var indemnizacion=0;
-if(tipoCese=='despido'){
-indemnizacion=sueldo*1.5*anos;
-if(meses>0||dias>0)indemnizacion+=((sueldo*1.5)/12)*(meses+(dias/30));
-}
-var totalLiq=cts+vacaciones+indemnizacion;
-var html='<div class="resultado"><h3>Liquidacion Laboral 2026</h3>';
-html+='<p>CTS proporcional: S/ '+cts.toFixed(2)+'</p>';
-html+='<p>Vacaciones pendientes ('+vacsPend+' dias): S/ '+vacaciones.toFixed(2)+'</p>';
-if(tipoCese=='despido')html+='<p>Indemnizacion por despido: <span class="monto">S/ '+indemnizacion.toFixed(2)+'</span></p>';
-html+='<hr style="margin:10px 0"><p>TOTAL LIQUIDACION: <span class="monto">S/ '+totalLiq.toFixed(2)+'</span></p></div>';
-if(tipoCese=='despido')html+='<div class="alerta">Por despido arbitrario te corresponde 1.5 sueldos por ano trabajado como indemnizacion. Tienes 30 dias para reclamar ante el Ministerio de Trabajo.</div>';
-else html+='<div class="verde">Por renuncia voluntaria recibes CTS acumulada y vacaciones pendientes. No hay indemnizacion.</div>';
+var vacs=(sueldo/30)*vacsPend;
+var indem=0;
+if(tipoCese=='despido'){indem=sueldo*1.5*anos;if(meses>0)indem+=((sueldo*1.5)/12)*meses;}
+var totalLiq=cts+vacs+indem;
+var html='<div class="resultado"><h3>Liquidacion Laboral 2026</h3><p>CTS proporcional: S/ '+cts.toFixed(2)+'</p><p>Vacaciones pendientes: S/ '+vacs.toFixed(2)+'</p>';
+if(tipoCese=='despido')html+='<p>Indemnizacion por despido: <span class="monto">S/ '+indem.toFixed(2)+'</span></p>';
+html+='<hr style="margin:10px 0"><p>TOTAL: <span class="monto">S/ '+totalLiq.toFixed(2)+'</span></p></div>';
+if(tipoCese=='despido')html+='<div class="alerta">Por despido arbitrario te corresponde 1.5 sueldos por ano trabajado. Tienes 30 dias para reclamar ante el Ministerio de Trabajo.</div>';
+else html+='<div class="verde">Por renuncia voluntaria recibes CTS y vacaciones pendientes. No hay indemnizacion.</div>';
 document.getElementById('resultadoLiq').innerHTML=html;
 }
 function calcularFaltas(){
@@ -563,18 +607,24 @@ if(!sueldo||sueldo<=0){alert('Ingresa un sueldo valido');return;}
 if(!diasFalta||diasFalta<=0){alert('Ingresa el numero de dias de falta');return;}
 var valorDia=sueldo/diasLab;
 var descuento=valorDia*diasFalta;
-var sueldoNeto=sueldo-descuento;
-document.getElementById('resultadoFaltas').innerHTML='<div class="resultado"><h3>Descuento por Faltas</h3><p>Sueldo bruto: S/ '+sueldo.toFixed(2)+'</p><p>Valor por dia: S/ '+valorDia.toFixed(2)+'</p><p>Dias de falta: '+diasFalta+'</p><p>Descuento total: <span class="monto">- S/ '+descuento.toFixed(2)+'</span></p><p>Sueldo neto a recibir: <span class="monto">S/ '+sueldoNeto.toFixed(2)+'</span></p></div><div class="alerta">Las faltas injustificadas tambien reducen el calculo de CTS y gratificaciones. Con 3 o mas faltas injustificadas en un mes el empleador puede iniciar proceso de despido justificado.</div>';
+var neto=sueldo-descuento;
+document.getElementById('resultadoFaltas').innerHTML='<div class="resultado"><h3>Descuento por Faltas</h3><p>Sueldo bruto: S/ '+sueldo.toFixed(2)+'</p><p>Valor por dia: S/ '+valorDia.toFixed(2)+'</p><p>Dias de falta: '+diasFalta+'</p><p>Descuento: <span class="monto">- S/ '+descuento.toFixed(2)+'</span></p><p>Sueldo neto: <span class="monto">S/ '+neto.toFixed(2)+'</span></p></div><div class="alerta">Las faltas injustificadas tambien reducen CTS y gratificaciones. Con 3 o mas faltas en un mes el empleador puede iniciar despido justificado.</div>';
 }
 function calcularVacaciones(){
 var sueldo=parseFloat(document.getElementById('sueldoVacs').value)||0;
 var meses=parseInt(document.getElementById('mesesVacs').value)||0;
 var diasVacs=parseInt(document.getElementById('regimenVacs').value);
+var vacsDoble=document.getElementById('vacsDoble').value;
 if(!sueldo||sueldo<=0){alert('Ingresa un sueldo valido');return;}
-var diasProporcionales=(diasVacs/12)*meses;
+var diasProp=(diasVacs/12)*meses;
 var valorDia=sueldo/30;
-var montoVacaciones=valorDia*diasProporcionales;
-document.getElementById('resultadoVacs').innerHTML='<div class="resultado"><h3>Vacaciones 2026</h3><p>Sueldo mensual: S/ '+sueldo.toFixed(2)+'</p><p>Meses trabajados: '+meses+'</p><p>Dias de vacaciones proporcionales: '+diasProporcionales.toFixed(1)+' dias</p><p>Valor por dia: S/ '+valorDia.toFixed(2)+'</p><p>Monto de vacaciones: <span class="monto">S/ '+montoVacaciones.toFixed(2)+'</span></p></div><div class="verde">Si no gozaste tus vacaciones tienes derecho al doble: el sueldo por trabajar y el pago de vacaciones. Eso se llama vacaciones truncas.</div>';
+var montoVacs=valorDia*diasProp;
+var html='<div class="resultado"><h3>Vacaciones 2026</h3><p>Sueldo mensual: S/ '+sueldo.toFixed(2)+'</p><p>Meses trabajados: '+meses+'</p><p>Dias de vacaciones: '+diasProp.toFixed(1)+' dias</p><p>Valor por dia: S/ '+valorDia.toFixed(2)+'</p><p>Monto de vacaciones: <span class="monto">S/ '+montoVacs.toFixed(2)+'</span></p>';
+if(vacsDoble=='si'){html+='<p>Vacaciones dobles (no gozadas): <span class="monto">S/ '+(montoVacs*2).toFixed(2)+'</span></p>';}
+html+='</div>';
+if(vacsDoble=='si')html+='<div class="alerta">Como no gozaste tus vacaciones tienes derecho al doble: el pago de vacaciones mas tu sueldo normal. Reclama ante tu empleador o el Ministerio de Trabajo.</div>';
+else html+='<div class="verde">Si no gozas tus vacaciones este ano tendras derecho al doble el proximo ano.</div>';
+document.getElementById('resultadoVacs').innerHTML=html;
 }
 function calcularFraccionamiento(){
 var deuda=parseFloat(document.getElementById('deudaFraccionamiento').value);
@@ -590,26 +640,26 @@ document.getElementById('resultadoFraccionamiento').innerHTML='<div class="resul
 var glosarioData=[
 {t:'IGV',d:'Impuesto General a las Ventas. El 18% sobre productos y servicios en el Peru.'},
 {t:'RUC',d:'Registro Unico de Contribuyentes. Numero de 11 digitos que te identifica ante SUNAT.'},
-{t:'UIT',d:'Unidad Impositiva Tributaria. En 2026 vale S/ 5,500. Base de muchos calculos tributarios.'},
+{t:'UIT',d:'Unidad Impositiva Tributaria. En 2026 vale S/ 5,500.'},
 {t:'RMV',d:'Remuneracion Minima Vital. El sueldo minimo en Peru en 2026 es S/ 1,130 mensual.'},
-{t:'CTS',d:'Compensacion por Tiempo de Servicios. Beneficio laboral que el empleador deposita en mayo y noviembre.'},
+{t:'CTS',d:'Compensacion por Tiempo de Servicios. Se deposita en mayo y noviembre. Equivale a 1 sueldo por ano.'},
 {t:'Gratificacion',d:'Bonificacion equivalente a 1 sueldo que el empleador paga en julio y diciembre.'},
-{t:'Liquidacion',d:'Pago total al trabajador cuando termina la relacion laboral: CTS, vacaciones e indemnizacion si aplica.'},
-{t:'Indemnizacion',d:'Pago por despido arbitrario: 1.5 sueldos por ano trabajado. Solo aplica si te despiden sin causa justa.'},
+{t:'Liquidacion',d:'Pago total al trabajador cuando termina la relacion laboral: CTS, vacaciones e indemnizacion.'},
+{t:'Indemnizacion',d:'Pago por despido arbitrario: 1.5 sueldos por ano trabajado.'},
+{t:'Vacaciones dobles',d:'Si no gozaste tus vacaciones tienes derecho al doble: pago de vacaciones mas tu sueldo normal.'},
 {t:'Detraccion',d:'Descuento que deposita el comprador en tu cuenta del Banco de la Nacion para pagar impuestos.'},
 {t:'Retencion',d:'Monto que descuenta el pagador y entrega a SUNAT en tu nombre.'},
 {t:'NRUS',d:'Nuevo Regimen Unico Simplificado. Pago fijo de S/ 20 o S/ 50 al mes.'},
 {t:'MYPE',d:'Micro y Pequena Empresa. Paga 10% de IR sobre los primeros S/ 82,500 de utilidad en 2026.'},
-{t:'PDT',d:'Programa de Declaracion Telematica. Software de SUNAT para declarar impuestos.'},
 {t:'ESSALUD',d:'Seguro de salud. El empleador paga 9% del sueldo bruto mensual.'},
 {t:'AFP',d:'Administradora de Fondos de Pensiones. Descuento del 10% del sueldo para jubilacion.'},
 {t:'ONP',d:'Oficina de Normalizacion Previsional. Sistema estatal de pensiones. Descuento del 13%.'},
-{t:'Vacaciones truncas',d:'Vacaciones no gozadas al terminar el contrato. Se pagan al trabajador al liquidar.'},
-{t:'Falta injustificada',d:'Ausencia al trabajo sin sustento valido. Se descuenta del sueldo y puede ser causal de despido.'},
+{t:'Falta injustificada',d:'Ausencia sin justificacion. Se descuenta del sueldo y puede ser causal de despido.'},
 {t:'Credito fiscal',d:'El IGV de tus compras que descontas del IGV de tus ventas para pagar menos a SUNAT.'},
-{t:'Fiscalizacion',d:'Revision formal de SUNAT a tus declaraciones y documentos. Puede durar hasta 1 ano.'},
-{t:'Fraccionamiento',d:'Pago de deuda SUNAT en cuotas mensuales. Tasa 1.2% mensual. Maximo 72 cuotas.'},
-{t:'TIM',d:'Tasa de Interes Moratorio. 0.03% diario sobre deuda tributaria vencida con SUNAT.'},
+{t:'Fiscalizacion',d:'Revision formal de SUNAT a tus declaraciones y documentos.'},
+{t:'Fraccionamiento',d:'Pago de deuda SUNAT en cuotas. Tasa 1.2% mensual. Maximo 72 cuotas.'},
+{t:'TIM',d:'Tasa de Interes Moratorio. 0.03% diario sobre deuda tributaria vencida.'},
+{t:'Asignacion familiar',d:'S/ 102.50 adicional al sueldo para trabajadores con hijos menores de 18 anos.'},
 ];
 function buscarGlosario(){
 var b=document.getElementById('busquedaGlosario').value.toLowerCase();
