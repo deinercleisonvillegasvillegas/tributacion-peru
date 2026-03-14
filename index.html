@@ -3,7 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tributacion Peru - Calculadora SUNAT Gratis</title>
+<title>Calculadora IGV Peru 2025 - SUNAT Gratis | Deiner Villegas</title>
+<meta name="description" content="Calculadora IGV Peru gratis 2025. Calcula IGV, impuesto a la renta, detracciones, multas SUNAT, planilla, regimen tributario. Herramienta gratuita para emprendedores y empresas peruanas.">
+<meta name="keywords" content="calculadora IGV Peru, SUNAT 2025, impuesto renta Peru, detracciones SUNAT, multas SUNAT, regimen tributario Peru, MYPE tributario, calculadora planilla Peru, emprendedores Peru, contabilidad Peru, IGV 18%, RUC Peru, declaracion SUNAT, cronograma SUNAT 2025, fraccionamiento SUNAT">
+<meta name="author" content="Deiner Cleison Villegas Villegas">
+<meta property="og:title" content="Calculadora IGV y SUNAT Gratis Peru 2025">
+<meta property="og:description" content="Herramienta gratuita para emprendedores peruanos. Calcula IGV, detracciones, multas, planilla y mas.">
+<meta property="og:type" content="website">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
 body{background:#f0f4f8}
@@ -37,7 +43,9 @@ tr:nth-child(even){background:#f5f5f5}
 .badge-verde{background:#e8f5e9;color:#0D7A3E}
 .badge-rojo{background:#fdecea;color:#C8102E}
 .badge-azul{background:#e8f0fb;color:#003087}
-footer{background:#003087;color:#aac4ff;text-align:center;padding:15px;font-size:12px;margin-top:20px}
+.whatsapp-btn{position:fixed;bottom:20px;right:20px;background:#25D366;color:white;border:none;border-radius:50px;padding:14px 20px;font-size:15px;font-weight:bold;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:999}
+.perfil-foto{width:80px;height:80px;border-radius:50%;background:#F5A623;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:bold;color:white;margin:0 auto 15px}
+footer{background:#003087;color:#aac4ff;text-align:center;padding:15px;font-size:12px;margin-top:20px;padding-bottom:80px}
 </style>
 </head>
 <body>
@@ -57,12 +65,13 @@ footer{background:#003087;color:#aac4ff;text-align:center;padding:15px;font-size
 <button onclick="mostrar('honorarios',this)">Honorarios</button>
 <button onclick="mostrar('fraccionamiento',this)">Fraccionamiento</button>
 <button onclick="mostrar('glosario',this)">Glosario</button>
+<button onclick="mostrar('quiensoy',this)">Quien Soy</button>
 </nav>
 
 <div id="igv" class="seccion activa">
 <div class="tarjeta">
-<h2>Calculadora de IGV</h2>
-<h3>¿Cuanto IGV debo pagar?</h3>
+<h2>Calculadora de IGV Peru 2025</h2>
+<h3>¿Cuanto IGV debo pagar a SUNAT?</h3>
 <label>¿Tienes el precio con IGV o sin IGV?</label>
 <select id="tipoIgv">
 <option value="sin">Precio SIN IGV (base imponible)</option>
@@ -73,13 +82,17 @@ footer{background:#003087;color:#aac4ff;text-align:center;padding:15px;font-size
 <button class="btn" onclick="calcularIgv()">Calcular IGV</button>
 <div id="resultadoIgv"></div>
 </div>
+<div class="tarjeta">
+<h2>¿Que es el IGV?</h2>
+<p style="font-size:13px;color:#555;line-height:1.6">El IGV (Impuesto General a las Ventas) es el 18% que se cobra sobre casi todos los productos y servicios en el Peru. Si vendes S/ 1,000, debes cobrar S/ 1,180 a tu cliente y los S/ 180 entregarlos a SUNAT cada mes mediante el Formulario Virtual 621.</p>
+</div>
 </div>
 
 <div id="regimen" class="seccion">
 <div class="tarjeta">
-<h2>Simulador de Regimen Tributario</h2>
-<h3>¿Cual regimen te conviene?</h3>
-<label>¿Cuanto vendes al mes aproximadamente?</label>
+<h2>Simulador de Regimen Tributario Peru</h2>
+<h3>¿Cual regimen SUNAT te conviene?</h3>
+<label>¿Cuanto vendes al mes?</label>
 <select id="ventas">
 <option value="1">Menos de S/ 8,000 al mes</option>
 <option value="2">Entre S/ 8,000 y S/ 43,750 al mes</option>
@@ -107,7 +120,7 @@ footer{background:#003087;color:#aac4ff;text-align:center;padding:15px;font-size
 
 <div id="multas" class="seccion">
 <div class="tarjeta">
-<h2>Calculadora de Multas SUNAT</h2>
+<h2>Calculadora de Multas SUNAT 2025</h2>
 <h3>¿Cuanto pagaria de multa?</h3>
 <label>Tipo de infraccion:</label>
 <select id="tipoMulta">
@@ -118,12 +131,12 @@ footer{background:#003087;color:#aac4ff;text-align:center;padding:15px;font-size
 </select>
 <label>¿Cuando vas a subsanar?</label>
 <select id="momentoMulta">
-<option value="95">Antes de cualquier notificacion (95% descuento)</option>
+<option value="95">Antes de notificacion (95% descuento)</option>
 <option value="75">Despues de notificacion (75% descuento)</option>
 <option value="50">Durante fiscalizacion (50% descuento)</option>
 <option value="25">Despues de fiscalizacion (25% descuento)</option>
 </select>
-<label>Ingresos netos del mes (S/) - solo para multa de libros:</label>
+<label>Ingresos netos del mes (S/):</label>
 <input type="number" id="ingresosMulta" placeholder="Ejemplo: 10000">
 <button class="btn" onclick="calcularMulta()">Calcular multa</button>
 <div id="resultadoMulta"></div>
@@ -132,8 +145,8 @@ footer{background:#003087;color:#aac4ff;text-align:center;padding:15px;font-size
 
 <div id="cronograma" class="seccion">
 <div class="tarjeta">
-<h2>Cronograma de Vencimientos SUNAT 2025</h2>
-<h3>¿Cuando vence mi declaracion?</h3>
+<h2>Cronograma SUNAT 2025</h2>
+<h3>¿Cuando vence mi declaracion mensual?</h3>
 <label>Ultimo digito de tu RUC:</label>
 <select id="digitoRuc" onchange="mostrarVencimiento()">
 <option value="">Selecciona el digito</option>
@@ -154,8 +167,8 @@ footer{background:#003087;color:#aac4ff;text-align:center;padding:15px;font-size
 
 <div id="renta" class="seccion">
 <div class="tarjeta">
-<h2>Calculadora de Renta</h2>
-<h3>Impuesto a la Renta 5ta Categoria</h3>
+<h2>Calculadora Impuesto a la Renta Peru</h2>
+<h3>IR 5ta Categoria - Trabajadores en Planilla</h3>
 <label>Sueldo bruto mensual (S/):</label>
 <input type="number" id="sueldoRenta" placeholder="Ejemplo: 3000">
 <button class="btn" onclick="calcularRenta()">Calcular IR</button>
@@ -165,14 +178,14 @@ footer{background:#003087;color:#aac4ff;text-align:center;padding:15px;font-size
 
 <div id="detracciones" class="seccion">
 <div class="tarjeta">
-<h2>Calculadora de Detracciones</h2>
+<h2>Calculadora de Detracciones SUNAT</h2>
 <h3>¿Cuanto me van a descontar?</h3>
-<label>Tipo de servicio o bien:</label>
+<label>Tipo de servicio:</label>
 <select id="tipoDetraccion">
 <option value="12">Servicios empresariales (12%)</option>
 <option value="4">Transporte de bienes (4%)</option>
-<option value="4">Contratos de construccion (4%)</option>
-<option value="9">Bienes gravados con IGV (9%)</option>
+<option value="4">Construccion (4%)</option>
+<option value="9">Bienes gravados IGV (9%)</option>
 <option value="10">Arena, piedra, madera (10%)</option>
 </select>
 <label>Monto total de la factura con IGV (S/):</label>
@@ -184,14 +197,13 @@ footer{background:#003087;color:#aac4ff;text-align:center;padding:15px;font-size
 
 <div id="planilla" class="seccion">
 <div class="tarjeta">
-<h2>Calculadora de Planilla Completa</h2>
+<h2>Calculadora de Planilla Peru 2025</h2>
 <h3>Costo total de un trabajador</h3>
-<label>Sueldo bruto mensual del trabajador (S/):</label>
+<label>Sueldo bruto mensual (S/):</label>
 <input type="number" id="sueldoPlanilla" placeholder="Ejemplo: 2000">
-<label>Tipo de AFP:</label>
+<label>Sistema de pension:</label>
 <select id="tipoAfp">
-<option value="10">AFP Integra (10%)</option>
-<option value="10">AFP Prima (10%)</option>
+<option value="10">AFP (10%)</option>
 <option value="13">ONP (13%)</option>
 </select>
 <button class="btn" onclick="calcularPlanilla()">Calcular planilla</button>
@@ -201,9 +213,9 @@ footer{background:#003087;color:#aac4ff;text-align:center;padding:15px;font-size
 
 <div id="honorarios" class="seccion">
 <div class="tarjeta">
-<h2>Calculadora de Honorarios</h2>
-<h3>¿Cuanto cobrar como independiente?</h3>
-<label>¿Cuanto quieres recibir neto al mes (S/)?</label>
+<h2>Calculadora de Honorarios Peru</h2>
+<h3>Recibos por Honorarios - 4ta Categoria</h3>
+<label>¿Cuanto quieres recibir neto (S/)?</label>
 <input type="number" id="netoHonorarios" placeholder="Ejemplo: 2000">
 <label>¿Te retendran el 8% de IR?</label>
 <select id="retencion">
@@ -217,11 +229,11 @@ footer{background:#003087;color:#aac4ff;text-align:center;padding:15px;font-size
 
 <div id="fraccionamiento" class="seccion">
 <div class="tarjeta">
-<h2>Simulador de Fraccionamiento</h2>
-<h3>Paga tu deuda SUNAT en cuotas</h3>
+<h2>Simulador Fraccionamiento SUNAT</h2>
+<h3>Paga tu deuda en cuotas</h3>
 <label>Monto total de la deuda (S/):</label>
 <input type="number" id="deudaFraccionamiento" placeholder="Ejemplo: 5000">
-<label>Numero de cuotas (max 72):</label>
+<label>Numero de cuotas (maximo 72):</label>
 <input type="number" id="cuotasFraccionamiento" placeholder="Ejemplo: 12" max="72">
 <button class="btn" onclick="calcularFraccionamiento()">Calcular cuotas</button>
 <div id="resultadoFraccionamiento"></div>
@@ -230,13 +242,33 @@ footer{background:#003087;color:#aac4ff;text-align:center;padding:15px;font-size
 
 <div id="glosario" class="seccion">
 <div class="tarjeta">
-<h2>Glosario Tributario</h2>
-<h3>Busca cualquier termino tributario</h3>
-<label>Escribe una palabra:</label>
-<input type="text" id="busquedaGlosario" placeholder="Ejemplo: IGV, RUC, detraccion..." oninput="buscarGlosario()">
+<h2>Glosario Tributario Peru</h2>
+<h3>Terminos de SUNAT explicados en simple</h3>
+<label>Busca cualquier termino:</label>
+<input type="text" id="busquedaGlosario" placeholder="Ejemplo: IGV, RUC, detraccion, MYPE..." oninput="buscarGlosario()">
 <div id="resultadoGlosario" style="margin-top:15px"></div>
 </div>
 </div>
+
+<div id="quiensoy" class="seccion">
+<div class="tarjeta">
+<div class="perfil-foto">DV</div>
+<h2 style="text-align:center">Deiner Cleison Villegas Villegas</h2>
+<h3 style="text-align:center">Consultor Financiero y Tributario Peruano</h3>
+<p style="font-size:13px;color:#555;line-height:1.8;margin-top:15px">Soy consultor especializado en tributacion peruana, finanzas para emprendedores y asesoria SUNAT. Cree esta herramienta gratuita porque los emprendedores peruanos merecen acceso a informacion tributaria clara, sin tecnicismos y sin costo.</p>
+<p style="font-size:13px;color:#555;line-height:1.8;margin-top:10px">Mi mision es ayudar a MYPEs, emprendedores y trabajadores independientes a entender sus obligaciones tributarias, aprovechar sus beneficios y crecer sin miedo a SUNAT.</p>
+<div style="margin-top:20px;padding:15px;background:#e8f0fb;border-radius:8px">
+<p style="font-size:13px;font-weight:bold;color:#003087">Servicios de consultoria:</p>
+<p style="font-size:13px;color:#555;margin-top:8px">✓ Asesoria tributaria SUNAT</p>
+<p style="font-size:13px;color:#555">✓ Planificacion fiscal para empresas</p>
+<p style="font-size:13px;color:#555">✓ Coaching financiero para emprendedores</p>
+<p style="font-size:13px;color:#555">✓ Auditoria y revision de libros</p>
+</div>
+<button class="btn" style="background:#25D366;margin-top:15px" onclick="window.open('https://wa.me/51'+prompt('Escribe tu numero de WhatsApp sin el 51:'))">Contactar por WhatsApp</button>
+</div>
+</div>
+
+<button class="whatsapp-btn" onclick="window.open('https://wa.me/51TUNUMERO')">💬 Consulta Gratis</button>
 
 <footer>
 <p>Tributacion Peru - Herramienta gratuita para emprendedores peruanos</p>
@@ -259,19 +291,19 @@ if(!monto||monto<=0){alert('Ingresa un monto valido');return;}
 var base,igv,total;
 if(tipo=='sin'){base=monto;igv=monto*0.18;total=monto+igv;}
 else{total=monto;base=monto/1.18;igv=total-base;}
-document.getElementById('resultadoIgv').innerHTML='<div class="resultado"><h3>Resultado</h3><p>Base imponible (sin IGV): <span class="monto">S/ '+base.toFixed(2)+'</span></p><p>IGV (18%): <span class="monto">S/ '+igv.toFixed(2)+'</span></p><p>Precio total con IGV: <span class="monto">S/ '+total.toFixed(2)+'</span></p></div><div class="verde">Este IGV lo declaras mensualmente en el Formulario Virtual 621 de SUNAT.</div>';
+document.getElementById('resultadoIgv').innerHTML='<div class="resultado"><h3>Resultado</h3><p>Base imponible (sin IGV): <span class="monto">S/ '+base.toFixed(2)+'</span></p><p>IGV (18%): <span class="monto">S/ '+igv.toFixed(2)+'</span></p><p>Precio total con IGV: <span class="monto">S/ '+total.toFixed(2)+'</span></p></div><div class="verde">Declara este IGV mensualmente en el Formulario Virtual 621 de SUNAT antes de tu fecha de vencimiento.</div>';
 }
 function calcularRegimen(){
 var ventas=document.getElementById('ventas').value;
 var facturas=document.getElementById('facturas').value;
 var estado=document.getElementById('estado').value;
 var rec,det;
-if(estado=='si'){rec='REGIMEN GENERAL';det='Contratas con el Estado o exportas: necesitas Regimen General para emitir todos los comprobantes.';}
-else if(facturas=='si'){rec='MYPE TRIBUTARIO';det='Necesitas emitir facturas. El MYPE Tributario es lo mejor: pagas 1% de tus ventas como adelanto del IR y solo 10% de impuesto sobre los primeros S/ 80,250 de utilidad.';}
-else if(ventas=='1'){rec='NRUS - Categoria 1';det='Con ventas menores a S/ 8,000 al mes el NRUS es perfecto. Pagas solo S/ 20 al mes fijo. Solo emites boletas.';}
-else if(ventas=='2'){rec='RER o MYPE TRIBUTARIO';det='Con tus ventas el RER o MYPE Tributario te convienen. Si quieres crecer sin limite elige MYPE Tributario.';}
-else{rec='MYPE TRIBUTARIO o REGIMEN GENERAL';det='Con altos ingresos el MYPE Tributario te da la tasa reducida del 10% hasta 15 UIT de utilidad.';}
-document.getElementById('resultadoRegimen').innerHTML='<div class="resultado"><h3>Te recomendamos:</h3><p class="monto">'+rec+'</p><p style="margin-top:10px">'+det+'</p></div><div class="alerta">Recuerda: puedes cambiar de regimen el 1 de enero de cada ano o cuando superas los limites.</div>';
+if(estado=='si'){rec='REGIMEN GENERAL';det='Contratas con el Estado o exportas: necesitas Regimen General.';}
+else if(facturas=='si'){rec='MYPE TRIBUTARIO';det='Necesitas facturas. MYPE Tributario: pagas 1% adelanto del IR y solo 10% sobre los primeros S/ 80,250 de utilidad anual.';}
+else if(ventas=='1'){rec='NRUS - Categoria 1';det='Con ventas menores a S/ 8,000 al mes el NRUS es perfecto. Pagas solo S/ 20 fijo al mes. Solo emites boletas.';}
+else if(ventas=='2'){rec='RER o MYPE TRIBUTARIO';det='Con tus ventas el MYPE Tributario te conviene mas para crecer sin limite.';}
+else{rec='MYPE TRIBUTARIO o REGIMEN GENERAL';det='Con altos ingresos el MYPE Tributario te da la tasa reducida del 10% sobre los primeros S/ 80,250 de utilidad.';}
+document.getElementById('resultadoRegimen').innerHTML='<div class="resultado"><h3>Te recomendamos:</h3><p class="monto">'+rec+'</p><p style="margin-top:10px">'+det+'</p></div><div class="alerta">Puedes cambiar de regimen el 1 de enero de cada ano o cuando superas los limites establecidos por SUNAT.</div>';
 }
 function calcularMulta(){
 var tipo=document.getElementById('tipoMulta').value;
@@ -284,13 +316,13 @@ else if(tipo=='nolibros'){multaBase=ingresos*0.003||UIT*0.3;nombre='No llevar li
 else{multaBase=UIT*0.5;nombre='Declarar datos falsos';}
 var descuentoMonto=multaBase*(descuento/100);
 var multaFinal=multaBase-descuentoMonto;
-document.getElementById('resultadoMulta').innerHTML='<div class="resultado"><h3>'+nombre+'</h3><p>Multa original: <span class="monto">S/ '+multaBase.toFixed(2)+'</span></p><p>Descuento ('+descuento+'%): <span class="monto">- S/ '+descuentoMonto.toFixed(2)+'</span></p><p>Multa final a pagar: <span class="monto">S/ '+multaFinal.toFixed(2)+'</span></p></div><div class="verde">Mientras mas rapido subsanas, menos pagas. Hazlo antes de que SUNAT te notifique.</div>';
+document.getElementById('resultadoMulta').innerHTML='<div class="resultado"><h3>'+nombre+'</h3><p>Multa original: <span class="monto">S/ '+multaBase.toFixed(2)+'</span></p><p>Descuento ('+descuento+'%): <span class="monto">- S/ '+descuentoMonto.toFixed(2)+'</span></p><p>Multa final: <span class="monto">S/ '+multaFinal.toFixed(2)+'</span></p></div><div class="verde">Subsana lo antes posible. Antes de cualquier notificacion de SUNAT tienes 95% de descuento.</div>';
 }
 function mostrarVencimiento(){
 var digito=document.getElementById('digitoRuc').value;
-var vencimientos={'0':'13 o 14 del mes siguiente','1':'15 o 16 del mes siguiente','2':'10 o 11 del mes siguiente','3':'11 o 12 del mes siguiente','4':'12 o 13 del mes siguiente','5':'13 o 14 del mes siguiente','6':'14 o 15 del mes siguiente','7':'15 o 16 del mes siguiente','8':'9 o 10 del mes siguiente','9':'11 o 12 del mes siguiente'};
+var v={'0':'13 o 14 del mes siguiente','1':'15 o 16 del mes siguiente','2':'10 o 11 del mes siguiente','3':'11 o 12 del mes siguiente','4':'12 o 13 del mes siguiente','5':'13 o 14 del mes siguiente','6':'14 o 15 del mes siguiente','7':'15 o 16 del mes siguiente','8':'9 o 10 del mes siguiente','9':'11 o 12 del mes siguiente'};
 if(digito===''){document.getElementById('resultadoCronograma').innerHTML='';return;}
-document.getElementById('resultadoCronograma').innerHTML='<div class="resultado"><h3>Tu RUC termina en '+digito+'</h3><p>Tu declaracion vence: <span class="monto">'+vencimientos[digito]+'</span></p></div><div class="alerta">Si no declaras a tiempo la multa es S/ 2,675. Declara aunque no hayas vendido nada.</div>';
+document.getElementById('resultadoCronograma').innerHTML='<div class="resultado"><h3>RUC termina en '+digito+'</h3><p>Tu declaracion vence: <span class="monto">'+v[digito]+'</span></p></div><div class="alerta">Si no declaras a tiempo la multa minima es S/ 2,675. Declara aunque no hayas vendido nada ese mes.</div>';
 }
 function calcularRenta(){
 var sueldo=parseFloat(document.getElementById('sueldoRenta').value);
@@ -299,13 +331,14 @@ var anual=sueldo*12;
 var deduccion=UIT*7;
 var rentaNeta=anual-deduccion;
 var ir=0;
-if(rentaNeta<=0){ir=0;}
-else if(rentaNeta<=UIT*5){ir=rentaNeta*0.08;}
-else if(rentaNeta<=UIT*20){ir=UIT*5*0.08+(rentaNeta-UIT*5)*0.14;}
-else if(rentaNeta<=UIT*35){ir=UIT*5*0.08+UIT*15*0.14+(rentaNeta-UIT*20)*0.17;}
-else{ir=UIT*5*0.08+UIT*15*0.14+UIT*15*0.17+(rentaNeta-UIT*35)*0.20;}
+if(rentaNeta>0){
+if(rentaNeta<=UIT*5)ir=rentaNeta*0.08;
+else if(rentaNeta<=UIT*20)ir=UIT*5*0.08+(rentaNeta-UIT*5)*0.14;
+else if(rentaNeta<=UIT*35)ir=UIT*5*0.08+UIT*15*0.14+(rentaNeta-UIT*20)*0.17;
+else ir=UIT*5*0.08+UIT*15*0.14+UIT*15*0.17+(rentaNeta-UIT*35)*0.20;
+}
 var irMensual=ir/12;
-document.getElementById('resultadoRenta').innerHTML='<div class="resultado"><h3>Impuesto a la Renta 5ta Categoria</h3><p>Sueldo anual: S/ '+(anual).toFixed(2)+'</p><p>Deduccion 7 UIT: - S/ '+deduccion.toFixed(2)+'</p><p>Renta neta anual: S/ '+Math.max(0,rentaNeta).toFixed(2)+'</p><p>IR anual: <span class="monto">S/ '+ir.toFixed(2)+'</span></p><p>Retencion mensual aproximada: <span class="monto">S/ '+irMensual.toFixed(2)+'</span></p></div>'+(ir==0?'<div class="verde">No pagas IR porque tu sueldo anual no supera las 7 UIT de deduccion.</div>':'<div class="alerta">Tu empleador retiene S/ '+irMensual.toFixed(2)+' cada mes de tu sueldo.</div>');
+document.getElementById('resultadoRenta').innerHTML='<div class="resultado"><h3>IR 5ta Categoria</h3><p>Sueldo anual: S/ '+anual.toFixed(2)+'</p><p>Deduccion 7 UIT: - S/ '+deduccion.toFixed(2)+'</p><p>Renta neta: S/ '+Math.max(0,rentaNeta).toFixed(2)+'</p><p>IR anual: <span class="monto">S/ '+ir.toFixed(2)+'</span></p><p>Retencion mensual: <span class="monto">S/ '+irMensual.toFixed(2)+'</span></p></div>'+(ir==0?'<div class="verde">No pagas IR. Tu sueldo anual no supera las 7 UIT de deduccion automatica (S/ '+deduccion.toFixed(2)+').</div>':'<div class="alerta">Tu empleador retiene S/ '+irMensual.toFixed(2)+' cada mes de tu sueldo y lo paga a SUNAT.</div>');
 }
 function calcularDetraccion(){
 var tasa=parseFloat(document.getElementById('tipoDetraccion').value);
@@ -313,7 +346,7 @@ var monto=parseFloat(document.getElementById('montoDetraccion').value);
 if(!monto||monto<=0){alert('Ingresa un monto valido');return;}
 var detraccion=monto*(tasa/100);
 var recibe=monto-detraccion;
-document.getElementById('resultadoDetraccion').innerHTML='<div class="resultado"><h3>Calculo de Detraccion</h3><p>Monto de factura: S/ '+monto.toFixed(2)+'</p><p>Detraccion ('+tasa+'%): <span class="monto">- S/ '+detraccion.toFixed(2)+'</span></p><p>Lo que recibes: <span class="monto">S/ '+recibe.toFixed(2)+'</span></p></div><div class="verde">Los S/ '+detraccion.toFixed(2)+' van a tu cuenta del Banco de la Nacion. Solo puedes usarlos para pagar impuestos SUNAT.</div>';
+document.getElementById('resultadoDetraccion').innerHTML='<div class="resultado"><h3>Calculo de Detraccion</h3><p>Monto factura: S/ '+monto.toFixed(2)+'</p><p>Detraccion ('+tasa+'%): <span class="monto">- S/ '+detraccion.toFixed(2)+'</span></p><p>Lo que recibes: <span class="monto">S/ '+recibe.toFixed(2)+'</span></p></div><div class="verde">Los S/ '+detraccion.toFixed(2)+' van a tu cuenta del Banco de la Nacion. Usalos para pagar tus impuestos SUNAT.</div>';
 }
 function calcularPlanilla(){
 var sueldo=parseFloat(document.getElementById('sueldoPlanilla').value);
@@ -324,17 +357,17 @@ var descAfp=sueldo*(afp/100);
 var neto=sueldo-descAfp;
 var costoTotal=sueldo+essalud;
 var cts=sueldo/12;
-var gratificacion=sueldo/6;
-document.getElementById('resultadoPlanilla').innerHTML='<div class="resultado"><h3>Resumen de Planilla</h3><p>Sueldo bruto: S/ '+sueldo.toFixed(2)+'</p><p>AFP/ONP ('+afp+'%): - S/ '+descAfp.toFixed(2)+'</p><p>Neto que recibe: <span class="monto">S/ '+neto.toFixed(2)+'</span></p><hr style="margin:10px 0"><p>ESSALUD (9% a cargo tuyo): S/ '+essalud.toFixed(2)+'</p><p>Costo total mensual para ti: <span class="monto">S/ '+costoTotal.toFixed(2)+'</span></p><hr style="margin:10px 0"><p>CTS mensual a provisionar: S/ '+cts.toFixed(2)+'</p><p>Gratificacion mensual a provisionar: S/ '+gratificacion.toFixed(2)+'</p></div>';
+var gratis=sueldo/6;
+document.getElementById('resultadoPlanilla').innerHTML='<div class="resultado"><h3>Resumen de Planilla</h3><p>Sueldo bruto: S/ '+sueldo.toFixed(2)+'</p><p>AFP/ONP ('+afp+'%): - S/ '+descAfp.toFixed(2)+'</p><p>Sueldo neto del trabajador: <span class="monto">S/ '+neto.toFixed(2)+'</span></p><hr style="margin:10px 0"><p>ESSALUD (9% pagado por ti): S/ '+essalud.toFixed(2)+'</p><p>Costo total mensual para tu empresa: <span class="monto">S/ '+costoTotal.toFixed(2)+'</span></p><hr style="margin:10px 0"><p>CTS a provisionar por mes: S/ '+cts.toFixed(2)+'</p><p>Gratificacion a provisionar por mes: S/ '+gratis.toFixed(2)+'</p></div>';
 }
 function calcularHonorarios(){
 var neto=parseFloat(document.getElementById('netoHonorarios').value);
 var retencion=document.getElementById('retencion').value;
 if(!neto||neto<=0){alert('Ingresa un monto valido');return;}
-var bruto,retencionMonto;
-if(retencion=='si'){bruto=neto/0.92;retencionMonto=bruto*0.08;}
-else{bruto=neto;retencionMonto=0;}
-document.getElementById('resultadoHonorarios').innerHTML='<div class="resultado"><h3>Tu Recibo por Honorarios</h3><p>Monto en el recibo: <span class="monto">S/ '+bruto.toFixed(2)+'</span></p><p>Retencion IR (8%): - S/ '+retencionMonto.toFixed(2)+'</p><p>Lo que recibes neto: <span class="monto">S/ '+neto.toFixed(2)+'</span></p></div><div class="verde">Emite tu recibo por S/ '+bruto.toFixed(2)+' y recibiras S/ '+neto.toFixed(2)+' despues de la retencion.</div>';
+var bruto,ret;
+if(retencion=='si'){bruto=neto/0.92;ret=bruto*0.08;}
+else{bruto=neto;ret=0;}
+document.getElementById('resultadoHonorarios').innerHTML='<div class="resultado"><h3>Tu Recibo por Honorarios</h3><p>Monto en el recibo: <span class="monto">S/ '+bruto.toFixed(2)+'</span></p><p>Retencion IR 8%: - S/ '+ret.toFixed(2)+'</p><p>Lo que recibes neto: <span class="monto">S/ '+neto.toFixed(2)+'</span></p></div><div class="verde">Emite tu recibo por S/ '+bruto.toFixed(2)+' en SUNAT SOL y recibiras S/ '+neto.toFixed(2)+' despues de la retencion.</div>';
 }
 function calcularFraccionamiento(){
 var deuda=parseFloat(document.getElementById('deudaFraccionamiento').value);
@@ -342,38 +375,39 @@ var cuotas=parseInt(document.getElementById('cuotasFraccionamiento').value);
 if(!deuda||deuda<=0){alert('Ingresa una deuda valida');return;}
 if(!cuotas||cuotas<=0||cuotas>72){alert('Las cuotas deben ser entre 1 y 72');return;}
 var tasa=0.012;
-var cuotaMensual=deuda*(tasa*Math.pow(1+tasa,cuotas))/(Math.pow(1+tasa,cuotas)-1);
-var totalPagar=cuotaMensual*cuotas;
-var interesTotal=totalPagar-deuda;
-document.getElementById('resultadoFraccionamiento').innerHTML='<div class="resultado"><h3>Plan de Fraccionamiento</h3><p>Deuda original: S/ '+deuda.toFixed(2)+'</p><p>Cuotas: '+cuotas+' meses</p><p>Cuota mensual: <span class="monto">S/ '+cuotaMensual.toFixed(2)+'</span></p><p>Total intereses: S/ '+interesTotal.toFixed(2)+'</p><p>Total a pagar: <span class="monto">S/ '+totalPagar.toFixed(2)+'</span></p></div><div class="alerta">Tasa de interes moratorio SUNAT: 1.2% mensual. Solicita el fraccionamiento en SUNAT SOL.</div>';
+var cuota=deuda*(tasa*Math.pow(1+tasa,cuotas))/(Math.pow(1+tasa,cuotas)-1);
+var total=cuota*cuotas;
+var intereses=total-deuda;
+document.getElementById('resultadoFraccionamiento').innerHTML='<div class="resultado"><h3>Plan de Fraccionamiento SUNAT</h3><p>Deuda original: S/ '+deuda.toFixed(2)+'</p><p>Numero de cuotas: '+cuotas+' meses</p><p>Cuota mensual: <span class="monto">S/ '+cuota.toFixed(2)+'</span></p><p>Total intereses: S/ '+intereses.toFixed(2)+'</p><p>Total a pagar: <span class="monto">S/ '+total.toFixed(2)+'</span></p></div><div class="alerta">Tasa SUNAT: 1.2% mensual. Solicita el fraccionamiento directamente en SUNAT Operaciones en Linea (SOL).</div>';
 }
 var glosarioData=[
 {t:'IGV',d:'Impuesto General a las Ventas. El 18% que se cobra sobre casi todos los productos y servicios en el Peru.'},
-{t:'RUC',d:'Registro Unico de Contribuyentes. El numero de 11 digitos que te identifica ante SUNAT.'},
-{t:'UIT',d:'Unidad Impositiva Tributaria. En 2025 es S/ 5,350. Base de muchos calculos tributarios.'},
-{t:'Detraccion',d:'Descuento que hace el comprador de tu factura y deposita en tu cuenta del Banco de la Nacion para pagar impuestos.'},
-{t:'Retencion',d:'Monto que te descuenta el pagador de tu factura y lo entrega directamente a SUNAT en tu nombre.'},
-{t:'NRUS',d:'Nuevo Regimen Unico Simplificado. Para muy pequenos negocios. Pago fijo de S/ 20 o S/ 50 al mes.'},
-{t:'RER',d:'Regimen Especial de Renta. Para negocios con ventas hasta S/ 525,000 al ano. Paga 1.5% de ventas.'},
-{t:'MYPE',d:'Micro y Pequena Empresa. El regimen MYPE Tributario paga 10% de IR sobre los primeros S/ 80,250 de utilidad.'},
-{t:'PDT',d:'Programa de Declaracion Telematica. Software de SUNAT para declarar impuestos electronicamente.'},
-{t:'PLAME',d:'Planilla Mensual de Pagos. Declaracion mensual de remuneraciones y aportes de trabajadores.'},
-{t:'Prescripcion',d:'Plazo legal tras el cual SUNAT pierde el derecho a cobrar una deuda. 4 anos si declaraste, 6 si no declaraste.'},
-{t:'Gradualidad',d:'Sistema que reduce las multas tributarias segun que tan rapido corriges el error.'},
-{t:'TIM',d:'Tasa de Interes Moratorio. 0.03% diario sobre deuda tributaria vencida.'},
-{t:'ESSALUD',d:'Seguro de salud. El empleador paga el 9% del sueldo del trabajador a ESSALUD.'},
-{t:'CTS',d:'Compensacion por Tiempo de Servicios. Se deposita en mayo y noviembre. Equivale a 1 sueldo al ano.'},
-{t:'Causalidad',d:'Principio que dice que solo puedes deducir gastos relacionados con generar ingresos para tu negocio.'},
-{t:'Credito fiscal',d:'El IGV de tus compras que puedes descontar del IGV de tus ventas para pagar menos a SUNAT.'},
-{t:'Fiscalizacion',d:'Revision formal que hace SUNAT de tus declaraciones y documentos para verificar que pagaste bien.'},
+{t:'RUC',d:'Registro Unico de Contribuyentes. Numero de 11 digitos que te identifica ante SUNAT. Es gratis obtenerlo.'},
+{t:'UIT',d:'Unidad Impositiva Tributaria. En 2025 vale S/ 5,350. Base de muchos calculos tributarios en el Peru.'},
+{t:'Detraccion',d:'Descuento que hace el comprador de tu factura y deposita en tu cuenta del Banco de la Nacion para pagar impuestos SUNAT.'},
+{t:'Retencion',d:'Monto que te descuenta el pagador y entrega directamente a SUNAT en tu nombre. No te roban: es tu impuesto pagado.'},
+{t:'NRUS',d:'Nuevo Regimen Unico Simplificado. Para muy pequenos negocios. Pago fijo de S/ 20 o S/ 50 al mes sin contabilidad.'},
+{t:'RER',d:'Regimen Especial de Renta. Para negocios con ventas hasta S/ 525,000 al ano. Paga 1.5% de ventas netas.'},
+{t:'MYPE',d:'Micro y Pequena Empresa. El regimen MYPE Tributario paga solo 10% de IR sobre los primeros S/ 80,250 de utilidad.'},
+{t:'PDT',d:'Programa de Declaracion Telematica. Software de SUNAT para declarar impuestos electronicamente cada mes.'},
+{t:'PLAME',d:'Planilla Mensual de Pagos. Declaracion mensual de sueldos y aportes de trabajadores ante SUNAT.'},
+{t:'Prescripcion',d:'Plazo legal donde SUNAT pierde derecho a cobrar deuda. 4 anos si declaraste, 6 anos si no declaraste.'},
+{t:'Gradualidad',d:'Sistema que reduce las multas SUNAT segun que tan rapido corriges el error. Hasta 95% de descuento.'},
+{t:'TIM',d:'Tasa de Interes Moratorio. 0.03% diario sobre deuda tributaria vencida con SUNAT.'},
+{t:'ESSALUD',d:'Seguro de salud de los trabajadores. El empleador paga el 9% del sueldo bruto mensual a ESSALUD.'},
+{t:'CTS',d:'Compensacion por Tiempo de Servicios. Beneficio del trabajador. Se deposita en mayo y noviembre cada ano.'},
+{t:'Causalidad',d:'Principio tributario: solo puedes deducir gastos directamente relacionados con generar ingresos en tu negocio.'},
+{t:'Credito fiscal',d:'El IGV de tus compras que puedes descontar del IGV de tus ventas. Reduces lo que pagas a SUNAT.'},
+{t:'Fiscalizacion',d:'Revision formal de SUNAT a tus declaraciones, libros y documentos. Puede durar hasta 1 ano.'},
+{t:'Fraccionamiento',d:'Pago de deuda SUNAT en cuotas mensuales. Tasa 1.2% mensual. Maximo 72 cuotas.'},
+{t:'Honorarios',d:'Ingresos de trabajo independiente. Se declaran con Recibo por Honorarios y pagan 8% de retencion.'},
 ];
 function buscarGlosario(){
-var busqueda=document.getElementById('busquedaGlosario').value.toLowerCase();
-if(busqueda.length<2){document.getElementById('resultadoGlosario').innerHTML='';return;}
-var resultados=glosarioData.filter(function(g){return g.t.toLowerCase().includes(busqueda)||g.d.toLowerCase().includes(busqueda);});
-if(resultados.length==0){document.getElementById('resultadoGlosario').innerHTML='<div class="alerta">No se encontro el termino. Prueba con otra palabra.</div>';return;}
-var html=resultados.map(function(g){return '<div class="resultado" style="margin-bottom:10px"><h3>'+g.t+'</h3><p>'+g.d+'</p></div>';}).join('');
-document.getElementById('resultadoGlosario').innerHTML=html;
+var b=document.getElementById('busquedaGlosario').value.toLowerCase();
+if(b.length<2){document.getElementById('resultadoGlosario').innerHTML='';return;}
+var r=glosarioData.filter(function(g){return g.t.toLowerCase().includes(b)||g.d.toLowerCase().includes(b);});
+if(r.length==0){document.getElementById('resultadoGlosario').innerHTML='<div class="alerta">No encontrado. Prueba con otra palabra.</div>';return;}
+document.getElementById('resultadoGlosario').innerHTML=r.map(function(g){return '<div class="resultado" style="margin-bottom:10px"><h3>'+g.t+'</h3><p>'+g.d+'</p></div>';}).join('');
 }
 </script>
 </body>
