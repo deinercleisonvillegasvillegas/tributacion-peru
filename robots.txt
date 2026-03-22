@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://deinercleisonvillegasvillegas.github.io/tributacion-peru/sitemap.xml
