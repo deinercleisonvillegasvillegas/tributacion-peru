@@ -1,658 +1,270 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Calculadora Laboral y Tributaria Peru 2026 - SUNAT Gratis | Deiner Villegas</title>
-<meta name="description" content="Calculadora IGV, CTS, gratificaciones, liquidacion laboral, utilidades, planilla, multas SUNAT Peru 2026. Herramienta gratuita para emprendedores y trabajadores peruanos.">
-<meta name="keywords" content="calculadora IGV Peru 2026, SUNAT 2026, CTS Peru, gratificaciones Peru, liquidacion laboral Peru, utilidades Peru, impuesto renta Peru, detracciones SUNAT, multas SUNAT, regimen tributario Peru, UIT 2026">
-<meta name="author" content="Deiner Cleison Villegas Villegas">
-<meta name="google-site-verification" content="hBuGeo5a2o2oXuV4OJZLjWH6egXditYT-Mfb-iVRENU" />
+<meta name="description" content="Calculadora tributaria y laboral Peru 2026 gratuita. IGV 18%, 10.5% restaurantes/hoteles, planilla, CTS, gratificaciones, retenciones, deducciones. Actualizada SUNAT 2026."/>
+<meta name="keywords" content="calculadora IGV Peru 2026, SUNAT, planilla Peru, CTS Peru, gratificaciones Peru, retenciones IGV, deducciones impuesto renta Peru"/>
+<meta name="author" content="Deiner Cleison Villegas Villegas"/>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
-body{background:#f0f4f8}
-header{background:#003087;color:white;padding:20px;text-align:center}
-header h1{font-size:24px}
-header p{font-size:13px;color:#F5A623;margin-top:5px}
-.autor{font-size:11px;color:#aac4ff;margin-top:3px}
-nav{background:#C8102E;display:flex;overflow-x:auto;padding:5px}
-nav button{background:none;border:none;color:white;padding:10px 15px;cursor:pointer;white-space:nowrap;font-size:13px}
-nav button.activo{background:#003087}
-nav button.btn-uit{background:#F5A623;color:#003087;font-weight:bold;border-radius:6px;margin:2px 5px}
-.seccion{display:none;padding:15px}
-.seccion.activa{display:block}
-.tarjeta{background:white;border-radius:10px;padding:20px;margin-bottom:15px;box-shadow:0 2px 8px rgba(0,0,0,0.1)}
-h2{color:#003087;font-size:18px;margin-bottom:15px}
-h3{color:#C8102E;font-size:15px;margin-bottom:10px}
-label{display:block;font-size:13px;color:#555;margin-bottom:5px;margin-top:10px}
-input,select{width:100%;padding:10px;border:1px solid #ddd;border-radius:6px;font-size:14px}
-.btn{background:#003087;color:white;border:none;padding:12px;width:100%;border-radius:6px;font-size:15px;cursor:pointer;margin-top:15px}
-.btn:active{background:#C8102E}
-.resultado{background:#e8f0fb;border-left:4px solid #003087;padding:15px;border-radius:0 8px 8px 0;margin-top:15px}
-.resultado h3{color:#003087}
-.resultado p{font-size:14px;margin-top:5px;color:#333}
-.resultado .monto{font-size:22px;font-weight:bold;color:#003087}
-.alerta{background:#fdecea;border-left:4px solid #C8102E;padding:12px;border-radius:0 8px 8px 0;margin-top:10px;font-size:13px}
-.verde{background:#e8f5e9;border-left:4px solid #0D7A3E;padding:12px;border-radius:0 8px 8px 0;margin-top:10px;font-size:13px}
-.noticia{background:white;border-left:4px solid #F5A623;padding:15px;border-radius:0 8px 8px 0;margin-bottom:12px;box-shadow:0 1px 4px rgba(0,0,0,0.08)}
-.noticia h3{color:#003087;font-size:14px;margin-bottom:5px}
-.noticia p{font-size:12px;color:#555}
-.noticia a{color:#C8102E;font-size:12px;font-weight:bold;text-decoration:none}
-.blog-art{background:white;border-radius:10px;padding:20px;margin-bottom:15px;box-shadow:0 2px 8px rgba(0,0,0,0.08)}
-.blog-art h3{color:#003087;font-size:15px;margin-bottom:8px}
-.blog-art p{font-size:13px;color:#555;line-height:1.7}
-.blog-tag{display:inline-block;background:#e8f0fb;color:#003087;font-size:11px;padding:3px 8px;border-radius:10px;margin-right:5px;margin-bottom:8px;font-weight:bold}
-.whatsapp-btn{position:fixed;bottom:20px;right:20px;background:#25D366;color:white;border:none;border-radius:50px;padding:14px 20px;font-size:15px;font-weight:bold;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:999}
-.perfil-foto{width:80px;height:80px;border-radius:50%;background:#F5A623;display:flex;align-items:center;justify-content:center;font-size:32px;font-weight:bold;color:white;margin:0 auto 15px}
-.inicio-card{background:white;border-radius:10px;padding:15px;margin-bottom:12px;box-shadow:0 2px 6px rgba(0,0,0,0.08);border-left:4px solid #003087;cursor:pointer}
-.inicio-card:hover{background:#e8f0fb}
-.inicio-card h3{color:#003087;font-size:14px;margin-bottom:5px}
-.inicio-card p{font-size:12px;color:#555;line-height:1.5}
-.inicio-icon{font-size:24px;margin-bottom:5px}
-.uit-card{background:linear-gradient(135deg,#003087,#0052cc);border-radius:12px;padding:20px;margin-bottom:15px;color:white;box-shadow:0 4px 12px rgba(0,48,135,0.3)}
-.uit-card h2{color:#F5A623;font-size:20px;margin-bottom:5px}
-.uit-valor{font-size:42px;font-weight:bold;color:white;margin:10px 0}
-.uit-sub{font-size:13px;color:#aac4ff}
-.uit-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:15px}
-.uit-item{background:rgba(255,255,255,0.12);border-radius:8px;padding:12px;text-align:center}
-.uit-item .lbl{font-size:11px;color:#aac4ff;margin-bottom:4px}
-.uit-item .val{font-size:18px;font-weight:bold;color:white}
-.uit-historia table{width:100%;border-collapse:collapse;font-size:13px}
-.uit-historia th{background:#003087;color:white;padding:8px;text-align:center}
-.uit-historia td{padding:8px;text-align:center;border-bottom:1px solid #eee}
-.uit-historia tr:last-child td{background:#e8f5e9;font-weight:bold}
-.uit-uso-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f0f0f0;font-size:13px}
-.uit-uso-item:last-child{border-bottom:none}
-.uit-uso-item .concepto{color:#555}
-.uit-uso-item .calculo{color:#003087;font-weight:bold}
-footer{background:#003087;color:#aac4ff;text-align:center;padding:15px;font-size:12px;margin-top:20px;padding-bottom:80px}
+  :root {
+    --verde: #00b386;
+    --verde2: #007a5e;
+    --oscuro: #0d1b2a;
+    --gris: #1c2e40;
+    --card: #162333;
+    --texto: #e0eaf4;
+    --amarillo: #f0c040;
+    --rojo: #e05555;
+    --azul: #2196f3;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--oscuro); color: var(--texto); font-family: 'Segoe UI', Arial, sans-serif; font-size: 15px; }
+  a { color: var(--verde); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* NAV */
+  nav { background: #0a1520; border-bottom: 2px solid var(--verde); position: sticky; top: 0; z-index: 999; overflow-x: auto; white-space: nowrap; padding: 0 8px; }
+  nav a { display: inline-block; padding: 13px 11px; color: #b0c8e0; font-size: 13px; font-weight: 500; transition: color 0.2s; }
+  nav a:hover { color: var(--verde); text-decoration: none; }
+
+  /* HEADER */
+  header { background: linear-gradient(135deg, #0a2540 0%, #0d3d2b 100%); padding: 38px 20px 28px; text-align: center; border-bottom: 3px solid var(--verde); }
+  header h1 { font-size: 2rem; color: var(--verde); letter-spacing: 1px; }
+  header p { color: #8ab4c8; margin-top: 7px; font-size: 0.97rem; }
+  .banner-datos { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 18px; }
+  .banner-item { background: rgba(0,179,134,0.10); border: 1px solid var(--verde); border-radius: 8px; padding: 8px 18px; font-size: 0.92rem; color: var(--verde); font-weight: 600; }
+
+  /* SECCIONES */
+  section { padding: 40px 16px 20px; max-width: 860px; margin: 0 auto; }
+  h2 { font-size: 1.5rem; color: var(--verde); border-left: 4px solid var(--verde); padding-left: 12px; margin-bottom: 6px; }
+  h3 { font-size: 1rem; color: #8ab4c8; margin-bottom: 18px; }
+
+  /* CARDS INICIO */
+  .grid-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 18px; margin-top: 24px; }
+  .card { background: var(--card); border-radius: 12px; padding: 22px 18px; border: 1px solid #1e3550; transition: border-color 0.2s, transform 0.15s; cursor: pointer; }
+  .card:hover { border-color: var(--verde); transform: translateY(-2px); }
+  .card .icon { font-size: 2rem; margin-bottom: 10px; }
+  .card h4 { font-size: 0.97rem; color: var(--texto); margin-bottom: 6px; }
+  .card p { font-size: 0.82rem; color: #6a8aaa; }
+
+  /* CALC ZONA */
+  .calc-box { background: var(--card); border-radius: 14px; padding: 28px 24px; border: 1px solid #1e3550; margin-top: 10px; }
+  label { display: block; margin-bottom: 5px; color: #8ab4c8; font-size: 0.88rem; font-weight: 600; margin-top: 14px; }
+  input[type=number], select { width: 100%; padding: 10px 14px; background: #0d1b2a; border: 1px solid #2a4060; border-radius: 8px; color: var(--texto); font-size: 0.97rem; outline: none; margin-bottom: 4px; }
+  input[type=number]:focus, select:focus { border-color: var(--verde); }
+  .radio-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; margin-bottom: 6px; }
+  .radio-group label { display: flex; align-items: center; gap: 6px; color: var(--texto); font-weight: 400; font-size: 0.91rem; margin-top: 0; cursor: pointer; background: #0d1b2a; border: 1px solid #2a4060; border-radius: 7px; padding: 7px 13px; transition: border-color 0.2s; }
+  .radio-group label:hover { border-color: var(--verde); }
+  .radio-group input[type=radio] { accent-color: var(--verde); }
+  button.btn { background: linear-gradient(90deg, var(--verde), var(--verde2)); color: #fff; border: none; border-radius: 8px; padding: 12px 28px; font-size: 1rem; font-weight: 700; cursor: pointer; margin-top: 18px; transition: opacity 0.2s; }
+  button.btn:hover { opacity: 0.88; }
+  .resultado { background: rgba(0,179,134,0.09); border: 1px solid var(--verde); border-radius: 10px; padding: 18px 20px; margin-top: 18px; display: none; }
+  .resultado.show { display: block; }
+  .resultado h4 { color: var(--verde); margin-bottom: 10px; font-size: 1.05rem; }
+  .fila { display: flex; justify-content: space-between; align-items: center; padding: 5px 0; border-bottom: 1px solid #1e3550; font-size: 0.93rem; }
+  .fila:last-child { border-bottom: none; font-weight: 700; color: var(--verde); }
+  .badge { font-size: 0.75rem; background: var(--verde); color: #fff; border-radius: 5px; padding: 2px 8px; margin-left: 6px; }
+  .badge-amarillo { background: var(--amarillo); color: #222; }
+  .badge-rojo { background: var(--rojo); }
+  .alerta { background: rgba(240,192,64,0.10); border: 1px solid var(--amarillo); border-radius: 8px; padding: 12px 16px; margin-top: 14px; font-size: 0.87rem; color: var(--amarillo); }
+  .info-box { background: rgba(33,150,243,0.08); border: 1px solid var(--azul); border-radius: 8px; padding: 14px 18px; margin-top: 14px; font-size: 0.88rem; color: #90c8f8; line-height: 1.7; }
+
+  /* TABLA */
+  table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 0.9rem; }
+  th { background: #0a1f35; color: var(--verde); padding: 10px 12px; text-align: left; }
+  td { padding: 9px 12px; border-bottom: 1px solid #1e3550; }
+  tr:hover td { background: #162333; }
+
+  /* CRONOGRAMA */
+  .crono-tabla { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; margin-top: 16px; }
+  .crono-item { background: var(--card); border: 1px solid #1e3550; border-radius: 8px; padding: 12px; }
+  .crono-item strong { color: var(--verde); display: block; margin-bottom: 4px; }
+
+  /* GLOSARIO */
+  .glosario-lista { margin-top: 12px; }
+  .term { background: var(--card); border-radius: 8px; padding: 13px 16px; margin-bottom: 9px; border: 1px solid #1e3550; }
+  .term strong { color: var(--verde); }
+
+  /* BLOG */
+  .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; margin-top: 18px; }
+  .blog-card { background: var(--card); border-radius: 12px; padding: 20px; border: 1px solid #1e3550; }
+  .blog-card .tags { margin-bottom: 8px; }
+  .tag { font-size: 0.73rem; background: rgba(0,179,134,0.15); color: var(--verde); border-radius: 4px; padding: 2px 8px; margin-right: 4px; }
+  .blog-card h4 { color: var(--texto); margin-bottom: 8px; font-size: 0.97rem; }
+  .blog-card p { color: #6a8aaa; font-size: 0.84rem; line-height: 1.6; }
+
+  /* QUIEN SOY */
+  .quien-card { background: var(--card); border-radius: 14px; padding: 30px 26px; border: 1px solid var(--verde); margin-top: 16px; display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; }
+  .avatar { width: 72px; height: 72px; background: linear-gradient(135deg, var(--verde), var(--verde2)); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; font-weight: 700; color: #fff; flex-shrink: 0; }
+  .quien-info h3 { color: var(--verde); font-size: 1.15rem; }
+  .quien-info p { color: #8ab4c8; font-size: 0.9rem; margin-top: 7px; line-height: 1.7; }
+  .servicios-lista { margin-top: 12px; }
+  .servicios-lista li { list-style: none; color: var(--texto); font-size: 0.9rem; padding: 3px 0; }
+  .servicios-lista li::before { content: '✓ '; color: var(--verde); font-weight: 700; }
+  .wa-btn { display: inline-block; background: #25d366; color: #fff; border-radius: 8px; padding: 11px 22px; font-weight: 700; margin-top: 16px; font-size: 0.95rem; }
+
+  /* UIT TABLA */
+  .uit-stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 14px; margin-top: 20px; }
+  .uit-stat { background: var(--card); border-radius: 10px; padding: 16px; border: 1px solid #1e3550; }
+  .uit-stat .val { font-size: 1.4rem; font-weight: 700; color: var(--verde); }
+  .uit-stat .lbl { font-size: 0.8rem; color: #6a8aaa; margin-top: 4px; }
+
+  /* FOOTER */
+  footer { background: #0a1520; border-top: 2px solid var(--verde); padding: 24px 20px; text-align: center; color: #4a6a8a; font-size: 0.85rem; margin-top: 40px; }
+
+  @media (max-width:600px) {
+    header h1 { font-size: 1.35rem; }
+    .quien-card { flex-direction: column; }
+    section { padding: 28px 10px 14px; }
+  }
 </style>
 </head>
 <body>
 
-<header>
-<h1>Tributacion Peru</h1>
-<p>Calculadora Laboral y Tributaria Gratuita para Emprendedores y Trabajadores Peruanos</p>
-<p class="autor">Por DEINER CLEISON VILLEGAS VILLEGAS | Consultor Financiero y Tributario | Actualizado 2026</p>
-</header>
-
+<!-- NAV -->
 <nav>
-<button class="activo" onclick="mostrar('inicio',this)">Inicio</button>
-<button class="btn-uit" onclick="mostrar('uit',this)">📊 UIT</button>
-<button onclick="mostrar('igv',this)">IGV</button>
-<button onclick="mostrar('regimen',this)">Regimen</button>
-<button onclick="mostrar('multas',this)">Multas</button>
-<button onclick="mostrar('cronograma',this)">Cronograma</button>
-<button onclick="mostrar('renta',this)">Renta</button>
-<button onclick="mostrar('detracciones',this)">Detracciones</button>
-<button onclick="mostrar('planilla',this)">Planilla</button>
-<button onclick="mostrar('honorarios',this)">Honorarios</button>
-<button onclick="mostrar('cts',this)">CTS</button>
-<button onclick="mostrar('gratificaciones',this)">Gratificaciones</button>
-<button onclick="mostrar('liquidacion',this)">Liquidacion</button>
-<button onclick="mostrar('faltas',this)">Faltas</button>
-<button onclick="mostrar('vacaciones',this)">Vacaciones</button>
-<button onclick="mostrar('fraccionamiento',this)">Fraccionamiento</button>
-<button onclick="mostrar('utilidades',this)">Utilidades</button>
-<button onclick="mostrar('glosario',this)">Glosario</button>
-<button onclick="mostrar('blog',this)">Blog SEO</button>
-<button onclick="mostrar('noticias',this)">Noticias SUNAT</button>
-<button onclick="mostrar('quiensoy',this)">Quien Soy</button>
+  <a href="#inicio">Inicio</a>
+  <a href="#uit">📊 UIT</a>
+  <a href="#igv">IGV</a>
+  <a href="#regimen">Régimen</a>
+  <a href="#multas">Multas</a>
+  <a href="#cronograma">Cronograma</a>
+  <a href="#renta">Renta</a>
+  <a href="#detracciones">Detracciones</a>
+  <a href="#retenciones">Retenciones</a>
+  <a href="#deducciones">Deducciones</a>
+  <a href="#planilla">Planilla</a>
+  <a href="#honorarios">Honorarios</a>
+  <a href="#cts">CTS</a>
+  <a href="#gratificaciones">Gratificaciones</a>
+  <a href="#liquidacion">Liquidación</a>
+  <a href="#faltas">Faltas</a>
+  <a href="#vacaciones">Vacaciones</a>
+  <a href="#fraccionamiento">Fraccionamiento</a>
+  <a href="#utilidades">Utilidades</a>
+  <a href="#glosario">Glosario</a>
+  <a href="#blog">Blog SEO</a>
+  <a href="#noticias">Noticias SUNAT</a>
+  <a href="#quien">Quién Soy</a>
 </nav>
 
+<!-- HEADER -->
+<header>
+  <h1>Tributacion Peru 2026</h1>
+  <p>Calculadora Laboral y Tributaria Gratuita para Emprendedores y Trabajadores Peruanos</p>
+  <p style="font-size:0.82rem;color:#5a7a94;margin-top:4px;">Por DEINER CLEISON VILLEGAS VILLEGAS | Consultor Financiero y Tributario | Actualizado 2026</p>
+  <div class="banner-datos">
+    <span class="banner-item">UIT 2026 = S/ 5,500</span>
+    <span class="banner-item">RMV 2026 = S/ 1,130</span>
+    <span class="banner-item">IGV General = 18%</span>
+    <span class="banner-item">IGV Restaurantes/Hoteles MYPE = 10.5%</span>
+    <span class="banner-item">Retención IGV = 3%</span>
+    <span class="banner-item">Actualizado SUNAT 2026</span>
+  </div>
+</header>
+
 <!-- INICIO -->
-<div id="inicio" class="seccion activa">
-<div class="tarjeta">
-<h2>Bienvenido a Tributacion Peru 2026</h2>
-<h3>La herramienta tributaria y laboral mas completa del Peru</h3>
-<p style="font-size:13px;color:#555;line-height:1.8;margin-bottom:15px">Conocer tus obligaciones tributarias y tus derechos laborales no es opcional — es la diferencia entre crecer con tranquilidad o vivir con miedo a SUNAT y perder tus beneficios como trabajador. Esta herramienta fue creada para que cualquier emprendedor, empresario o trabajador peruano acceda a informacion clara, exacta y actualizada al 2026, completamente gratis.</p>
-<div class="verde">UIT 2026 = S/ 5,500 | RMV 2026 = S/ 1,130 | IGV = 18% | Actualizado con normas SUNAT vigentes</div>
-</div>
-<div class="tarjeta">
-<h2>¿Que puedes calcular aqui?</h2>
-<h3>Guia de todas las herramientas disponibles</h3>
-</div>
-<div class="inicio-card" onclick="mostrar('uit',document.querySelector('nav button:nth-child(2)'))">
-<div class="inicio-icon">📊</div>
-<h3>Calculadora UIT 2026</h3>
-<p>Consulta la Unidad Impositiva Tributaria vigente y su impacto en multas, deducciones y regimenes. UIT 2026 = S/ 5,500.</p>
-</div>
-<div class="inicio-card" onclick="mostrar('igv',document.querySelector('nav button:nth-child(3)'))">
-<div class="inicio-icon">🧮</div>
-<h3>Calculadora de IGV</h3>
-<p>Calcula cuanto IGV debes cobrar o pagar. El IGV es el 18% que todo negocio debe declarar mensualmente a SUNAT.</p>
-</div>
-<div class="inicio-card" onclick="mostrar('regimen',document.querySelector('nav button:nth-child(4)'))">
-<div class="inicio-icon">📋</div>
-<h3>Simulador de Regimen Tributario</h3>
-<p>Descubre en que regimen tributario debes estar segun tus ventas y actividad. NRUS, RER, MYPE Tributario o Regimen General.</p>
-</div>
-<div class="inicio-card" onclick="mostrar('multas',document.querySelector('nav button:nth-child(5)'))">
-<div class="inicio-icon">⚠️</div>
-<h3>Calculadora de Multas SUNAT</h3>
-<p>Calcula cuanto pagaras de multa si no declaraste a tiempo, no emitiste comprobante o declaraste datos falsos.</p>
-</div>
-<div class="inicio-card" onclick="mostrar('cronograma',document.querySelector('nav button:nth-child(6)'))">
-<div class="inicio-icon">📅</div>
-<h3>Cronograma de Vencimientos SUNAT 2026</h3>
-<p>Consulta cuando vence tu declaracion mensual segun el ultimo digito de tu RUC.</p>
-</div>
-<div class="inicio-card" onclick="mostrar('renta',document.querySelector('nav button:nth-child(7)'))">
-<div class="inicio-icon">💼</div>
-<h3>Calculadora de Impuesto a la Renta</h3>
-<p>Calcula cuanto IR descuenta tu empleador. Deduccion automatica de 7 UIT = S/ 38,500 para trabajadores en planilla.</p>
-</div>
-<div class="inicio-card" onclick="mostrar('detracciones',document.querySelector('nav button:nth-child(8)'))">
-<div class="inicio-icon">🏦</div>
-<h3>Calculadora de Detracciones</h3>
-<p>Calcula cuanto te descontaran de tu factura. Las tasas van del 4% al 12% segun el tipo de servicio o bien.</p>
-</div>
-<div class="inicio-card" onclick="mostrar('planilla',document.querySelector('nav button:nth-child(9)'))">
-<div class="inicio-icon">👥</div>
-<h3>Calculadora de Planilla</h3>
-<p>Calcula el costo total de un trabajador: sueldo neto, ESSALUD, AFP u ONP, CTS y gratificaciones.</p>
-</div>
-<div class="inicio-card" onclick="mostrar('honorarios',document.querySelector('nav button:nth-child(10)'))">
-<div class="inicio-icon">📄</div>
-<h3>Calculadora de Honorarios</h3>
-<p>Para trabajadores independientes que emiten Recibos por Honorarios. Retencion del 8%.</p>
-</div>
-<div class="inicio-card" onclick="mostrar('cts',document.querySelector('nav button:nth-child(11)'))">
-<div class="inicio-icon">💰</div>
-<h3>Calculadora de CTS</h3>
-<p>Calcula tu Compensacion por Tiempo de Servicios exacta. Se deposita en mayo y noviembre.</p>
-</div>
-<div class="inicio-card" onclick="mostrar('gratificaciones',document.querySelector('nav button:nth-child(12)'))">
-<div class="inicio-icon">🎁</div>
-<h3>Calculadora de Gratificaciones</h3>
-<p>Calcula cuanto te corresponde en julio y diciembre. Incluye bonificacion extraordinaria del 9%.</p>
-</div>
-<div class="inicio-card" onclick="mostrar('liquidacion',document.querySelector('nav button:nth-child(13)'))">
-<div class="inicio-icon">📊</div>
-<h3>Calculadora de Liquidacion Laboral</h3>
-<p>Si renuncias o te despiden, calcula exactamente cuanto te deben pagar.</p>
-</div>
-<div class="inicio-card" onclick="mostrar('faltas',document.querySelector('nav button:nth-child(14)'))">
-<div class="inicio-icon">📉</div>
-<h3>Calculadora de Descuento por Faltas</h3>
-<p>Calcula cuanto te descuentan del sueldo si faltas dias al trabajo.</p>
-</div>
-<div class="inicio-card" onclick="mostrar('vacaciones',document.querySelector('nav button:nth-child(15)'))">
-<div class="inicio-icon">🏖️</div>
-<h3>Calculadora de Vacaciones</h3>
-<p>Calcula cuanto valen tus vacaciones segun tu regimen laboral. Incluye vacaciones dobles.</p>
-</div>
-<div class="inicio-card" onclick="mostrar('fraccionamiento',document.querySelector('nav button:nth-child(16)'))">
-<div class="inicio-icon">🗓️</div>
-<h3>Simulador de Fraccionamiento SUNAT</h3>
-<p>Calcula cuanto pagaras en cuotas mensuales. Tasa del 1.2% mensual. Hasta 72 cuotas.</p>
-</div>
-<div class="inicio-card" onclick="mostrar('utilidades',document.querySelector('nav button:nth-child(17)'))">
-<div class="inicio-icon">📈</div>
-<h3>Calculadora de Utilidades</h3>
-<p>Calcula tu participacion en las utilidades de la empresa segun el D.Leg. 892.</p>
-</div>
-<div class="inicio-card" onclick="mostrar('glosario',document.querySelector('nav button:nth-child(18)'))">
-<div class="inicio-icon">📚</div>
-<h3>Glosario Tributario y Laboral</h3>
-<p>Busca cualquier termino tributario o laboral explicado en lenguaje simple.</p>
-</div>
-<div class="inicio-card" onclick="mostrar('blog',document.querySelector('nav button:nth-child(19)'))">
-<div class="inicio-icon">✍️</div>
-<h3>Blog SEO Tributario</h3>
-<p>Articulos y guias sobre IGV, regimenes tributarios, derechos laborales y multas SUNAT.</p>
-</div>
-<div class="inicio-card" onclick="mostrar('noticias',document.querySelector('nav button:nth-child(20)'))">
-<div class="inicio-icon">📰</div>
-<h3>Noticias SUNAT 2026</h3>
-<p>Ultimas novedades: UIT 2026 = S/ 5,500, cronograma de vencimientos y mas.</p>
-</div>
-<div class="inicio-card" onclick="mostrar('quiensoy',document.querySelector('nav button:nth-child(21)'))">
-<div class="inicio-icon">👨‍💼</div>
-<h3>Quien Soy</h3>
-<p>Deiner Cleison Villegas Villegas, Consultor Financiero y Tributario Peruano.</p>
-</div>
-<div style="margin-top:20px;padding:15px;background:#003087;border-radius:10px;text-align:center">
-<p style="color:#F5A623;font-weight:bold;font-size:15px">¿Necesitas asesoria personalizada?</p>
-<p style="color:white;font-size:13px;margin-top:8px">Consultame directamente. Respondo el mismo dia.</p>
-<button class="btn" style="background:#25D366;margin-top:10px;max-width:280px" onclick="window.open('https://wa.me/51927107627')">💬 WhatsApp: 927107627</button>
-</div>
-</div>
+<section id="inicio">
+  <h2>Bienvenido a Tributacion Peru 2026</h2>
+  <h3>La herramienta tributaria y laboral más completa del Perú</h3>
+  <p style="color:#8ab4c8;line-height:1.8;margin-bottom:10px;">Conocer tus obligaciones tributarias y tus derechos laborales no es opcional — es la diferencia entre crecer con tranquilidad o vivir con miedo a SUNAT y perder tus beneficios como trabajador. Esta herramienta fue creada para que cualquier emprendedor, empresario o trabajador peruano acceda a información clara, exacta y actualizada al 2026, completamente gratis.</p>
+  <div class="alerta">⚠️ <strong>IMPORTANTE 2026:</strong> El IGV ya NO es solo 18%. Las MYPE de restaurantes, hoteles y alojamientos turísticos aplican <strong>10.5% (8% IGV + 2.5% IPM)</strong> vigente hasta diciembre 2026. En 2027 sube a 14%. Base legal: Ley N° 32219 + Ley N° 32387.</div>
+  <div class="grid-cards" id="tarjetas-inicio">
+    <div class="card" onclick="location.href='#uit'"><div class="icon">📊</div><h4>Calculadora UIT 2026</h4><p>UIT 2026 = S/ 5,500. Impacto en multas, deducciones y regímenes.</p></div>
+    <div class="card" onclick="location.href='#igv'"><div class="icon">🧮</div><h4>Calculadora de IGV</h4><p>Calcula IGV 18% (general) y 10.5% (restaurantes/hoteles MYPE).</p></div>
+    <div class="card" onclick="location.href='#regimen'"><div class="icon">📋</div><h4>Simulador de Régimen Tributario</h4><p>NRUS, RER, MYPE Tributario o Régimen General.</p></div>
+    <div class="card" onclick="location.href='#multas'"><div class="icon">⚠️</div><h4>Calculadora de Multas SUNAT</h4><p>Multas por no declarar, no emitir comprobante, libros y más.</p></div>
+    <div class="card" onclick="location.href='#cronograma'"><div class="icon">📅</div><h4>Cronograma Vencimientos 2026</h4><p>¿Cuándo vence tu declaración según tu RUC?</p></div>
+    <div class="card" onclick="location.href='#renta'"><div class="icon">💼</div><h4>Calculadora Impuesto a la Renta</h4><p>IR 5ta categoría. Deducción 7 UIT = S/ 38,500.</p></div>
+    <div class="card" onclick="location.href='#detracciones'"><div class="icon">🏦</div><h4>Calculadora de Detracciones</h4><p>Tasas del 4% al 12% según tipo de servicio o bien.</p></div>
+    <div class="card" onclick="location.href='#retenciones'"><div class="icon">🔒</div><h4>Calculadora de Retenciones IGV</h4><p>Retención 3% del IGV. Agentes designados por SUNAT. Nuevo 2026.</p></div>
+    <div class="card" onclick="location.href='#deducciones'"><div class="icon">💡</div><h4>Calculadora de Deducciones IR</h4><p>Gastos deducibles 4ta y 5ta categoría. Tope 3 UIT = S/ 16,500.</p></div>
+    <div class="card" onclick="location.href='#planilla'"><div class="icon">👥</div><h4>Calculadora de Planilla</h4><p>Sueldo neto, ESSALUD, AFP u ONP, CTS y gratificaciones.</p></div>
+    <div class="card" onclick="location.href='#honorarios'"><div class="icon">📄</div><h4>Calculadora de Honorarios</h4><p>Recibos por Honorarios 4ta categoría. Retención 8%.</p></div>
+    <div class="card" onclick="location.href='#cts'"><div class="icon">💰</div><h4>Calculadora de CTS</h4><p>Se deposita en mayo y noviembre. 1 sueldo por año trabajado.</p></div>
+    <div class="card" onclick="location.href='#gratificaciones'"><div class="icon">🎁</div><h4>Calculadora de Gratificaciones</h4><p>Julio y diciembre. Incluye bonificación extraordinaria 9%.</p></div>
+    <div class="card" onclick="location.href='#liquidacion'"><div class="icon">📊</div><h4>Calculadora de Liquidación Laboral</h4><p>Renuncia o despido. Cuánto te deben pagar exactamente.</p></div>
+    <div class="card" onclick="location.href='#faltas'"><div class="icon">📉</div><h4>Descuento por Faltas</h4><p>Cuánto te descuentan si faltas días al trabajo.</p></div>
+    <div class="card" onclick="location.href='#vacaciones'"><div class="icon">🏖️</div><h4>Calculadora de Vacaciones</h4><p>Incluye vacaciones dobles. Todos los regímenes laborales.</p></div>
+    <div class="card" onclick="location.href='#fraccionamiento'"><div class="icon">🗓️</div><h4>Simulador Fraccionamiento SUNAT</h4><p>Tasa 1.2% mensual. Hasta 72 cuotas.</p></div>
+    <div class="card" onclick="location.href='#utilidades'"><div class="icon">📈</div><h4>Calculadora de Utilidades</h4><p>D.Leg. 892. Empresas con más de 20 trabajadores.</p></div>
+    <div class="card" onclick="location.href='#glosario'"><div class="icon">📚</div><h4>Glosario Tributario y Laboral</h4><p>Términos explicados en lenguaje simple.</p></div>
+    <div class="card" onclick="location.href='#blog'"><div class="icon">✍️</div><h4>Blog SEO Tributario</h4><p>Guías sobre IGV, regímenes, derechos laborales y multas.</p></div>
+    <div class="card" onclick="location.href='#noticias'"><div class="icon">📰</div><h4>Noticias SUNAT 2026</h4><p>UIT 2026 = S/ 5,500, cronograma y más novedades.</p></div>
+    <div class="card" onclick="location.href='#quien'"><div class="icon">👨‍💼</div><h4>Quién Soy</h4><p>Deiner Cleison Villegas Villegas, Consultor Financiero y Tributario.</p></div>
+  </div>
+</section>
 
 <!-- UIT -->
-<div id="uit" class="seccion">
-<div class="uit-card">
-<h2>📊 UIT 2026</h2>
-<p style="color:#aac4ff;font-size:13px">Unidad Impositiva Tributaria — Valor oficial vigente</p>
-<div class="uit-valor">S/ 5,500</div>
-<p class="uit-sub">Aprobada por el MEF | Vigente desde el 1 de enero de 2026</p>
-<div class="uit-grid">
-<div class="uit-item"><div class="lbl">RMV 2026</div><div class="val">S/ 1,130</div></div>
-<div class="uit-item"><div class="lbl">IGV vigente</div><div class="val">18%</div></div>
-<div class="uit-item"><div class="lbl">7 UIT deduccion IR</div><div class="val">S/ 38,500</div></div>
-<div class="uit-item"><div class="lbl">Multa minima</div><div class="val">S/ 2,750</div></div>
-</div>
-</div>
-<div class="tarjeta">
-<h2>¿Para que sirve la UIT?</h2>
-<h3>Calculos basados en UIT 2026 = S/ 5,500</h3>
-<div class="uit-uso-item"><span class="concepto">Multa por no declarar a tiempo</span><span class="calculo">S/ 2,750</span></div>
-<div class="uit-uso-item"><span class="concepto">Multa por no emitir comprobante</span><span class="calculo">S/ 5,500</span></div>
-<div class="uit-uso-item"><span class="concepto">Deduccion anual IR (7 UIT)</span><span class="calculo">S/ 38,500</span></div>
-<div class="uit-uso-item"><span class="concepto">Limite MYPE Tributario (1,700 UIT)</span><span class="calculo">S/ 9,350,000 anuales</span></div>
-<div class="uit-uso-item"><span class="concepto">RMV vigente</span><span class="calculo">S/ 1,130</span></div>
-</div>
-<div class="tarjeta uit-historia">
-<h2>Historial UIT en Peru</h2>
-<h3>Evolucion anual</h3>
-<table>
-<tr><th>Ano</th><th>UIT (S/)</th><th>Variacion</th></tr>
-<tr><td>2020</td><td>4,300</td><td>+100</td></tr>
-<tr><td>2021</td><td>4,400</td><td>+100</td></tr>
-<tr><td>2022</td><td>4,600</td><td>+200</td></tr>
-<tr><td>2023</td><td>4,950</td><td>+350</td></tr>
-<tr><td>2024</td><td>5,150</td><td>+200</td></tr>
-<tr><td>2025</td><td>5,350</td><td>+200</td></tr>
-<tr><td>2026</td><td>5,500</td><td>+150</td></tr>
-</table>
-</div>
-<div class="tarjeta">
-<h2>Calcula equivalencia en UIT</h2>
-<h3>¿Cuantas UIT equivale un monto?</h3>
-<label>Ingresa un monto en soles (S/):</label>
-<input type="number" id="montoUit" placeholder="Ejemplo: 50000">
-<button class="btn" onclick="calcularUIT()">Calcular equivalencia en UIT</button>
-<div id="resultadoUIT"></div>
-</div>
-<div class="alerta">La UIT la fija el MEF cada ano mediante Decreto Supremo. Para 2027 actualiza el valor en el codigo.</div>
-</div>
+<section id="uit">
+  <h2>📊 UIT 2026</h2>
+  <h3>Unidad Impositiva Tributaria — Valor oficial vigente</h3>
+  <div class="calc-box">
+    <div style="text-align:center;padding:16px 0;">
+      <div style="font-size:3rem;font-weight:900;color:var(--verde);">S/ 5,500</div>
+      <div style="color:#8ab4c8;font-size:0.9rem;margin-top:6px;">Aprobada por el MEF (D.S. 301-2025-EF) | Vigente desde el 1 de enero de 2026</div>
+    </div>
+    <div class="uit-stats">
+      <div class="uit-stat"><div class="val">S/ 1,130</div><div class="lbl">RMV 2026</div></div>
+      <div class="uit-stat"><div class="val">18%</div><div class="lbl">IGV vigente (general)</div></div>
+      <div class="uit-stat"><div class="val">10.5%</div><div class="lbl">IGV MYPE Restaurantes/Hoteles</div></div>
+      <div class="uit-stat"><div class="val">S/ 38,500</div><div class="lbl">7 UIT deducción IR</div></div>
+      <div class="uit-stat"><div class="val">S/ 16,500</div><div class="lbl">3 UIT deducciones adicionales IR</div></div>
+      <div class="uit-stat"><div class="val">S/ 2,750</div><div class="lbl">Multa mínima (0.5 UIT)</div></div>
+    </div>
+    <h4 style="color:var(--verde);margin-top:24px;margin-bottom:12px;">Cálculos basados en UIT 2026</h4>
+    <table>
+      <tr><th>Concepto</th><th>Cálculo</th><th>Monto S/</th></tr>
+      <tr><td>Multa por no declarar a tiempo</td><td>50% UIT</td><td>S/ 2,750</td></tr>
+      <tr><td>Multa por no emitir comprobante</td><td>1 UIT</td><td>S/ 5,500</td></tr>
+      <tr><td>Deducción anual IR (7 UIT)</td><td>7 × 5,500</td><td>S/ 38,500</td></tr>
+      <tr><td>Deducciones adicionales IR (3 UIT)</td><td>3 × 5,500</td><td>S/ 16,500</td></tr>
+      <tr><td>Límite MYPE Tributario (1,700 UIT)</td><td>1,700 × 5,500</td><td>S/ 9,350,000</td></tr>
+      <tr><td>RMV vigente</td><td>—</td><td>S/ 1,130</td></tr>
+    </table>
+    <h4 style="color:var(--verde);margin-top:24px;margin-bottom:10px;">Historial UIT en Perú</h4>
+    <table>
+      <tr><th>Año</th><th>UIT (S/)</th><th>Variación</th></tr>
+      <tr><td>2020</td><td>4,300</td><td>+100</td></tr>
+      <tr><td>2021</td><td>4,400</td><td>+100</td></tr>
+      <tr><td>2022</td><td>4,600</td><td>+200</td></tr>
+      <tr><td>2023</td><td>4,950</td><td>+350</td></tr>
+      <tr><td>2024</td><td>5,150</td><td>+200</td></tr>
+      <tr><td>2025</td><td>5,350</td><td>+200</td></tr>
+      <tr><td>2026</td><td>5,500</td><td>+150</td></tr>
+    </table>
+    <label for="monto-uit">Calcula equivalencia en UIT — Ingresa un monto en soles (S/):</label>
+    <input type="number" id="monto-uit" placeholder="Ej: 27500" min="0"/>
+    <button class="btn" onclick="calcUIT()">Calcular equivalencia en UIT</button>
+    <div class="resultado" id="res-uit">
+      <h4>Equivalencia en UIT 2026</h4>
+      <div class="fila"><span>Monto ingresado</span><span id="r-uit-monto"></span></div>
+      <div class="fila"><span>UIT 2026</span><span>S/ 5,500</span></div>
+      <div class="fila"><span>Equivale a</span><span id="r-uit-val"></span></div>
+    </div>
+  </div>
+</section>
 
 <!-- IGV -->
-<div id="igv" class="seccion">
-<div class="tarjeta">
-<h2>Calculadora de IGV Peru 2026</h2>
-<h3>¿Cuanto IGV debo pagar a SUNAT?</h3>
-<label>¿Tienes el precio con IGV o sin IGV?</label>
-<select id="tipoIgv"><option value="sin">Precio SIN IGV (base imponible)</option><option value="con">Precio CON IGV (precio final)</option></select>
-<label>Ingresa el monto en soles (S/):</label>
-<input type="number" id="montoIgv" placeholder="Ejemplo: 1000">
-<button class="btn" onclick="calcularIgv()">Calcular IGV</button>
-<div id="resultadoIgv"></div>
-</div>
-<div class="tarjeta">
-<h2>¿Que es el IGV?</h2>
-<p style="font-size:13px;color:#555;line-height:1.6">El IGV es el 18% que se cobra sobre casi todos los productos y servicios en el Peru. Si vendes S/ 1,000, debes cobrar S/ 1,180 a tu cliente y los S/ 180 entregarlos a SUNAT cada mes.</p>
-</div>
-</div>
-
-<!-- REGIMEN -->
-<div id="regimen" class="seccion">
-<div class="tarjeta">
-<h2>Simulador de Regimen Tributario Peru 2026</h2>
-<h3>¿Cual regimen SUNAT te conviene?</h3>
-<label>¿Cuanto vendes al mes?</label>
-<select id="ventas"><option value="1">Menos de S/ 8,000 al mes</option><option value="2">Entre S/ 8,000 y S/ 43,750 al mes</option><option value="3">Mas de S/ 43,750 al mes</option></select>
-<label>¿Necesitas emitir facturas a empresas?</label>
-<select id="facturas"><option value="no">No, solo vendo a personas</option><option value="si">Si, vendo a empresas</option></select>
-<label>¿Contratas con el Estado o exportas?</label>
-<select id="estado"><option value="no">No</option><option value="si">Si</option></select>
-<button class="btn" onclick="calcularRegimen()">Ver mi regimen ideal</button>
-<div id="resultadoRegimen"></div>
-</div>
-</div>
-
-<!-- MULTAS -->
-<div id="multas" class="seccion">
-<div class="tarjeta">
-<h2>Calculadora de Multas SUNAT 2026</h2>
-<h3>UIT 2026 = S/ 5,500</h3>
-<label>Tipo de infraccion:</label>
-<select id="tipoMulta"><option value="nodeclarar">No declare a tiempo</option><option value="nocomprobante">No emiti comprobante de pago</option><option value="nolibros">No llevo libros contables</option><option value="falsedatos">Declare datos falsos</option></select>
-<label>¿Cuando vas a subsanar?</label>
-<select id="momentoMulta"><option value="95">Antes de notificacion (95% descuento)</option><option value="75">Despues de notificacion (75% descuento)</option><option value="50">Durante fiscalizacion (50% descuento)</option><option value="25">Despues de fiscalizacion (25% descuento)</option></select>
-<label>Ingresos netos del mes (S/):</label>
-<input type="number" id="ingresosMulta" placeholder="Ejemplo: 10000">
-<button class="btn" onclick="calcularMulta()">Calcular multa</button>
-<div id="resultadoMulta"></div>
-</div>
-</div>
-
-<!-- CRONOGRAMA -->
-<div id="cronograma" class="seccion">
-<div class="tarjeta">
-<h2>Cronograma SUNAT 2026</h2>
-<h3>¿Cuando vence mi declaracion mensual?</h3>
-<label>Ultimo digito de tu RUC:</label>
-<select id="digitoRuc" onchange="mostrarVencimiento()">
-<option value="">Selecciona el digito</option>
-<option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option>
-</select>
-<div id="resultadoCronograma"></div>
-</div>
-</div>
-
-<!-- RENTA -->
-<div id="renta" class="seccion">
-<div class="tarjeta">
-<h2>Calculadora Impuesto a la Renta 2026</h2>
-<h3>IR 5ta Categoria - Trabajadores en Planilla</h3>
-<label>Sueldo bruto mensual (S/):</label>
-<input type="number" id="sueldoRenta" placeholder="Ejemplo: 3000">
-<button class="btn" onclick="calcularRenta()">Calcular IR</button>
-<div id="resultadoRenta"></div>
-</div>
-</div>
-
-<!-- DETRACCIONES -->
-<div id="detracciones" class="seccion">
-<div class="tarjeta">
-<h2>Calculadora de Detracciones SUNAT 2026</h2>
-<label>Tipo de servicio:</label>
-<select id="tipoDetraccion"><option value="12">Servicios empresariales (12%)</option><option value="4">Transporte de bienes (4%)</option><option value="9">Bienes gravados IGV (9%)</option><option value="10">Arena, piedra, madera (10%)</option></select>
-<label>Monto total de la factura con IGV (S/):</label>
-<input type="number" id="montoDetraccion" placeholder="Ejemplo: 5000">
-<button class="btn" onclick="calcularDetraccion()">Calcular detraccion</button>
-<div id="resultadoDetraccion"></div>
-</div>
-</div>
-
-<!-- PLANILLA -->
-<div id="planilla" class="seccion">
-<div class="tarjeta">
-<h2>Calculadora de Planilla Peru 2026</h2>
-<h3>RMV 2026 = S/ 1,130</h3>
-<label>Sueldo bruto mensual (S/):</label>
-<input type="number" id="sueldoPlanilla" placeholder="Ejemplo: 2000">
-<label>Sistema de pension:</label>
-<select id="tipoAfp"><option value="10">AFP (10%)</option><option value="13">ONP (13%)</option></select>
-<button class="btn" onclick="calcularPlanilla()">Calcular planilla</button>
-<div id="resultadoPlanilla"></div>
-</div>
-</div>
-
-<!-- HONORARIOS -->
-<div id="honorarios" class="seccion">
-<div class="tarjeta">
-<h2>Calculadora de Honorarios Peru 2026</h2>
-<h3>Recibos por Honorarios - 4ta Categoria</h3>
-<label>¿Cuanto quieres recibir neto (S/)?</label>
-<input type="number" id="netoHonorarios" placeholder="Ejemplo: 2000">
-<label>¿Te retendran el 8% de IR?</label>
-<select id="retencion"><option value="si">Si me retienen</option><option value="no">No me retienen</option></select>
-<button class="btn" onclick="calcularHonorarios()">Calcular honorarios</button>
-<div id="resultadoHonorarios"></div>
-</div>
-</div>
-
-<!-- CTS -->
-<div id="cts" class="seccion">
-<div class="tarjeta">
-<h2>Calculadora de CTS 2026</h2>
-<h3>Compensacion por Tiempo de Servicios</h3>
-<p style="font-size:12px;color:#555;margin-bottom:10px">La CTS se deposita en mayo y noviembre. Equivale a 1 sueldo por ano trabajado.</p>
-<label>Sueldo bruto mensual (S/):</label>
-<input type="number" id="sueldoCts" placeholder="Ejemplo: 2000">
-<label>Asignacion familiar mensual (S/) - si aplica:</label>
-<input type="number" id="asignacionCts" placeholder="Ejemplo: 102.50 o 0">
-<label>Meses trabajados en el semestre (1 a 6):</label>
-<input type="number" id="mesesCts" placeholder="Ejemplo: 6" min="1" max="6">
-<label>Dias adicionales (0 a 30):</label>
-<input type="number" id="diasCts" placeholder="Ejemplo: 15" min="0" max="30">
-<button class="btn" onclick="calcularCts()">Calcular CTS</button>
-<div id="resultadoCts"></div>
-</div>
-</div>
-
-<!-- GRATIFICACIONES -->
-<div id="gratificaciones" class="seccion">
-<div class="tarjeta">
-<h2>Calculadora de Gratificaciones 2026</h2>
-<h3>Julio y Diciembre</h3>
-<label>Sueldo bruto mensual (S/):</label>
-<input type="number" id="sueldoGrat" placeholder="Ejemplo: 2000">
-<label>Asignacion familiar (S/) - si aplica:</label>
-<input type="number" id="asignacionGrat" placeholder="Ejemplo: 102.50 o 0">
-<label>Meses trabajados en el semestre (1 a 6):</label>
-<input type="number" id="mesesGrat" placeholder="Ejemplo: 6" min="1" max="6">
-<button class="btn" onclick="calcularGratificacion()">Calcular gratificacion</button>
-<div id="resultadoGrat"></div>
-</div>
-</div>
-
-<!-- LIQUIDACION -->
-<div id="liquidacion" class="seccion">
-<div class="tarjeta">
-<h2>Calculadora de Liquidacion Laboral 2026</h2>
-<h3>¿Cuanto te deben pagar al salir?</h3>
-<label>Sueldo bruto mensual (S/):</label>
-<input type="number" id="sueldoLiq" placeholder="Ejemplo: 2000">
-<label>Anos trabajados:</label>
-<input type="number" id="anosLiq" placeholder="Ejemplo: 2">
-<label>Meses adicionales (0 a 11):</label>
-<input type="number" id="mesesLiq" placeholder="Ejemplo: 3" min="0" max="11">
-<label>Tipo de cese:</label>
-<select id="tipoCese"><option value="renuncia">Renuncia voluntaria</option><option value="despido">Despido arbitrario</option><option value="mutual">Mutuo acuerdo</option></select>
-<label>Vacaciones pendientes de goce (dias):</label>
-<input type="number" id="vacsPendientes" placeholder="Ejemplo: 30" min="0">
-<button class="btn" onclick="calcularLiquidacion()">Calcular liquidacion</button>
-<div id="resultadoLiq"></div>
-</div>
-</div>
-
-<!-- FALTAS -->
-<div id="faltas" class="seccion">
-<div class="tarjeta">
-<h2>Calculadora de Descuento por Faltas 2026</h2>
-<h3>¿Cuanto te descuentan si faltas?</h3>
-<label>Sueldo bruto mensual (S/):</label>
-<input type="number" id="sueldoFaltas" placeholder="Ejemplo: 2000">
-<label>Numero de dias de falta en el mes:</label>
-<input type="number" id="diasFaltas" placeholder="Ejemplo: 2" min="1">
-<label>Dias laborables del mes:</label>
-<select id="diasLaborables"><option value="26">26 dias (lunes a sabado)</option><option value="30">30 dias (todos los dias)</option><option value="25">25 dias</option></select>
-<button class="btn" onclick="calcularFaltas()">Calcular descuento</button>
-<div id="resultadoFaltas"></div>
-</div>
-</div>
-
-<!-- VACACIONES -->
-<div id="vacaciones" class="seccion">
-<div class="tarjeta">
-<h2>Calculadora de Vacaciones 2026</h2>
-<h3>¿Cuanto valen tus vacaciones?</h3>
-<label>Sueldo bruto mensual (S/):</label>
-<input type="number" id="sueldoVacs" placeholder="Ejemplo: 2000">
-<label>Meses trabajados (1 a 12):</label>
-<input type="number" id="mesesVacs" placeholder="Ejemplo: 12" min="1" max="12">
-<label>Regimen laboral:</label>
-<select id="regimenVacs"><option value="30">Regimen General (30 dias)</option><option value="15">Regimen MYPE (15 dias)</option><option value="30">Construccion Civil (30 dias)</option><option value="15">Trabajadores del Hogar (15 dias)</option><option value="30">Trabajadores Portuarios (30 dias)</option><option value="30">Docentes sector privado (30 dias)</option></select>
-<label>¿Tienes vacaciones no gozadas del ano anterior?</label>
-<select id="vacsDoble"><option value="no">No</option><option value="si">Si — me corresponde doble pago</option></select>
-<button class="btn" onclick="calcularVacaciones()">Calcular vacaciones</button>
-<div id="resultadoVacs"></div>
-</div>
-</div>
-
-<!-- FRACCIONAMIENTO -->
-<div id="fraccionamiento" class="seccion">
-<div class="tarjeta">
-<h2>Simulador Fraccionamiento SUNAT 2026</h2>
-<h3>Paga tu deuda en cuotas</h3>
-<label>Monto total de la deuda (S/):</label>
-<input type="number" id="deudaFraccionamiento" placeholder="Ejemplo: 5000">
-<label>Numero de cuotas (maximo 72):</label>
-<input type="number" id="cuotasFraccionamiento" placeholder="Ejemplo: 12" max="72">
-<button class="btn" onclick="calcularFraccionamiento()">Calcular cuotas</button>
-<div id="resultadoFraccionamiento"></div>
-</div>
-</div>
-
-<!-- UTILIDADES -->
-<div id="utilidades" class="seccion">
-<div class="tarjeta">
-<h2>Calculadora de Utilidades Peru 2026</h2>
-<h3>Participacion en las Utilidades de la Empresa</h3>
-<p style="font-size:12px;color:#555;margin-bottom:10px">Base legal: Decreto Legislativo 892. Solo aplica a empresas con mas de 20 trabajadores.</p>
-<label>Utilidad neta de la empresa antes de impuestos (S/):</label>
-<input type="number" id="utilidadEmpresa" placeholder="Ejemplo: 500000">
-<label>Actividad economica de la empresa:</label>
-<select id="actividadEmpresa"><option value="10">Pesqueria (10%)</option><option value="10">Telecomunicaciones (10%)</option><option value="10">Industrial / Manufactura (10%)</option><option value="8">Mineria (8%)</option><option value="8">Comercio al por mayor y menor (8%)</option><option value="8">Restaurantes y hoteles (8%)</option><option value="5">Construccion (5%)</option><option value="5">Otras actividades y servicios (5%)</option></select>
-<label>Total de dias laborados por TODOS los trabajadores en el ano:</label>
-<input type="number" id="totalDiasEmpresa" placeholder="Ejemplo: 7300">
-<label>Total de remuneraciones pagadas a TODOS los trabajadores en el ano (S/):</label>
-<input type="number" id="totalRemuEmpresa" placeholder="Ejemplo: 360000">
-<label>Dias efectivamente laborados POR TI en el ano:</label>
-<input type="number" id="diasTrabajador" placeholder="Ejemplo: 245">
-<label>Numero de faltas injustificadas tuyas en el ano:</label>
-<input type="number" id="faltasTrabajador" placeholder="Ejemplo: 3" min="0">
-<label>Remuneracion bruta anual tuya (S/):</label>
-<input type="number" id="remuTrabajador" placeholder="Ejemplo: 36000">
-<label>Numero total de trabajadores de la empresa:</label>
-<input type="number" id="numTrabajadores" placeholder="Ejemplo: 25">
-<button class="btn" onclick="calcularUtilidades()">Calcular mis utilidades</button>
-<div id="resultadoUtilidades"></div>
-</div>
-<div class="tarjeta">
-<h2>¿Como se calculan las utilidades?</h2>
-<p style="font-size:13px;color:#555;line-height:1.8">Las utilidades se dividen en dos partes iguales: <strong>50% por dias trabajados</strong> y <strong>50% por remuneraciones</strong>.</p>
-<div class="alerta">IMPORTANTE: Si la empresa tiene 20 o menos trabajadores NO esta obligada a repartir utilidades.</div>
-</div>
-</div>
-
-<!-- GLOSARIO -->
-<div id="glosario" class="seccion">
-<div class="tarjeta">
-<h2>Glosario Tributario y Laboral Peru 2026</h2>
-<h3>Terminos explicados en lenguaje simple</h3>
-<label>Busca cualquier termino:</label>
-<input type="text" id="busquedaGlosario" placeholder="Ejemplo: IGV, CTS, utilidades, RUC..." oninput="buscarGlosario()">
-<div id="resultadoGlosario" style="margin-top:15px"></div>
-</div>
-</div>
-
-<!-- BLOG -->
-<div id="blog" class="seccion">
-<div class="tarjeta">
-<h2>Blog SEO - Tributacion Peru 2026</h2>
-<h3>Guias para emprendedores, estudiantes y empresarios</h3>
-</div>
-<div class="blog-art">
-<span class="blog-tag">IGV</span><span class="blog-tag">SUNAT 2026</span>
-<h3>¿Como calcular el IGV en Peru 2026?</h3>
-<p>El IGV es el 18% que pagas sobre casi todo lo que vendes. Si vendes S/ 1,000, el IGV es S/ 180 y el precio total es S/ 1,180. Declara mensualmente en el Formulario Virtual 621 de SUNAT.</p>
-</div>
-<div class="blog-art">
-<span class="blog-tag">Regimen tributario</span><span class="blog-tag">MYPE 2026</span>
-<h3>¿En que regimen tributario debo estar? 2026</h3>
-<p>Si vendes menos de S/ 8,000 al mes y no necesitas facturas: NRUS. Si vendes a empresas: MYPE Tributario. Si contratas con el Estado: Regimen General.</p>
-</div>
-<div class="blog-art">
-<span class="blog-tag">UIT 2026</span>
-<h3>¿Cuanto vale la UIT en 2026?</h3>
-<p>La UIT 2026 es S/ 5,500. La fija el MEF cada ano. Impacta multas, deducciones de impuesto a la renta y topes de regimenes tributarios.</p>
-</div>
-<div class="blog-art">
-<span class="blog-tag">Utilidades Peru</span><span class="blog-tag">D.Leg. 892</span>
-<h3>¿Cuanto me corresponde de utilidades en Peru 2026?</h3>
-<p>Las utilidades se reparten entre trabajadores de empresas con mas de 20 trabajadores. 10% para industria, 8% para comercio, 5% para servicios.</p>
-</div>
-<div class="blog-art">
-<span class="blog-tag">CTS</span><span class="blog-tag">Gratificaciones 2026</span>
-<h3>¿Cuanto me corresponde de CTS y gratificaciones?</h3>
-<p>La CTS equivale a 1 sueldo por ano y se deposita en mayo y noviembre. La gratificacion es 1 sueldo en julio y diciembre mas 9% de bonificacion extraordinaria.</p>
-</div>
-<div class="blog-art">
-<span class="blog-tag">Despido</span><span class="blog-tag">Liquidacion laboral</span>
-<h3>Te despidieron — ¿Cuanto te deben pagar? 2026</h3>
-<p>Por despido arbitrario tienes derecho a 1.5 sueldos por ano trabajado de indemnizacion, mas CTS acumulada y vacaciones no gozadas.</p>
-</div>
-<div class="verde" style="margin-top:10px">
-¿Tienes dudas? Consultame directamente.
-<br><button class="btn" style="background:#25D366;margin-top:10px;max-width:300px" onclick="window.open('https://wa.me/51927107627')">💬 Consultar por WhatsApp</button>
-</div>
-</div>
-
-<!-- NOTICIAS -->
-<div id="noticias" class="seccion">
-<div class="tarjeta">
-<h2>Noticias SUNAT 2026</h2>
-<h3>Ultimas novedades tributarias</h3>
-</div>
-<div class="noticia">
-<h3>UIT 2026 fijada en S/ 5,500</h3>
-<p>El MEF aprobo la UIT para 2026 mediante decreto supremo vigente desde el 1 de enero de 2026.</p>
-<a href="https://www.mef.gob.pe" target="_blank">Ver en MEF</a>
-</div>
-<div class="noticia">
-<h3>Cronograma de vencimientos SUNAT 2026</h3>
-<p>SUNAT publico el cronograma oficial de obligaciones tributarias para enero a diciembre 2026.</p>
-<a href="https://www.sunat.gob.pe" target="_blank">Ver en SUNAT</a>
-</div>
-<div class="noticia">
-<h3>Factura electronica obligatoria 2026</h3>
-<p>Todos los contribuyentes con RUC activo deben emitir comprobantes electronicos.</p>
-<a href="https://www.sunat.gob.pe" target="_blank">Ver en SUNAT</a>
-</div>
-<div class="noticia">
-<h3>RMV 2026 = S/ 1,130</h3>
-<p>El sueldo minimo vital en Peru para 2026 es S/ 1,130 mensuales.</p>
-<a href="https://www.gob.pe" target="_blank">Ver en GOB.PE</a>
-</div>
-<div class="verde">Ver todas las noticias en <a href="https://www.sunat.gob.pe" target="_blank" style="color:#0D7A3E;font-weight:bold">sunat.gob.pe</a></div>
-</div>
-
-<!-- QUIEN SOY -->
-<div id="quiensoy" class="seccion">
-<div class="tarjeta">
-<div class="perfil-foto">DV</div>
-<h2 style="text-align:center">Deiner Cleison Villegas Villegas</h2>
-<h3 style="text-align:center">Consultor Financiero y Tributario Peruano</h3>
-<p style="font-size:13px;color:#555;line-height:1.8;margin-top:15px">Soy consultor especializado en tributacion peruana, finanzas para emprendedores y asesoria SUNAT. Cree esta herramienta gratuita porque los emprendedores y trabajadores peruanos merecen acceso a informacion clara, sin tecnicismos y sin costo.</p>
-<div style="margin-top:20px;padding:15px;background:#e8f0fb;border-radius:8px">
-<p style="font-size:13px;font-weight:bold;color:#003087">Servicios de consultoria:</p>
-<p style="font-size:13px;color:#555;margin-top:8px">✓ Asesoria tributaria SUNAT</p>
-<p style="font-size:13px;color:#555">✓ Planificacion fiscal para empresas</p>
-<p style="font-size:13px;color:#555">✓ Coaching financiero para emprendedores</p>
-<p style="font-size:13px;color:#555">✓ Auditoria y revision de libros</p>
-</div>
-<div style="margin-top:15px;padding:15px;background:#003087;border-radius:8px">
-<p style="font-size:14px;font-weight:bold;color:#F5A623">Servicios Adicionales:</p>
-<p style="font-size:13px;color:white;margin-top:8px">Realizo trabajos profesionales universitarios de Contabilidad, Finanzas y Administracion.</p>
-<p style="font-size:13px;color:white;margin-top:5px">Asesoria empresarial profesional. No dude en comunicarse al WhatsApp.</p>
-</div>
-<button class="btn" style="background:#25D366;margin-top:15px" onclick="window.open('https://wa.me/51927107627')">Contactar por WhatsApp</button>
-</div>
-</div>
-
-<button class="whatsapp-btn" onclick="window.open('https://wa.me/51927107627')">💬 Consulta Gratis</button>
-
-<footer>
-<p>Tributacion Peru - Herramienta gratuita para emprendedores y trabajadores peruanos</p>
-<p>Por DEINER CLEISON VILLEGAS VILLEGAS | Consultor Financiero y Tributario | &copy; 2026 Todos los derechos reservados</p>
-<p>Basado en normas SUNAT y laborales vigentes | UIT 2026: S/ 5,500 | RMV 2026: S/ 1,130</p>
-</footer>
-
-<script>
-var CONFIG={UIT:5500,RMV:1130,ANIO:2026,UIT_ANTERIOR:5350};
-function mostrar(id,btn){document.querySelectorAll('.seccion').forEach(function(s){s.classList.remove('activa');});document.querySelectorAll('nav button').forEach(function(b){b.classList.remove('activo');});document.getElementById(id).classList.add('activa');if(btn)btn.classList.add('activo');}
-function calcularUIT(){var monto=parseFloat(document.getElementById('montoUit').value);if(!monto||monto<=0){alert('Ingresa un monto valido');return;}var enUit=(monto/CONFIG.UIT).toFixed(2);document.getElementById('resultadoUIT').innerHTML='<div class="resultado"><h3>Equivalencia en UIT</h3><p>S/ '+monto.toLocaleString('es-PE')+' equivale a:</p><p class="monto">'+enUit+' UIT</p><p style="font-size:13px;margin-top:8px">Basado en UIT 2026 = S/ 5,500</p></div>';}
-function calcularIgv(){var monto=parseFloat(document.getElementById('montoIgv').value);var tipo=document.getElementById('tipoIgv').value;if(!monto||monto<=0){alert('Ingresa un monto valido');return;}var base,igv,total;if(tipo=='sin'){base=monto;igv=monto*0.18;total=monto+igv;}else{total=monto;base=monto/1.18;igv=total-base;}document.getElementById('resultadoIgv').innerHTML='<div class="resultado"><h3>Resultado IGV</h3><p>Base imponible: <span class="monto">S/ '+base.toFixed(2)+'</span></p><p>IGV (18%): <span class="monto">S/ '+igv.toFixed(2)+'</span></p><p>Total con IGV: <span class="monto">S/ '+total.toFixed(2)+'</span></p></div><div class="verde">Declara este IGV en el Formulario Virtual 621 de SUNAT.</div>';}
-function calcularRegimen(){var ventas=document.getElementById('ventas').value;var facturas=document.getElementById('facturas').value;var estado=document.getElementById('estado').value;var rec,det;if(estado=='si'){rec='REGIMEN GENERAL';det='Contratas con el Estado o exportas: necesitas Regimen General.';}else if(facturas=='si'){rec='MYPE TRIBUTARIO';det='Necesitas facturas. MYPE Tributario 2026: 1% adelanto del IR y 10% sobre los primeros S/ 82,500 de utilidad.';}else if(ventas=='1'){rec='NRUS';det='Ventas menores a S/ 8,000 al mes. Pagas S/ 20 fijo al mes.';}else if(ventas=='2'){rec='MYPE TRIBUTARIO';det='El MYPE Tributario te conviene para crecer sin limite.';}else{rec='MYPE TRIBUTARIO o REGIMEN GENERAL';det='Con altos ingresos el MYPE Tributario te da 10% sobre los primeros S/ 82,500 de utilidad.';}document.getElementById('resultadoRegimen').innerHTML='<div class="resultado"><h3>Te recomendamos:</h3><p class="monto">'+rec+'</p><p style="margin-top:10px">'+det+'</p></div><div class="alerta">Puedes cambiar de regimen el 1 de enero de cada ano.</div>';}
-function calcularMulta(){var tipo=document.getElementById('tipoMulta').value;var descuento=parseInt(document.getElementById('momentoMulta').value);var ingresos=parseFloat(document.getElementById('ingresosMulta').value)||0;var multaBase,nombre;if(tipo=='nodeclarar'){multaBase=CONFIG.UIT*0.5;nombre='No declarar a tiempo';}else if(tipo=='nocomprobante'){multaBase=CONFIG.UIT;nombre='No emitir comprobante';}else if(tipo=='nolibros'){multaBase=ingresos*0.003||CONFIG.UIT*0.3;nombre='No llevar libros contables';}else{multaBase=CONFIG.UIT*0.5;nombre='Declarar datos falsos';}var descuentoMonto=multaBase*(descuento/100);var multaFinal=multaBase-descuentoMonto;document.getElementById('resultadoMulta').innerHTML='<div class="resultado"><h3>'+nombre+'</h3><p>Multa original: <span class="monto">S/ '+multaBase.toFixed(2)+'</span></p><p>Descuento ('+descuento+'%): - S/ '+descuentoMonto.toFixed(2)+'</p><p>Multa final: <span class="monto">S/ '+multaFinal.toFixed(2)+'</span></p></div><div class="verde">Subsana antes de cualquier notificacion SUNAT para 95% de descuento.</div>';}
-function mostrarVencimiento(){var digito=document.getElementById('digitoRuc').value;var v={'0':'13 o 14 del mes siguiente','1':'15 o 16 del mes siguiente','2':'10 o 11 del mes siguiente','3':'11 o 12 del mes siguiente','4':'12 o 13 del mes siguiente','5':'13 o 14 del mes siguiente','6':'14 o 15 del mes siguiente','7':'15 o 16 del mes siguiente','8':'9 o 10 del mes siguiente','9':'11 o 12 del mes siguiente'};if(digito===''){document.getElementById('resultadoCronograma').innerHTML='';return;}document.getElementById('resultadoCronograma').innerHTML='<div class="resultado"><h3>RUC termina en '+digito+'</h3><p>Tu declaracion vence: <span class="monto">'+v[digito]+'</span></p></div><div class="alerta">Si no declaras a tiempo la multa minima es S/ 2,750. Declara aunque no hayas vendido nada.</div>';}
-function calcularRenta(){var sueldo=parseFloat(document.getElementById('sueldoRenta').value);if(!sueldo||sueldo<=0){alert('Ingresa un sueldo valido');return;}var anual=sueldo*12;var deduccion=CONFIG.UIT*7;var rentaNeta=anual-deduccion;var ir=0;if(rentaNeta>0){if(rentaNeta<=CONFIG.UIT*5)ir=rentaNeta*0.08;else if(rentaNeta<=CONFIG.UIT*20)ir=CONFIG.UIT*5*0.08+(rentaNeta-CONFIG.UIT*5)*0.14;else if(rentaNeta<=CONFIG.UIT*35)ir=CONFIG.UIT*5*0.08+CONFIG.UIT*15*0.14+(rentaNeta-CONFIG.UIT*20)*0.17;else ir=CONFIG.UIT*5*0.08+CONFIG.UIT*15*0.14+CONFIG.UIT*15*0.17+(rentaNeta-CONFIG.UIT*35)*0.20;}var irMensual=ir/12;document.getElementById('resultadoRenta').innerHTML='<div class="resultado"><h3>IR 5ta Categoria 2026</h3><p>Sueldo anual: S/ '+anual.toFixed(2)+'</p><p>Deduccion 7 UIT: - S/ '+deduccion.toFixed(2)+'</p><p>Renta neta: S/ '+Math.max(0,rentaNeta).toFixed(2)+'</p><p>IR anual: <span class="monto">S/ '+ir.toFixed(2)+'</span></p><p>Retencion mensual: <span class="monto">S/ '+irMensual.toFixed(2)+'</span></p></div>'+(ir==0?'<div class="verde">No pagas IR. Tu sueldo no supera la deduccion de 7 UIT = S/ '+deduccion.toFixed(2)+'.</div>':'<div class="alerta">Tu empleador retiene S/ '+irMensual.toFixed(2)+' cada mes.</div>');}
-function calcularDetraccion(){var tasa=parseFloat(document.getElementById('tipoDetraccion').value);var monto=parseFloat(document.getElementById('montoDetraccion').value);if(!monto||monto<=0){alert('Ingresa un monto valido');return;}var detraccion=monto*(tasa/100);var recibe=monto-detraccion;document.getElementById('resultadoDetraccion').innerHTML='<div class="resultado"><h3>Calculo de Detraccion</h3><p>Monto factura: S/ '+monto.toFixed(2)+'</p><p>Detraccion ('+tasa+'%): - S/ '+detraccion.toFixed(2)+'</p><p>Lo que recibes: <span class="monto">S/ '+recibe.toFixed(2)+'</span></p></div><div class="verde">Los S/ '+detraccion.toFixed(2)+' van a tu cuenta del Banco de la Nacion.</div>';}
-function calcularPlanilla(){var sueldo=parseFloat(document.getElementById('sueldoPlanilla').value);var afp=parseFloat(document.getElementById('tipoAfp').value);if(!sueldo||sueldo<=0){alert('Ingresa un sueldo valido');return;}if(sueldo<CONFIG.RMV){alert('El sueldo no puede ser menor a la RMV: S/ '+CONFIG.RMV);return;}var essalud=sueldo*0.09;var descAfp=sueldo*(afp/100);var neto=sueldo-descAfp;var costoTotal=sueldo+essalud;var cts=sueldo/12;var grat=sueldo/6;document.getElementById('resultadoPlanilla').innerHTML='<div class="resultado"><h3>Planilla 2026</h3><p>Sueldo bruto: S/ '+sueldo.toFixed(2)+'</p><p>AFP/ONP ('+afp+'%): - S/ '+descAfp.toFixed(2)+'</p><p>Neto del trabajador: <span class="monto">S/ '+neto.toFixed(2)+'</span></p><hr style="margin:10px 0"><p>ESSALUD (9%): S/ '+essalud.toFixed(2)+'</p><p>Costo total empresa: <span class="monto">S/ '+costoTotal.toFixed(2)+'</span></p><hr style="margin:10px 0"><p>CTS mensual: S/ '+cts.toFixed(2)+'</p><p>Gratificacion mensual: S/ '+grat.toFixed(2)+'</p></div>';}
-function calcularHonorarios(){var neto=parseFloat(document.getElementById('netoHonorarios').value);var retencion=document.getElementById('retencion').value;if(!neto||neto<=0){alert('Ingresa un monto valido');return;}var bruto,ret;if(retencion=='si'){bruto=neto/0.92;ret=bruto*0.08;}else{bruto=neto;ret=0;}document.getElementById('resultadoHonorarios').innerHTML='<div class="resultado"><h3>Recibo por Honorarios 2026</h3><p>Monto en el recibo: <span class="monto">S/ '+bruto.toFixed(2)+'</span></p><p>Retencion IR 8%: - S/ '+ret.toFixed(2)+'</p><p>Lo que recibes: <span class="monto">S/ '+neto.toFixed(2)+'</span></p></div><div class="verde">Emite tu recibo por S/ '+bruto.toFixed(2)+' en SUNAT SOL.</div>';}
-function calcularCts(){var sueldo=parseFloat(document.getElementById('sueldoCts').value)||0;var asignacion=parseFloat(document.getElementById('asignacionCts').value)||0;var meses=parseInt(document.getElementById('mesesCts').value)||0;var dias=parseInt(document.getElementById('diasCts').value)||0;if(!sueldo||sueldo<=0){alert('Ingresa un sueldo valido');return;}var rem=sueldo+asignacion;var ctsMensual=rem/12;var ctsDiaria=rem/360;var ctsTotal=(ctsMensual*meses)+(ctsDiaria*dias);document.getElementById('resultadoCts').innerHTML='<div class="resultado"><h3>CTS 2026</h3><p>Remuneracion computable: S/ '+rem.toFixed(2)+'</p><p>CTS por '+meses+' meses: S/ '+(ctsMensual*meses).toFixed(2)+'</p><p>CTS por '+dias+' dias: S/ '+(ctsDiaria*dias).toFixed(2)+'</p><p>CTS total: <span class="monto">S/ '+ctsTotal.toFixed(2)+'</span></p></div><div class="verde">El empleador deposita la CTS en mayo y noviembre.</div>';}
-function calcularGratificacion(){var sueldo=parseFloat(document.getElementById('sueldoGrat').value)||0;var asignacion=parseFloat(document.getElementById('asignacionGrat').value)||0;var meses=parseInt(document.getElementById('mesesGrat').value)||0;if(!sueldo||sueldo<=0){alert('Ingresa un sueldo valido');return;}var rem=sueldo+asignacion;var gratProp=(rem/6)*meses;var bono=gratProp*0.09;var total=gratProp+bono;document.getElementById('resultadoGrat').innerHTML='<div class="resultado"><h3>Gratificacion 2026</h3><p>Remuneracion computable: S/ '+rem.toFixed(2)+'</p><p>Gratificacion proporcional: <span class="monto">S/ '+gratProp.toFixed(2)+'</span></p><p>Bonificacion extraordinaria 9%: S/ '+bono.toFixed(2)+'</p><p>Total a recibir: <span class="monto">S/ '+total.toFixed(2)+'</span></p></div><div class="verde">Se paga hasta el 15 de julio y 15 de diciembre.</div>';}
-function calcularLiquidacion(){var sueldo=parseFloat(document.getElementById('sueldoLiq').value)||0;var anos=parseInt(document.getElementById('anosLiq').value)||0;var meses=parseInt(document.getElementById('mesesLiq').value)||0;var tipoCese=document.getElementById('tipoCese').value;var vacsPend=parseInt(document.getElementById('vacsPendientes').value)||0;if(!sueldo||sueldo<=0){alert('Ingresa un sueldo valido');return;}var totalMeses=anos*12+meses;var cts=(sueldo/12)*totalMeses;var vacs=(sueldo/30)*vacsPend;var indem=0;if(tipoCese=='despido'){indem=sueldo*1.5*anos;if(meses>0)indem+=((sueldo*1.5)/12)*meses;}var totalLiq=cts+vacs+indem;var html='<div class="resultado"><h3>Liquidacion Laboral 2026</h3><p>CTS proporcional: S/ '+cts.toFixed(2)+'</p><p>Vacaciones pendientes: S/ '+vacs.toFixed(2)+'</p>';if(tipoCese=='despido')html+='<p>Indemnizacion: <span class="monto">S/ '+indem.toFixed(2)+'</span></p>';html+='<hr style="margin:10px 0"><p>TOTAL: <span class="monto">S/ '+totalLiq.toFixed(2)+'</span></p></div>';if(tipoCese=='despido')html+='<div class="alerta">Por despido arbitrario te corresponde 1.5 sueldos por ano trabajado.</div>';else html+='<div class="verde">Por renuncia voluntaria recibes CTS y vacaciones pendientes.</div>';document.getElementById('resultadoLiq').innerHTML=html;}
-function calcularFaltas(){var sueldo=parseFloat(document.getElementById('sueldoFaltas').value)||0;var diasFalta=parseInt(document.getElementById('diasFaltas').value)||0;var diasLab=parseInt(document.getElementById('diasLaborables').value);if(!sueldo||sueldo<=0){alert('Ingresa un sueldo valido');return;}if(!diasFalta||diasFalta<=0){alert('Ingresa el numero de dias de falta');return;}var valorDia=sueldo/diasLab;var descuento=valorDia*diasFalta;var neto=sueldo-descuento;document.getElementById('resultadoFaltas').innerHTML='<div class="resultado"><h3>Descuento por Faltas</h3><p>Sueldo bruto: S/ '+sueldo.toFixed(2)+'</p><p>Valor por dia: S/ '+valorDia.toFixed(2)+'</p><p>Dias de falta: '+diasFalta+'</p><p>Descuento: <span class="monto">- S/ '+descuento.toFixed(2)+'</span></p><p>Sueldo neto: <span class="monto">S/ '+neto.toFixed(2)+'</span></p></div><div class="alerta">Las faltas injustificadas tambien reducen CTS, gratificaciones y utilidades.</div>';}
-function calcularVacaciones(){var sueldo=parseFloat(document.getElementById('sueldoVacs').value)||0;var meses=parseInt(document.getElementById('mesesVacs').value)||0;var diasVacs=parseInt(document.getElementById('regimenVacs').value);var vacsDoble=document.getElementById('vacsDoble').value;if(!sueldo||sueldo<=0){alert('Ingresa un sueldo valido');return;}var diasProp=(diasVacs/12)*meses;var valorDia=sueldo/30;var montoVacs=valorDia*diasProp;var html='<div class="resultado"><h3>Vacaciones 2026</h3><p>Dias proporcionales: '+diasProp.toFixed(1)+' dias</p><p>Valor por dia: S/ '+valorDia.toFixed(2)+'</p><p>Monto de vacaciones: <span class="monto">S/ '+montoVacs.toFixed(2)+'</span></p>';if(vacsDoble=='si')html+='<p>Vacaciones dobles: <span class="monto">S/ '+(montoVacs*2).toFixed(2)+'</span></p>';html+='</div>';if(vacsDoble=='si')html+='<div class="alerta">Como no gozaste tus vacaciones tienes derecho al doble pago.</div>';else html+='<div class="verde">Si no gozas tus vacaciones tendras derecho al doble el proximo ano.</div>';document.getElementById('resultadoVacs').innerHTML=html;}
-function calcularFraccionamiento(){var deuda=parseFloat(document.getElementById('deudaFraccionamiento').value);var cuotas=parseInt(document.getElementById('cuotasFraccionamiento').value);if(!deuda||deuda<=0){alert('Ingresa una deuda valida');return;}if(!cuotas||cuotas<=0||cuotas>72){alert('Las cuotas deben ser entre 1 y 72');return;}var tasa=0.012;var cuota=deuda*(tasa*Math.pow(1+tasa,cuotas))/(Math.pow(1+tasa,cuotas)-1);var total=cuota*cuotas;var intereses=total-deuda;document.getElementById('resultadoFraccionamiento').innerHTML='<div class="resultado"><h3>Fraccionamiento SUNAT 2026</h3><p>Deuda original: S/ '+deuda.toFixed(2)+'</p><p>Cuotas: '+cuotas+' meses</p><p>Cuota mensual: <span class="monto">S/ '+cuota.toFixed(2)+'</span></p><p>Total intereses: S/ '+intereses.toFixed(2)+'</p><p>Total a pagar: <span class="monto">S/ '+total.toFixed(2)+'</span></p></div><div class="alerta">Solicita el fraccionamiento en SUNAT Operaciones en Linea (SOL).</div>';}
-function calcularUtilidades(){var utilidad=parseFloat(document.getElementById('utilidadEmpresa').value)||0;var porcentaje=parseFloat(document.getElementById('actividadEmpresa').value);var totalDias=parseFloat(document.getElementById('totalDiasEmpresa').value)||0;var totalRemu=parseFloat(document.getElementById('totalRemuEmpresa').value)||0;var diasTrab=parseFloat(document.getElementById('diasTrabajador').value)||0;var faltas=parseFloat(document.getElementById('faltasTrabajador').value)||0;var remuTrab=parseFloat(document.getElementById('remuTrabajador').value)||0;var numTrab=parseInt(document.getElementById('numTrabajadores').value)||0;if(!utilidad||utilidad<=0){alert('Ingresa la utilidad de la empresa');return;}if(!totalDias||!totalRemu||!diasTrab||!remuTrab){alert('Completa todos los campos');return;}if(numTrab<=20){document.getElementById('resultadoUtilidades').innerHTML='<div class="alerta">La empresa tiene 20 o menos trabajadores. No esta obligada a repartir utilidades segun el D.Leg. 892.</div>';return;}var diasEfectivos=diasTrab-faltas;if(diasEfectivos<=0){alert('Los dias efectivos no pueden ser cero o negativos');return;}var fondoTotal=utilidad*(porcentaje/100);var porDias=(diasEfectivos/totalDias)*fondoTotal*0.5;var porRemu=(remuTrab/totalRemu)*fondoTotal*0.5;var totalTrabajador=porDias+porRemu;document.getElementById('resultadoUtilidades').innerHTML='<div class="resultado"><h3>Participacion en Utilidades 2026</h3><p>Fondo total ('+porcentaje+'%): <span class="monto">S/ '+fondoTotal.toFixed(2)+'</span></p><hr style="margin:10px 0"><p>Por dias trabajados: S/ '+porDias.toFixed(2)+'</p><p>Por remuneraciones: S/ '+porRemu.toFixed(2)+'</p><hr style="margin:10px 0"><p>TOTAL: <span class="monto">S/ '+totalTrabajador.toFixed(2)+'</span></p></div><div class="verde">Las utilidades deben pagarse dentro de los 30 dias siguientes al vencimiento de la DJ Anual del IR.</div>'+(faltas>0?'<div class="alerta">Tus '+faltas+' faltas redujeron tu participacion.</div>':'');}
-var glosarioData=[{t:'IGV',d:'Impuesto General a las Ventas. El 18% sobre productos y servicios en el Peru.'},{t:'RUC',d:'Registro Unico de Contribuyentes. Numero de 11 digitos que te identifica ante SUNAT.'},{t:'UIT',d:'Unidad Impositiva Tributaria. En 2026 vale S/ 5,500.'},{t:'RMV',d:'Remuneracion Minima Vital. El sueldo minimo en Peru en 2026 es S/ 1,130 mensual.'},{t:'CTS',d:'Compensacion por Tiempo de Servicios. Se deposita en mayo y noviembre.'},{t:'Gratificacion',d:'Bonificacion equivalente a 1 sueldo que el empleador paga en julio y diciembre.'},{t:'Liquidacion',d:'Pago total al trabajador cuando termina la relacion laboral.'},{t:'Utilidades',d:'Participacion de los trabajadores en las ganancias de la empresa. Solo para empresas con mas de 20 trabajadores.'},{t:'Indemnizacion',d:'Pago por despido arbitrario: 1.5 sueldos por ano trabajado.'},{t:'Detraccion',d:'Descuento que deposita el comprador en tu cuenta del Banco de la Nacion para pagar impuestos.'},{t:'NRUS',d:'Nuevo Regimen Unico Simplificado. Pago fijo de S/ 20 o S/ 50 al mes.'},{t:'MYPE',d:'Micro y Pequena Empresa. Paga 10% de IR sobre los primeros S/ 82,500 de utilidad en 2026.'},{t:'ESSALUD',d:'Seguro de salud. El empleador paga 9% del sueldo bruto mensual.'},{t:'AFP',d:'Administradora de Fondos de Pensiones. Descuento del 10% del sueldo.'},{t:'ONP',d:'Oficina de Normalizacion Previsional. Sistema estatal de pensiones. Descuento del 13%.'},{t:'Credito fiscal',d:'El IGV de tus compras que descontas del IGV de tus ventas.'},{t:'Fiscalizacion',d:'Revision formal de SUNAT a tus declaraciones y documentos.'},{t:'Fraccionamiento',d:'Pago de deuda SUNAT en cuotas. Tasa 1.2% mensual. Maximo 72 cuotas.'},{t:'TIM',d:'Tasa de Interes Moratorio. 0.03% diario sobre deuda tributaria vencida.'},{t:'Asignacion familiar',d:'S/ 102.50 adicional al sueldo para trabajadores con hijos menores de 18 anos.'},{t:'D.Leg. 892',d:'Decreto Legislativo que regula la participacion de utilidades en el Peru.'}];
-function buscarGlosario(){var b=document.getElementById('busquedaGlosario').value.toLowerCase();if(b.length<2){document.getElementById('resultadoGlosario').innerHTML='';return;}var r=glosarioData.filter(function(g){return g.t.toLowerCase().includes(b)||g.d.toLowerCase().includes(b);});if(r.length==0){document.getElementById('resultadoGlosario').innerHTML='<div class="alerta">No encontrado. Prueba con otra palabra.</div>';return;}document.getElementById('resultadoGlosario').innerHTML=r.map(function(g){return '<div class="resultado" style="margin-bottom:10px"><h3>'+g.t+'</h3><p>'+g.d+'</p></div>';}).join('');}
-</script>
-</body>
-</html>
+<section id="igv">
+  <h2>🧮 Calculadora de IGV Peru 2026</h2>
+  <h3>¿Cuánto IGV debo pagar a SUNAT?</h3>
+  <div class="alerta">⚠️ <strong>ACTUALIZACIÓN 2026:</strong> En Perú hay <strong>dos tasas de IGV vigentes</strong>: (1) <strong>18%</strong> tasa general para la mayoría de bienes y servicios (16% IGV + 2% IPM). (2) <strong>10.5%</strong> tasa especial para MYPES de restaurantes, hoteles y alojamientos turísticos (8% IGV + 2.5% IPM). Vigente hasta diciembre 2026. En 2027 sube a 14% (12% IGV + 2% IPM). Base legal: Ley N° 32219 + Ley N° 32387.</div>
+  <div class="calc-box">
+    <label>Tipo de IGV aplicable:</label>
+    <div class="radio-group">
+      <label><input type="radio" name="tipo-igv" value="18" checked/> 18% — Tasa general (todos los sectores)</label>
+      <label><input type="radio" name="tipo-igv" value="10.5"/> 10.5% — MYPE Restaurantes/Hoteles/Alojamiento 2026</label>
+    </div>
+    <div class="info-box" style="margin-bottom:12px;">
+      <strong>¿Quiénes aplican 10.5%?</strong> Solo MYPES con ventas anuales menores a 1,700 UIT (S/ 9,350,000) y que al menos el 70% de sus ingresos provengan de restaurantes, hoteles o alojamientos turísticos. No aplica a catering ni concesionarios de alimentos. <br><br>
+      <strong>Tasas de IGV en Perú 2026:</strong><br>
+      • 18% = 16% IGV + 2% IPM (régimen general — la mayoría de empresas)<br>
+      • 10.5% = 8% IGV + 2.5% IPM (MYPE restaurantes/hoteles hasta dic 2026)<br>
+      • 0% = exonerado (ej: exportaciones, productos de la canasta básica listados en Apéndice I)
+    </div>
+    <label>¿Tienes el precio con IGV o sin IGV?</label>
+    <div class="radio-group">
+      <label><input type="radio" name
