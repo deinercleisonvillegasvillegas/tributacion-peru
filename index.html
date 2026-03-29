@@ -26,8 +26,9 @@
 
   /* NAV */
   nav { background: #0a1520; border-bottom: 2px solid var(--verde); position: sticky; top: 0; z-index: 999; overflow-x: auto; white-space: nowrap; padding: 0 8px; }
-  nav a { display: inline-block; padding: 13px 11px; color: #b0c8e0; font-size: 13px; font-weight: 500; transition: color 0.2s; }
+  nav a { display: inline-block; padding: 13px 11px; color: #b0c8e0; font-size: 13px; font-weight: 500; transition: color 0.2s; cursor: pointer; }
   nav a:hover { color: var(--verde); text-decoration: none; }
+  nav a.active-nav { color: var(--verde); border-bottom: 2px solid var(--verde); }
 
   /* HEADER */
   header { background: linear-gradient(135deg, #0a2540 0%, #0d3d2b 100%); padding: 38px 20px 28px; text-align: center; border-bottom: 3px solid var(--verde); }
@@ -36,10 +37,17 @@
   .banner-datos { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 18px; }
   .banner-item { background: rgba(0,179,134,0.10); border: 1px solid var(--verde); border-radius: 8px; padding: 8px 18px; font-size: 0.92rem; color: var(--verde); font-weight: 600; }
 
-  /* SECCIONES */
-  section { padding: 40px 16px 20px; max-width: 860px; margin: 0 auto; }
+  /* SECCIONES — solo visible la activa */
+  section { display: none; padding: 40px 16px 20px; max-width: 860px; margin: 0 auto; }
+  section.active { display: block; animation: fadeIn 0.25s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
   h2 { font-size: 1.5rem; color: var(--verde); border-left: 4px solid var(--verde); padding-left: 12px; margin-bottom: 6px; }
   h3 { font-size: 1rem; color: #8ab4c8; margin-bottom: 18px; }
+
+  /* BOTÓN VOLVER */
+  .btn-volver { display: inline-flex; align-items: center; gap: 6px; background: rgba(0,179,134,0.12); border: 1px solid var(--verde); color: var(--verde); border-radius: 8px; padding: 8px 16px; font-size: 0.88rem; font-weight: 600; cursor: pointer; margin-bottom: 22px; transition: background 0.2s; }
+  .btn-volver:hover { background: rgba(0,179,134,0.22); }
 
   /* CARDS INICIO */
   .grid-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 18px; margin-top: 24px; }
@@ -52,8 +60,8 @@
   /* CALC ZONA */
   .calc-box { background: var(--card); border-radius: 14px; padding: 28px 24px; border: 1px solid #1e3550; margin-top: 10px; }
   label { display: block; margin-bottom: 5px; color: #8ab4c8; font-size: 0.88rem; font-weight: 600; margin-top: 14px; }
-  input[type=number], select { width: 100%; padding: 10px 14px; background: #0d1b2a; border: 1px solid #2a4060; border-radius: 8px; color: var(--texto); font-size: 0.97rem; outline: none; margin-bottom: 4px; }
-  input[type=number]:focus, select:focus { border-color: var(--verde); }
+  input[type=number], input[type=text], select { width: 100%; padding: 10px 14px; background: #0d1b2a; border: 1px solid #2a4060; border-radius: 8px; color: var(--texto); font-size: 0.97rem; outline: none; margin-bottom: 4px; }
+  input[type=number]:focus, input[type=text]:focus, select:focus { border-color: var(--verde); }
   .radio-group { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; margin-bottom: 6px; }
   .radio-group label { display: flex; align-items: center; gap: 6px; color: var(--texto); font-weight: 400; font-size: 0.91rem; margin-top: 0; cursor: pointer; background: #0d1b2a; border: 1px solid #2a4060; border-radius: 7px; padding: 7px 13px; transition: border-color 0.2s; }
   .radio-group label:hover { border-color: var(--verde); }
@@ -118,36 +126,37 @@
     header h1 { font-size: 1.35rem; }
     .quien-card { flex-direction: column; }
     section { padding: 28px 10px 14px; }
+    .grid-cards { grid-template-columns: 1fr 1fr; }
   }
 </style>
 </head>
 <body>
 
 <!-- NAV -->
-<nav>
-  <a href="#inicio">Inicio</a>
-  <a href="#uit">📊 UIT</a>
-  <a href="#igv">IGV</a>
-  <a href="#regimen">Régimen</a>
-  <a href="#multas">Multas</a>
-  <a href="#cronograma">Cronograma</a>
-  <a href="#renta">Renta</a>
-  <a href="#detracciones">Detracciones</a>
-  <a href="#retenciones">Retenciones</a>
-  <a href="#deducciones">Deducciones</a>
-  <a href="#planilla">Planilla</a>
-  <a href="#honorarios">Honorarios</a>
-  <a href="#cts">CTS</a>
-  <a href="#gratificaciones">Gratificaciones</a>
-  <a href="#liquidacion">Liquidación</a>
-  <a href="#faltas">Faltas</a>
-  <a href="#vacaciones">Vacaciones</a>
-  <a href="#fraccionamiento">Fraccionamiento</a>
-  <a href="#utilidades">Utilidades</a>
-  <a href="#glosario">Glosario</a>
-  <a href="#blog">Blog SEO</a>
-  <a href="#noticias">Noticias SUNAT</a>
-  <a href="#quien">Quién Soy</a>
+<nav id="nav-bar">
+  <a onclick="irA('inicio')" class="active-nav">Inicio</a>
+  <a onclick="irA('uit')">📊 UIT</a>
+  <a onclick="irA('igv')">IGV</a>
+  <a onclick="irA('regimen')">Régimen</a>
+  <a onclick="irA('multas')">Multas</a>
+  <a onclick="irA('cronograma')">Cronograma</a>
+  <a onclick="irA('renta')">Renta</a>
+  <a onclick="irA('detracciones')">Detracciones</a>
+  <a onclick="irA('retenciones')">Retenciones</a>
+  <a onclick="irA('deducciones')">Deducciones</a>
+  <a onclick="irA('planilla')">Planilla</a>
+  <a onclick="irA('honorarios')">Honorarios</a>
+  <a onclick="irA('cts')">CTS</a>
+  <a onclick="irA('gratificaciones')">Gratificaciones</a>
+  <a onclick="irA('liquidacion')">Liquidación</a>
+  <a onclick="irA('faltas')">Faltas</a>
+  <a onclick="irA('vacaciones')">Vacaciones</a>
+  <a onclick="irA('fraccionamiento')">Fraccionamiento</a>
+  <a onclick="irA('utilidades')">Utilidades</a>
+  <a onclick="irA('glosario')">Glosario</a>
+  <a onclick="irA('blog')">Blog</a>
+  <a onclick="irA('noticias')">Noticias</a>
+  <a onclick="irA('quien')">Quién Soy</a>
 </nav>
 
 <!-- HEADER -->
@@ -165,40 +174,41 @@
   </div>
 </header>
 
-<!-- INICIO -->
-<section id="inicio">
+<!-- ===== INICIO ===== -->
+<section id="inicio" class="active">
   <h2>Bienvenido a Tributacion Peru 2026</h2>
-  <h3>La herramienta tributaria y laboral más completa del Perú</h3>
-  <p style="color:#8ab4c8;line-height:1.8;margin-bottom:10px;">Conocer tus obligaciones tributarias y tus derechos laborales no es opcional — es la diferencia entre crecer con tranquilidad o vivir con miedo a SUNAT y perder tus beneficios como trabajador. Esta herramienta fue creada para que cualquier emprendedor, empresario o trabajador peruano acceda a información clara, exacta y actualizada al 2026, completamente gratis.</p>
-  <div class="alerta">⚠️ <strong>IMPORTANTE 2026:</strong> El IGV ya NO es solo 18%. Las MYPE de restaurantes, hoteles y alojamientos turísticos aplican <strong>10.5% (8% IGV + 2.5% IPM)</strong> vigente hasta diciembre 2026. En 2027 sube a 14%. Base legal: Ley N° 32219 + Ley N° 32387.</div>
-  <div class="grid-cards" id="tarjetas-inicio">
-    <div class="card" onclick="location.href='#uit'"><div class="icon">📊</div><h4>Calculadora UIT 2026</h4><p>UIT 2026 = S/ 5,500. Impacto en multas, deducciones y regímenes.</p></div>
-    <div class="card" onclick="location.href='#igv'"><div class="icon">🧮</div><h4>Calculadora de IGV</h4><p>Calcula IGV 18% (general) y 10.5% (restaurantes/hoteles MYPE).</p></div>
-    <div class="card" onclick="location.href='#regimen'"><div class="icon">📋</div><h4>Simulador de Régimen Tributario</h4><p>NRUS, RER, MYPE Tributario o Régimen General.</p></div>
-    <div class="card" onclick="location.href='#multas'"><div class="icon">⚠️</div><h4>Calculadora de Multas SUNAT</h4><p>Multas por no declarar, no emitir comprobante, libros y más.</p></div>
-    <div class="card" onclick="location.href='#cronograma'"><div class="icon">📅</div><h4>Cronograma Vencimientos 2026</h4><p>¿Cuándo vence tu declaración según tu RUC?</p></div>
-    <div class="card" onclick="location.href='#renta'"><div class="icon">💼</div><h4>Calculadora Impuesto a la Renta</h4><p>IR 5ta categoría. Deducción 7 UIT = S/ 38,500.</p></div>
-    <div class="card" onclick="location.href='#detracciones'"><div class="icon">🏦</div><h4>Calculadora de Detracciones</h4><p>Tasas del 4% al 12% según tipo de servicio o bien.</p></div>
-    <div class="card" onclick="location.href='#retenciones'"><div class="icon">🔒</div><h4>Calculadora de Retenciones IGV</h4><p>Retención 3% del IGV. Agentes designados por SUNAT. Nuevo 2026.</p></div>
-    <div class="card" onclick="location.href='#deducciones'"><div class="icon">💡</div><h4>Calculadora de Deducciones IR</h4><p>Gastos deducibles 4ta y 5ta categoría. Tope 3 UIT = S/ 16,500.</p></div>
-    <div class="card" onclick="location.href='#planilla'"><div class="icon">👥</div><h4>Calculadora de Planilla</h4><p>Sueldo neto, ESSALUD, AFP u ONP, CTS y gratificaciones.</p></div>
-    <div class="card" onclick="location.href='#honorarios'"><div class="icon">📄</div><h4>Calculadora de Honorarios</h4><p>Recibos por Honorarios 4ta categoría. Retención 8%.</p></div>
-    <div class="card" onclick="location.href='#cts'"><div class="icon">💰</div><h4>Calculadora de CTS</h4><p>Se deposita en mayo y noviembre. 1 sueldo por año trabajado.</p></div>
-    <div class="card" onclick="location.href='#gratificaciones'"><div class="icon">🎁</div><h4>Calculadora de Gratificaciones</h4><p>Julio y diciembre. Incluye bonificación extraordinaria 9%.</p></div>
-    <div class="card" onclick="location.href='#liquidacion'"><div class="icon">📊</div><h4>Calculadora de Liquidación Laboral</h4><p>Renuncia o despido. Cuánto te deben pagar exactamente.</p></div>
-    <div class="card" onclick="location.href='#faltas'"><div class="icon">📉</div><h4>Descuento por Faltas</h4><p>Cuánto te descuentan si faltas días al trabajo.</p></div>
-    <div class="card" onclick="location.href='#vacaciones'"><div class="icon">🏖️</div><h4>Calculadora de Vacaciones</h4><p>Incluye vacaciones dobles. Todos los regímenes laborales.</p></div>
-    <div class="card" onclick="location.href='#fraccionamiento'"><div class="icon">🗓️</div><h4>Simulador Fraccionamiento SUNAT</h4><p>Tasa 1.2% mensual. Hasta 72 cuotas.</p></div>
-    <div class="card" onclick="location.href='#utilidades'"><div class="icon">📈</div><h4>Calculadora de Utilidades</h4><p>D.Leg. 892. Empresas con más de 20 trabajadores.</p></div>
-    <div class="card" onclick="location.href='#glosario'"><div class="icon">📚</div><h4>Glosario Tributario y Laboral</h4><p>Términos explicados en lenguaje simple.</p></div>
-    <div class="card" onclick="location.href='#blog'"><div class="icon">✍️</div><h4>Blog SEO Tributario</h4><p>Guías sobre IGV, regímenes, derechos laborales y multas.</p></div>
-    <div class="card" onclick="location.href='#noticias'"><div class="icon">📰</div><h4>Noticias SUNAT 2026</h4><p>UIT 2026 = S/ 5,500, cronograma y más novedades.</p></div>
-    <div class="card" onclick="location.href='#quien'"><div class="icon">👨‍💼</div><h4>Quién Soy</h4><p>Deiner Cleison Villegas Villegas, Consultor Financiero y Tributario.</p></div>
+  <h3>Selecciona la calculadora que necesitas</h3>
+  <p style="color:#8ab4c8;line-height:1.8;margin-bottom:10px;">Conocer tus obligaciones tributarias y tus derechos laborales no es opcional — es la diferencia entre crecer con tranquilidad o vivir con miedo a SUNAT. Esta herramienta fue creada para que cualquier emprendedor, empresario o trabajador peruano acceda a información clara, exacta y actualizada al 2026, completamente gratis.</p>
+  <div class="alerta">⚠️ <strong>IMPORTANTE 2026:</strong> El IGV ya NO es solo 18%. Las MYPE de restaurantes, hoteles y alojamientos turísticos aplican <strong>10.5% (8% IGV + 2.5% IPM)</strong> vigente hasta diciembre 2026. Base legal: Ley N° 32219 + Ley N° 32387.</div>
+  <div class="grid-cards">
+    <div class="card" onclick="irA('uit')"><div class="icon">📊</div><h4>Calculadora UIT 2026</h4><p>UIT 2026 = S/ 5,500. Impacto en multas, deducciones y regímenes.</p></div>
+    <div class="card" onclick="irA('igv')"><div class="icon">🧮</div><h4>Calculadora de IGV</h4><p>Calcula IGV 18% (general) y 10.5% (restaurantes/hoteles MYPE).</p></div>
+    <div class="card" onclick="irA('regimen')"><div class="icon">📋</div><h4>Simulador de Régimen Tributario</h4><p>NRUS, RER, MYPE Tributario o Régimen General.</p></div>
+    <div class="card" onclick="irA('multas')"><div class="icon">⚠️</div><h4>Calculadora de Multas SUNAT</h4><p>Multas por no declarar, no emitir comprobante y más.</p></div>
+    <div class="card" onclick="irA('cronograma')"><div class="icon">📅</div><h4>Cronograma Vencimientos 2026</h4><p>¿Cuándo vence tu declaración según tu RUC?</p></div>
+    <div class="card" onclick="irA('renta')"><div class="icon">💼</div><h4>Calculadora Impuesto a la Renta</h4><p>IR 5ta categoría. Deducción 7 UIT = S/ 38,500.</p></div>
+    <div class="card" onclick="irA('detracciones')"><div class="icon">🏦</div><h4>Calculadora de Detracciones</h4><p>Tasas del 4% al 12% según tipo de servicio o bien.</p></div>
+    <div class="card" onclick="irA('retenciones')"><div class="icon">🔒</div><h4>Calculadora de Retenciones IGV</h4><p>Retención 3% del IGV. Agentes designados por SUNAT.</p></div>
+    <div class="card" onclick="irA('deducciones')"><div class="icon">💡</div><h4>Calculadora de Deducciones IR</h4><p>Gastos deducibles 4ta y 5ta categoría. Tope 3 UIT = S/ 16,500.</p></div>
+    <div class="card" onclick="irA('planilla')"><div class="icon">👥</div><h4>Calculadora de Planilla</h4><p>Sueldo neto, ESSALUD, AFP u ONP, CTS y gratificaciones.</p></div>
+    <div class="card" onclick="irA('honorarios')"><div class="icon">📄</div><h4>Calculadora de Honorarios</h4><p>Recibos por Honorarios 4ta categoría. Retención 8%.</p></div>
+    <div class="card" onclick="irA('cts')"><div class="icon">💰</div><h4>Calculadora de CTS</h4><p>Se deposita en mayo y noviembre. 1 sueldo por año trabajado.</p></div>
+    <div class="card" onclick="irA('gratificaciones')"><div class="icon">🎁</div><h4>Calculadora de Gratificaciones</h4><p>Julio y diciembre. Incluye bonificación extraordinaria 9%.</p></div>
+    <div class="card" onclick="irA('liquidacion')"><div class="icon">📊</div><h4>Calculadora de Liquidación Laboral</h4><p>Renuncia o despido. Cuánto te deben pagar exactamente.</p></div>
+    <div class="card" onclick="irA('faltas')"><div class="icon">📉</div><h4>Descuento por Faltas</h4><p>Cuánto te descuentan si faltas días al trabajo.</p></div>
+    <div class="card" onclick="irA('vacaciones')"><div class="icon">🏖️</div><h4>Calculadora de Vacaciones</h4><p>Incluye vacaciones dobles. Todos los regímenes laborales.</p></div>
+    <div class="card" onclick="irA('fraccionamiento')"><div class="icon">🗓️</div><h4>Simulador Fraccionamiento SUNAT</h4><p>Tasa 1.2% mensual. Hasta 72 cuotas.</p></div>
+    <div class="card" onclick="irA('utilidades')"><div class="icon">📈</div><h4>Calculadora de Utilidades</h4><p>D.Leg. 892. Empresas con más de 20 trabajadores.</p></div>
+    <div class="card" onclick="irA('glosario')"><div class="icon">📚</div><h4>Glosario Tributario y Laboral</h4><p>Términos explicados en lenguaje simple.</p></div>
+    <div class="card" onclick="irA('blog')"><div class="icon">✍️</div><h4>Blog SEO Tributario</h4><p>Guías sobre IGV, regímenes, derechos laborales y multas.</p></div>
+    <div class="card" onclick="irA('noticias')"><div class="icon">📰</div><h4>Noticias SUNAT 2026</h4><p>UIT 2026 = S/ 5,500, cronograma y más novedades.</p></div>
+    <div class="card" onclick="irA('quien')"><div class="icon">👨‍💼</div><h4>Quién Soy</h4><p>Deiner Cleison Villegas Villegas, Consultor Financiero y Tributario.</p></div>
   </div>
 </section>
 
-<!-- UIT -->
+<!-- ===== UIT ===== -->
 <section id="uit">
+  <button class="btn-volver" onclick="irA('inicio')">← Volver al inicio</button>
   <h2>📊 UIT 2026</h2>
   <h3>Unidad Impositiva Tributaria — Valor oficial vigente</h3>
   <div class="calc-box">
@@ -247,11 +257,12 @@
   </div>
 </section>
 
-<!-- IGV -->
+<!-- ===== IGV ===== -->
 <section id="igv">
+  <button class="btn-volver" onclick="irA('inicio')">← Volver al inicio</button>
   <h2>🧮 Calculadora de IGV Peru 2026</h2>
   <h3>¿Cuánto IGV debo pagar a SUNAT?</h3>
-  <div class="alerta">⚠️ <strong>ACTUALIZACIÓN 2026:</strong> En Perú hay <strong>dos tasas de IGV vigentes</strong>: (1) <strong>18%</strong> tasa general para la mayoría de bienes y servicios (16% IGV + 2% IPM). (2) <strong>10.5%</strong> tasa especial para MYPES de restaurantes, hoteles y alojamientos turísticos (8% IGV + 2.5% IPM). Vigente hasta diciembre 2026. En 2027 sube a 14% (12% IGV + 2% IPM). Base legal: Ley N° 32219 + Ley N° 32387.</div>
+  <div class="alerta">⚠️ <strong>ACTUALIZACIÓN 2026:</strong> En Perú hay <strong>dos tasas de IGV vigentes</strong>: (1) <strong>18%</strong> tasa general (16% IGV + 2% IPM). (2) <strong>10.5%</strong> para MYPES de restaurantes, hoteles y alojamientos turísticos (8% IGV + 2.5% IPM). Vigente hasta diciembre 2026. En 2027 sube a 14%.</div>
   <div class="calc-box">
     <label>Tipo de IGV aplicable:</label>
     <div class="radio-group">
@@ -259,11 +270,11 @@
       <label><input type="radio" name="tipo-igv" value="10.5"/> 10.5% — MYPE Restaurantes/Hoteles/Alojamiento 2026</label>
     </div>
     <div class="info-box" style="margin-bottom:12px;">
-      <strong>¿Quiénes aplican 10.5%?</strong> Solo MYPES con ventas anuales menores a 1,700 UIT (S/ 9,350,000) y que al menos el 70% de sus ingresos provengan de restaurantes, hoteles o alojamientos turísticos. No aplica a catering ni concesionarios de alimentos. <br><br>
-      <strong>Tasas de IGV en Perú 2026:</strong><br>
-      • 18% = 16% IGV + 2% IPM (régimen general — la mayoría de empresas)<br>
+      <strong>¿Quiénes aplican 10.5%?</strong> Solo MYPES con ventas anuales menores a 1,700 UIT (S/ 9,350,000) y que al menos el 70% de sus ingresos provengan de restaurantes, hoteles o alojamientos turísticos.<br><br>
+      <strong>Tasas IGV Perú 2026:</strong><br>
+      • 18% = 16% IGV + 2% IPM (régimen general)<br>
       • 10.5% = 8% IGV + 2.5% IPM (MYPE restaurantes/hoteles hasta dic 2026)<br>
-      • 0% = exonerado (ej: exportaciones, productos de la canasta básica listados en Apéndice I)
+      • 0% = exonerado (exportaciones, canasta básica — Apéndice I)
     </div>
     <label>¿Tienes el precio con IGV o sin IGV?</label>
     <div class="radio-group">
@@ -285,8 +296,9 @@
   </div>
 </section>
 
-<!-- REGIMEN -->
+<!-- ===== REGIMEN ===== -->
 <section id="regimen">
+  <button class="btn-volver" onclick="irA('inicio')">← Volver al inicio</button>
   <h2>📋 Simulador de Régimen Tributario Peru 2026</h2>
   <h3>¿Cuál régimen SUNAT te conviene?</h3>
   <div class="calc-box">
@@ -314,8 +326,9 @@
   </div>
 </section>
 
-<!-- MULTAS -->
+<!-- ===== MULTAS ===== -->
 <section id="multas">
+  <button class="btn-volver" onclick="irA('inicio')">← Volver al inicio</button>
   <h2>⚠️ Calculadora de Multas SUNAT 2026</h2>
   <h3>UIT 2026 = S/ 5,500</h3>
   <div class="calc-box">
@@ -353,23 +366,18 @@
   </div>
 </section>
 
-<!-- CRONOGRAMA -->
+<!-- ===== CRONOGRAMA ===== -->
 <section id="cronograma">
+  <button class="btn-volver" onclick="irA('inicio')">← Volver al inicio</button>
   <h2>📅 Cronograma SUNAT 2026</h2>
   <h3>¿Cuándo vence mi declaración mensual?</h3>
   <div class="calc-box">
     <label for="digito-ruc">Último dígito de tu RUC:</label>
     <select id="digito-ruc" onchange="mostrarCronograma()">
       <option value="">Selecciona el dígito</option>
-      <option value="0">0</option>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
+      <option value="0">0</option><option value="1">1</option><option value="2">2</option>
+      <option value="3">3</option><option value="4">4</option><option value="5">5</option>
+      <option value="6">6</option><option value="7">7</option><option value="8">8</option>
       <option value="9">9</option>
     </select>
     <div id="cronograma-resultado" style="margin-top:16px;display:none;">
@@ -380,8 +388,9 @@
   </div>
 </section>
 
-<!-- RENTA -->
+<!-- ===== RENTA ===== -->
 <section id="renta">
+  <button class="btn-volver" onclick="irA('inicio')">← Volver al inicio</button>
   <h2>💼 Calculadora Impuesto a la Renta 2026</h2>
   <h3>IR 5ta Categoría — Trabajadores en Planilla</h3>
   <div class="calc-box">
@@ -398,18 +407,19 @@
       <div class="fila"><span>Retención mensual estimada</span><span id="r-renta-mensual"></span></div>
     </div>
     <div class="info-box" style="margin-top:14px;">
-      <strong>Escala IR rentas de trabajo 2026 (Tramos sobre renta neta anual):</strong><br>
+      <strong>Escala IR rentas de trabajo 2026:</strong><br>
       • Hasta 5 UIT (S/ 27,500): 8%<br>
-      • De 5 a 20 UIT (S/ 27,500 - S/ 110,000): 14%<br>
-      • De 20 a 35 UIT (S/ 110,000 - S/ 192,500): 17%<br>
-      • De 35 a 45 UIT (S/ 192,500 - S/ 247,500): 20%<br>
-      • Más de 45 UIT (más de S/ 247,500): 30%
+      • De 5 a 20 UIT (S/ 110,000): 14%<br>
+      • De 20 a 35 UIT (S/ 192,500): 17%<br>
+      • De 35 a 45 UIT (S/ 247,500): 20%<br>
+      • Más de 45 UIT: 30%
     </div>
   </div>
 </section>
 
-<!-- DETRACCIONES -->
+<!-- ===== DETRACCIONES ===== -->
 <section id="detracciones">
+  <button class="btn-volver" onclick="irA('inicio')">← Volver al inicio</button>
   <h2>🏦 Calculadora de Detracciones SUNAT 2026</h2>
   <h3>Sistema de Pago de Obligaciones Tributarias (SPOT)</h3>
   <div class="calc-box">
@@ -419,8 +429,8 @@
       <option value="4">Transporte de bienes por vía terrestre (4%)</option>
       <option value="9">Bienes gravados con IGV — Anexo 2 (9%)</option>
       <option value="10">Arena, piedra, madera — Anexo 1 (10%)</option>
-      <option value="15">Contratos de construcción (4% - 12%, usar 12% como máx.)</option>
-      <option value="8">Intermediación laboral y tercerización (12%)</option>
+      <option value="12">Contratos de construcción (12% máx.)</option>
+      <option value="12">Intermediación laboral y tercerización (12%)</option>
     </select>
     <label for="monto-detraccion">Monto total de la factura con IGV (S/):</label>
     <input type="number" id="monto-detraccion" placeholder="Ej: 10000" min="0"/>
@@ -429,31 +439,27 @@
       <h4>Resultado — Detracción SUNAT</h4>
       <div class="fila"><span>Monto factura con IGV</span><span id="r-det-monto"></span></div>
       <div class="fila"><span>Tasa de detracción</span><span id="r-det-tasa"></span></div>
-      <div class="fila"><span>Monto a detraer (depositar al Banco de la Nación)</span><span id="r-det-detraccion"></span></div>
+      <div class="fila"><span>Monto a detraer (Banco de la Nación)</span><span id="r-det-detraccion"></span></div>
       <div class="fila"><span>Monto neto a pagar al proveedor</span><span id="r-det-neto"></span></div>
     </div>
-    <div class="info-box" style="margin-top:14px;">
-      El depósito de detracción debe hacerse en el Banco de la Nación a nombre del proveedor, antes de efectuar el pago. Solo aplica cuando el monto supera 1/2 UIT (S/ 2,750 en 2026).
-    </div>
+    <div class="info-box" style="margin-top:14px;">El depósito de detracción debe hacerse en el Banco de la Nación a nombre del proveedor, antes de efectuar el pago. Solo aplica cuando el monto supera 1/2 UIT (S/ 2,750 en 2026).</div>
   </div>
 </section>
 
-<!-- RETENCIONES IGV — NUEVO -->
+<!-- ===== RETENCIONES ===== -->
 <section id="retenciones">
+  <button class="btn-volver" onclick="irA('inicio')">← Volver al inicio</button>
   <h2>🔒 Calculadora de Retenciones IGV 2026</h2>
-  <h3>Régimen de Retenciones del IGV — SUNAT | Tasa vigente: 3%</h3>
-  <div class="alerta">⚠️ <strong>Tasa vigente:</strong> Desde marzo 2014 la tasa de retención del IGV es <strong>3%</strong> del importe total de la operación (incluye IGV). Solo aplican empresas designadas por SUNAT como <strong>Agentes de Retención</strong>. Solo en operaciones que superen S/ 700. Base legal: R.S. 033-2014/SUNAT.</div>
+  <h3>Régimen de Retenciones del IGV — Tasa vigente: 3%</h3>
+  <div class="alerta">⚠️ <strong>Tasa vigente:</strong> Desde marzo 2014 la tasa de retención del IGV es <strong>3%</strong> del importe total de la operación. Solo aplican empresas designadas por SUNAT como Agentes de Retención. Solo en operaciones que superen S/ 700. Base legal: R.S. 033-2014/SUNAT.</div>
   <div class="calc-box">
     <label>¿Cuál es tu posición en la operación?</label>
     <div class="radio-group">
-      <label><input type="radio" name="posicion-ret" value="comprador" checked/> Soy el COMPRADOR (Agente de Retención — debo retener)</label>
-      <label><input type="radio" name="posicion-ret" value="vendedor"/> Soy el VENDEDOR/PROVEEDOR (me van a retener)</label>
+      <label><input type="radio" name="posicion-ret" value="comprador" checked/> Soy el COMPRADOR (Agente de Retención)</label>
+      <label><input type="radio" name="posicion-ret" value="vendedor"/> Soy el VENDEDOR/PROVEEDOR</label>
     </div>
     <label for="monto-retencion">Importe total de la operación con IGV (S/):</label>
     <input type="number" id="monto-retencion" placeholder="Ej: 5900" min="0"/>
-    <div class="info-box" style="margin-top:8px;margin-bottom:4px;font-size:0.83rem;">
-      💡 El importe total incluye el IGV. Ejemplo: si la factura es S/ 1,000 + 18% IGV = S/ 1,180. El importe total es S/ 1,180.
-    </div>
     <button class="btn" onclick="calcRetencion()">Calcular Retención IGV</button>
     <div class="resultado" id="res-retencion">
       <h4>Resultado — Retención IGV</h4>
@@ -461,80 +467,51 @@
       <div class="fila"><span>Tasa de retención</span><span>3%</span></div>
       <div class="fila"><span>Monto retenido</span><span id="r-ret-monto"></span></div>
       <div class="fila"><span id="r-ret-label-neto">Monto a pagar al proveedor</span><span id="r-ret-neto"></span></div>
-      <div class="fila"><span>Formulario de declaración</span><span>FV 626 (Agente Retenedor)</span></div>
+      <div class="fila"><span>Formulario de declaración</span><span>FV 626</span></div>
       <div id="r-ret-nota" style="margin-top:10px;font-size:0.85rem;color:#8ab4c8;"></div>
-    </div>
-    <div class="info-box" style="margin-top:14px;">
-      <strong>¿Cómo funciona la retención IGV?</strong><br>
-      1. El Agente de Retención (comprador designado por SUNAT) retiene el 3% del total de la operación al pagar.<br>
-      2. El proveedor recibe el comprobante de retención.<br>
-      3. El Agente declara y paga el monto retenido mensualmente vía FV 626.<br>
-      4. El proveedor aplica la retención como crédito contra su IGV por pagar. Si no lo agota, puede pedir devolución.<br>
-      5. No aplica en operaciones ≤ S/ 700, ni en operaciones exoneradas del IGV.<br><br>
-      <strong>Importante:</strong> Solo pueden ser Agentes de Retención los contribuyentes designados expresamente por SUNAT mediante resolución. Tener más de 500 proveedores es requisito no escrito habitual.
     </div>
   </div>
 </section>
 
-<!-- DEDUCCIONES IR — NUEVO -->
+<!-- ===== DEDUCCIONES ===== -->
 <section id="deducciones">
+  <button class="btn-volver" onclick="irA('inicio')">← Volver al inicio</button>
   <h2>💡 Calculadora de Deducciones IR 2026</h2>
-  <h3>Gastos deducibles 4ta y 5ta categoría — Personas naturales | Tope: 3 UIT = S/ 16,500</h3>
-  <div class="alerta">⚠️ Deducción adicional vigente 2026: hasta <strong>3 UIT = S/ 16,500</strong>. Solo para trabajadores dependientes (5ta cat.) e independientes (4ta cat.) con ingresos mayores a 7 UIT. Gastos deben estar sustentados con comprobantes electrónicos. Base legal: Art. 46 Ley del IR + Personas SUNAT.</div>
+  <h3>Gastos deducibles 4ta y 5ta categoría — Tope: 3 UIT = S/ 16,500</h3>
+  <div class="alerta">⚠️ Deducción adicional vigente 2026: hasta <strong>3 UIT = S/ 16,500</strong>. Solo para trabajadores dependientes (5ta cat.) e independientes (4ta cat.) con ingresos mayores a 7 UIT. Base legal: Art. 46 Ley del IR.</div>
   <div class="calc-box">
     <h4 style="color:var(--verde);margin-bottom:14px;">Ingresa tus gastos anuales en cada categoría:</h4>
-
     <label>🍽️ Consumos en restaurantes, bares y hoteles (deducible: 15%)</label>
     <input type="number" id="ded-restaurantes" placeholder="Total gastado en el año S/" min="0"/>
-
     <label>👨‍⚕️ Honorarios médicos y odontólogos (deducible: 30%)</label>
     <input type="number" id="ded-medicos" placeholder="Total gastado en el año S/" min="0"/>
-
-    <label>💼 Servicios profesionales independientes — Recibos honorarios (deducible: 30%)</label>
+    <label>💼 Servicios profesionales independientes (deducible: 30%)</label>
     <input type="number" id="ded-profesionales" placeholder="Total gastado en el año S/" min="0"/>
-
-    <label>🏠 Alquiler de inmuebles — Arrendamiento (deducible: 30%)</label>
+    <label>🏠 Alquiler de inmuebles (deducible: 30%)</label>
     <input type="number" id="ded-alquiler" placeholder="Total pagado en el año S/" min="0"/>
-
-    <label>🏠 Aportaciones EsSalud por trabajadores del hogar (deducible: 100%)</label>
+    <label>🏠 Aportaciones EsSalud trabajadores del hogar (deducible: 100%)</label>
     <input type="number" id="ded-essalud" placeholder="Total aportado en el año S/" min="0"/>
-
-    <div class="info-box" style="margin-top:10px;margin-bottom:6px;font-size:0.83rem;">
-      💡 Para gastos ≥ S/ 2,000 o US$ 500 se requiere pago bancarizado (tarjeta, transferencia, etc.). Los comprobantes deben ser electrónicos y emitidos hasta el 31 de diciembre de 2026.
-    </div>
     <button class="btn" onclick="calcDeducciones()">Calcular Deducciones IR</button>
     <div class="resultado" id="res-deducciones">
       <h4>Resultado — Deducciones IR 2026</h4>
-      <div class="fila"><span>🍽️ Restaurantes (15% de tu gasto)</span><span id="r-ded-rest"></span></div>
+      <div class="fila"><span>🍽️ Restaurantes (15%)</span><span id="r-ded-rest"></span></div>
       <div class="fila"><span>👨‍⚕️ Médicos/Odontólogos (30%)</span><span id="r-ded-med"></span></div>
       <div class="fila"><span>💼 Servicios profesionales (30%)</span><span id="r-ded-prof"></span></div>
-      <div class="fila"><span>🏠 Alquiler de inmueble (30%)</span><span id="r-ded-alq"></span></div>
+      <div class="fila"><span>🏠 Alquiler (30%)</span><span id="r-ded-alq"></span></div>
       <div class="fila"><span>🏠 EsSalud trabajador hogar (100%)</span><span id="r-ded-ess"></span></div>
       <div class="fila"><span>Total deducciones calculadas</span><span id="r-ded-subtotal"></span></div>
       <div class="fila"><span>Tope máximo (3 UIT)</span><span>S/ 16,500</span></div>
-      <div class="fila"><span>✅ Deducción aplicable (no supera tope)</span><span id="r-ded-final"></span></div>
+      <div class="fila"><span>✅ Deducción aplicable</span><span id="r-ded-final"></span></div>
       <div id="r-ded-ahorro-box" style="margin-top:12px;padding:12px;background:rgba(0,179,134,0.12);border-radius:8px;font-size:0.88rem;color:#a0e0cc;display:none;">
-        <strong>💰 Ahorro estimado en IR:</strong><br>
-        <span id="r-ded-ahorro"></span>
+        <strong>💰 Ahorro estimado en IR:</strong><br><span id="r-ded-ahorro"></span>
       </div>
-    </div>
-    <div class="info-box" style="margin-top:14px;">
-      <strong>¿Cómo funciona la deducción adicional?</strong><br>
-      1. A tu renta bruta se le resta 7 UIT (S/ 38,500) de deducción fija.<br>
-      2. Adicionalmente puedes restar hasta 3 UIT más (S/ 16,500) con gastos sustentados.<br>
-      3. Sobre la renta neta resultante se aplica la escala progresiva del IR.<br>
-      4. Consulta tus gastos registrados en <a href="https://personas.sunat.gob.pe" target="_blank">personas.sunat.gob.pe</a> con tu Clave SOL.<br><br>
-      <strong>Gastos deducibles vigentes 2026 (fuente: gob.pe / SUNAT):</strong><br>
-      • Restaurantes, bares y hoteles: <strong>15%</strong> del gasto<br>
-      • Servicios profesionales (recibos por honorarios): <strong>30%</strong><br>
-      • Alquiler de inmuebles: <strong>30%</strong><br>
-      • EsSalud trabajadores del hogar: <strong>100%</strong>
     </div>
   </div>
 </section>
 
-<!-- PLANILLA -->
+<!-- ===== PLANILLA ===== -->
 <section id="planilla">
+  <button class="btn-volver" onclick="irA('inicio')">← Volver al inicio</button>
   <h2>👥 Calculadora de Planilla Peru 2026</h2>
   <h3>RMV 2026 = S/ 1,130</h3>
   <div class="calc-box">
@@ -558,8 +535,9 @@
   </div>
 </section>
 
-<!-- HONORARIOS -->
+<!-- ===== HONORARIOS ===== -->
 <section id="honorarios">
+  <button class="btn-volver" onclick="irA('inicio')">← Volver al inicio</button>
   <h2>📄 Calculadora de Honorarios Peru 2026</h2>
   <h3>Recibos por Honorarios — 4ta Categoría</h3>
   <div class="calc-box">
@@ -577,16 +555,15 @@
       <div class="fila"><span>Retención IR 8%</span><span id="r-hon-retencion"></span></div>
       <div class="fila"><span>Neto a cobrar</span><span id="r-hon-neto"></span></div>
     </div>
-    <div class="info-box" style="margin-top:14px;">
-      Retención 8% aplica cuando el pagador es empresa o persona natural con RUC agente de retención. Si el recibo es ≤ S/ 1,500 o tienes suspensión de retenciones, no se retiene. Umbral de suspensión 2026: ingresos anuales ≤ S/ 48,125.
-    </div>
+    <div class="info-box" style="margin-top:14px;">Retención 8% aplica cuando el pagador es empresa o persona natural con RUC agente de retención. Umbral de suspensión 2026: ingresos anuales ≤ S/ 48,125.</div>
   </div>
 </section>
 
-<!-- CTS -->
+<!-- ===== CTS ===== -->
 <section id="cts">
+  <button class="btn-volver" onclick="irA('inicio')">← Volver al inicio</button>
   <h2>💰 Calculadora de CTS 2026</h2>
-  <h3>Compensación por Tiempo de Servicios — Se deposita en mayo y noviembre</h3>
+  <h3>Compensación por Tiempo de Servicios — Depósitos en mayo y noviembre</h3>
   <div class="calc-box">
     <label for="sueldo-cts">Sueldo bruto mensual (S/):</label>
     <input type="number" id="sueldo-cts" placeholder="Ej: 2000" min="0"/>
@@ -607,8 +584,9 @@
   </div>
 </section>
 
-<!-- GRATIFICACIONES -->
+<!-- ===== GRATIFICACIONES ===== -->
 <section id="gratificaciones">
+  <button class="btn-volver" onclick="irA('inicio')">← Volver al inicio</button>
   <h2>🎁 Calculadora de Gratificaciones 2026</h2>
   <h3>Julio y Diciembre — Incluye bonificación extraordinaria del 9%</h3>
   <div class="calc-box">
@@ -629,8 +607,9 @@
   </div>
 </section>
 
-<!-- LIQUIDACION -->
+<!-- ===== LIQUIDACION ===== -->
 <section id="liquidacion">
+  <button class="btn-volver" onclick="irA('inicio')">← Volver al inicio</button>
   <h2>📊 Calculadora de Liquidación Laboral 2026</h2>
   <h3>¿Cuánto te deben pagar al salir?</h3>
   <div class="calc-box">
@@ -660,8 +639,9 @@
   </div>
 </section>
 
-<!-- FALTAS -->
+<!-- ===== FALTAS ===== -->
 <section id="faltas">
+  <button class="btn-volver" onclick="irA('inicio')">← Volver al inicio</button>
   <h2>📉 Calculadora de Descuento por Faltas 2026</h2>
   <div class="calc-box">
     <label for="sueldo-faltas">Sueldo bruto mensual (S/):</label>
@@ -686,8 +666,9 @@
   </div>
 </section>
 
-<!-- VACACIONES -->
+<!-- ===== VACACIONES ===== -->
 <section id="vacaciones">
+  <button class="btn-volver" onclick="irA('inicio')">← Volver al inicio</button>
   <h2>🏖️ Calculadora de Vacaciones 2026</h2>
   <div class="calc-box">
     <label for="sueldo-vac">Sueldo bruto mensual (S/):</label>
@@ -698,9 +679,8 @@
     <select id="regimen-vac">
       <option value="30">Régimen General (30 días)</option>
       <option value="15">Régimen MYPE (15 días)</option>
-      <option value="30">Construcción Civil (30 días)</option>
       <option value="15">Trabajadores del Hogar (15 días)</option>
-      <option value="30">Trabajadores Portuarios (30 días)</option>
+      <option value="30">Construcción Civil (30 días)</option>
       <option value="30">Docentes sector privado (30 días)</option>
     </select>
     <label>¿Tienes vacaciones no gozadas del año anterior?</label>
@@ -720,10 +700,11 @@
   </div>
 </section>
 
-<!-- FRACCIONAMIENTO -->
+<!-- ===== FRACCIONAMIENTO ===== -->
 <section id="fraccionamiento">
+  <button class="btn-volver" onclick="irA('inicio')">← Volver al inicio</button>
   <h2>🗓️ Simulador de Fraccionamiento SUNAT 2026</h2>
-  <h3>Paga tu deuda en cuotas — Tasa 1.2% mensual | Hasta 72 cuotas</h3>
+  <h3>Tasa 1.2% mensual | Hasta 72 cuotas</h3>
   <div class="calc-box">
     <label for="deuda-frac">Monto total de la deuda (S/):</label>
     <input type="number" id="deuda-frac" placeholder="Ej: 5000" min="0"/>
@@ -742,8 +723,9 @@
   </div>
 </section>
 
-<!-- UTILIDADES -->
+<!-- ===== UTILIDADES ===== -->
 <section id="utilidades">
+  <button class="btn-volver" onclick="irA('inicio')">← Volver al inicio</button>
   <h2>📈 Calculadora de Utilidades Peru 2026</h2>
   <h3>Participación en las Utilidades — D.Leg. 892 | Solo empresas con más de 20 trabajadores</h3>
   <div class="calc-box">
@@ -784,56 +766,55 @@
       <div class="fila"><span>Total que te corresponde</span><span id="r-util-tu-total"></span></div>
       <div id="r-util-alerta" style="display:none;" class="alerta"></div>
     </div>
-    <div class="info-box" style="margin-top:14px;">
-      Las utilidades se dividen 50% por días trabajados y 50% por remuneraciones. <strong>Si la empresa tiene 20 o menos trabajadores NO está obligada a repartir utilidades.</strong> Tope máximo individual: 18 remuneraciones mensuales.
-    </div>
+    <div class="info-box" style="margin-top:14px;">Las utilidades se dividen 50% por días trabajados y 50% por remuneraciones. <strong>Si la empresa tiene 20 o menos trabajadores NO está obligada a repartir utilidades.</strong> Tope máximo individual: 18 remuneraciones mensuales.</div>
   </div>
 </section>
 
-<!-- GLOSARIO -->
+<!-- ===== GLOSARIO ===== -->
 <section id="glosario">
+  <button class="btn-volver" onclick="irA('inicio')">← Volver al inicio</button>
   <h2>📚 Glosario Tributario y Laboral Peru 2026</h2>
   <h3>Términos explicados en lenguaje simple</h3>
   <input type="text" id="buscar-glosario" placeholder="Busca un término..." oninput="filtrarGlosario()" style="margin-bottom:16px;"/>
   <div class="glosario-lista" id="glosario-lista"></div>
 </section>
 
-<!-- BLOG -->
+<!-- ===== BLOG ===== -->
 <section id="blog">
+  <button class="btn-volver" onclick="irA('inicio')">← Volver al inicio</button>
   <h2>✍️ Blog SEO — Tributacion Peru 2026</h2>
   <h3>Guías para emprendedores, estudiantes y empresarios</h3>
   <div class="blog-grid">
-    <div class="blog-card"><div class="tags"><span class="tag">IGV</span><span class="tag">SUNAT 2026</span></div><h4>¿Cómo calcular el IGV en Peru 2026? (18% y 10.5%)</h4><p>El IGV tiene dos tasas vigentes: 18% para el régimen general, y 10.5% (8% IGV + 2.5% IPM) para MYPES de restaurantes, hoteles y alojamientos turísticos hasta diciembre 2026. Declara mensualmente en el FV 621.</p></div>
+    <div class="blog-card"><div class="tags"><span class="tag">IGV</span><span class="tag">SUNAT 2026</span></div><h4>¿Cómo calcular el IGV en Peru 2026? (18% y 10.5%)</h4><p>El IGV tiene dos tasas vigentes: 18% para el régimen general, y 10.5% para MYPES de restaurantes, hoteles y alojamientos turísticos hasta diciembre 2026.</p></div>
     <div class="blog-card"><div class="tags"><span class="tag">Régimen tributario</span><span class="tag">MYPE 2026</span></div><h4>¿En qué régimen tributario debo estar? 2026</h4><p>Si vendes menos de S/ 8,000 al mes y no necesitas facturas: NRUS. Si vendes a empresas: MYPE Tributario. Si contratas con el Estado: Régimen General.</p></div>
     <div class="blog-card"><div class="tags"><span class="tag">UIT 2026</span></div><h4>¿Cuánto vale la UIT en 2026?</h4><p>La UIT 2026 es S/ 5,500 (D.S. 301-2025-EF). Impacta multas, deducciones de IR y topes de regímenes tributarios.</p></div>
-    <div class="blog-card"><div class="tags"><span class="tag">Retenciones</span><span class="tag">IGV</span></div><h4>¿Qué son las retenciones de IGV y cómo funcionan?</h4><p>El Agente de Retención designado por SUNAT retiene el 3% del total de la operación al pagar. El proveedor usa ese 3% como crédito en su IGV mensual. Solo en operaciones que superen S/ 700.</p></div>
-    <div class="blog-card"><div class="tags"><span class="tag">Deducciones</span><span class="tag">IR 2026</span></div><h4>Gastos deducibles del IR 2026 para trabajadores dependientes e independientes</h4><p>Puedes deducir hasta 3 UIT (S/ 16,500) en gastos de restaurantes (15%), honorarios profesionales (30%), alquileres (30%) y EsSalud trabajador del hogar (100%).</p></div>
-    <div class="blog-card"><div class="tags"><span class="tag">CTS</span><span class="tag">Gratificaciones 2026</span></div><h4>¿Cuánto me corresponde de CTS y gratificaciones?</h4><p>La CTS equivale a 1 sueldo por año y se deposita en mayo y noviembre. La gratificación es 1 sueldo en julio y diciembre más 9% de bonificación extraordinaria.</p></div>
-    <div class="blog-card"><div class="tags"><span class="tag">Despido</span><span class="tag">Liquidación laboral</span></div><h4>Te despidieron — ¿Cuánto te deben pagar? 2026</h4><p>Por despido arbitrario tienes derecho a 1.5 sueldos por año trabajado de indemnización, más CTS acumulada y vacaciones no gozadas.</p></div>
+    <div class="blog-card"><div class="tags"><span class="tag">Retenciones</span><span class="tag">IGV</span></div><h4>¿Qué son las retenciones de IGV?</h4><p>El Agente de Retención designado por SUNAT retiene el 3% del total de la operación al pagar. Solo en operaciones que superen S/ 700.</p></div>
+    <div class="blog-card"><div class="tags"><span class="tag">CTS</span><span class="tag">Gratificaciones 2026</span></div><h4>¿Cuánto me corresponde de CTS y gratificaciones?</h4><p>La CTS equivale a 1 sueldo por año. La gratificación es 1 sueldo en julio y diciembre más 9% de bonificación extraordinaria.</p></div>
+    <div class="blog-card"><div class="tags"><span class="tag">Despido</span></div><h4>Te despidieron — ¿Cuánto te deben pagar? 2026</h4><p>Por despido arbitrario tienes derecho a 1.5 sueldos por año trabajado de indemnización, más CTS acumulada y vacaciones no gozadas.</p></div>
   </div>
   <div style="text-align:center;margin-top:28px;">
-    <p style="color:#6a8aaa;margin-bottom:14px;">¿Tienes dudas? Consúltame directamente.</p>
     <a class="wa-btn" href="https://wa.me/51927107627" target="_blank">💬 Consultar por WhatsApp</a>
   </div>
 </section>
 
-<!-- NOTICIAS -->
+<!-- ===== NOTICIAS ===== -->
 <section id="noticias">
+  <button class="btn-volver" onclick="irA('inicio')">← Volver al inicio</button>
   <h2>📰 Noticias SUNAT 2026</h2>
   <h3>Últimas novedades tributarias</h3>
   <div class="blog-grid">
     <div class="blog-card"><h4>UIT 2026 fijada en S/ 5,500</h4><p>El MEF aprobó la UIT para 2026 mediante D.S. 301-2025-EF vigente desde el 1 de enero de 2026.</p><a href="https://www.mef.gob.pe" target="_blank">Ver en MEF →</a></div>
-    <div class="blog-card"><h4>IGV restaurantes/hoteles: 10.5% en 2026</h4><p>MYPES del sector aplican 10.5% (8% IGV + 2.5% IPM). Cambio por Ley N° 32219 + Ley N° 32387. En 2027 sube a 14%.</p><a href="https://orientacion.sunat.gob.pe/reduccion-del-igv-para-restaurantes-hoteles-y-alojamiento-turisticos-1" target="_blank">Ver en SUNAT →</a></div>
+    <div class="blog-card"><h4>IGV restaurantes/hoteles: 10.5% en 2026</h4><p>MYPES del sector aplican 10.5% (8% IGV + 2.5% IPM). En 2027 sube a 14%.</p><a href="https://orientacion.sunat.gob.pe" target="_blank">Ver en SUNAT →</a></div>
     <div class="blog-card"><h4>Cronograma de vencimientos SUNAT 2026</h4><p>SUNAT publicó el cronograma oficial de obligaciones tributarias para enero a diciembre 2026.</p><a href="https://www.sunat.gob.pe" target="_blank">Ver en SUNAT →</a></div>
     <div class="blog-card"><h4>Factura electrónica obligatoria 2026</h4><p>Todos los contribuyentes con RUC activo deben emitir comprobantes electrónicos.</p><a href="https://www.sunat.gob.pe" target="_blank">Ver en SUNAT →</a></div>
     <div class="blog-card"><h4>RMV 2026 = S/ 1,130</h4><p>El sueldo mínimo vital en Perú para 2026 es S/ 1,130 mensuales.</p><a href="https://www.gob.pe" target="_blank">Ver en GOB.PE →</a></div>
-    <div class="blog-card"><h4>Retenciones IGV: tasa 3% vigente</h4><p>La tasa de retención del IGV se mantiene en 3% del importe total de la operación. Solo aplica a Agentes de Retención designados por SUNAT. Operaciones > S/ 700.</p><a href="https://emprender.sunat.gob.pe" target="_blank">Ver en SUNAT →</a></div>
+    <div class="blog-card"><h4>Retenciones IGV: tasa 3% vigente</h4><p>La tasa de retención del IGV se mantiene en 3%. Solo aplica a Agentes de Retención designados por SUNAT. Operaciones > S/ 700.</p><a href="https://emprender.sunat.gob.pe" target="_blank">Ver en SUNAT →</a></div>
   </div>
-  <p style="text-align:center;margin-top:20px;color:#6a8aaa;">Ver todas las noticias en <a href="https://sunat.gob.pe" target="_blank">sunat.gob.pe</a></p>
 </section>
 
-<!-- QUIEN SOY -->
+<!-- ===== QUIEN SOY ===== -->
 <section id="quien">
+  <button class="btn-volver" onclick="irA('inicio')">← Volver al inicio</button>
   <h2>👨‍💼 Quién Soy</h2>
   <div class="quien-card">
     <div class="avatar">DV</div>
@@ -855,67 +836,84 @@
 
 <footer>
   Tributacion Peru — Herramienta gratuita para emprendedores y trabajadores peruanos<br>
-  Por DEINER CLEISON VILLEGAS VILLEGAS | Consultor Financiero y Tributario | © 2026 Todos los derechos reservados<br>
-  Basado en normas SUNAT y laborales vigentes | UIT 2026: S/ 5,500 | RMV 2026: S/ 1,130 | IGV General: 18% | IGV MYPE Rest/Hoteles: 10.5%
+  Por DEINER CLEISON VILLEGAS VILLEGAS | Consultor Financiero y Tributario | © 2026<br>
+  UIT 2026: S/ 5,500 | RMV 2026: S/ 1,130 | IGV General: 18% | IGV MYPE Rest/Hoteles: 10.5%
 </footer>
 
 <script>
-// ===================== UTILIDADES =====================
-const S = v => 'S/ ' + v.toLocaleString('es-PE', {minimumFractionDigits:2, maximumFractionDigits:2});
-const N = id => parseFloat(document.getElementById(id).value) || 0;
-const R = (name) => { const r = document.querySelector('input[name="'+name+'"]:checked'); return r ? r.value : ''; };
-function mostrar(id){ document.getElementById(id).classList.add('show'); }
-function set(id,v){ document.getElementById(id).textContent = v; }
+// ===== NAVEGACIÓN =====
+function irA(seccion) {
+  // Ocultar todas las secciones
+  document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+  // Mostrar la sección pedida
+  const target = document.getElementById(seccion);
+  if (target) {
+    target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+  // Actualizar nav activo
+  document.querySelectorAll('#nav-bar a').forEach(a => {
+    a.classList.remove('active-nav');
+    if (a.getAttribute('onclick') && a.getAttribute('onclick').includes("'"+seccion+"'")) {
+      a.classList.add('active-nav');
+    }
+  });
+}
 
-// ===================== UIT =====================
-function calcUIT(){
-  const m = N('monto-uit'); if(!m){ alert('Ingresa un monto'); return; }
+// ===== UTILIDADES =====
+const S = v => 'S/ ' + (parseFloat(v)||0).toLocaleString('es-PE', {minimumFractionDigits:2, maximumFractionDigits:2});
+const N = id => parseFloat(document.getElementById(id).value) || 0;
+const R = name => { const r = document.querySelector('input[name="'+name+'"]:checked'); return r ? r.value : ''; };
+function mostrar(id) { document.getElementById(id).classList.add('show'); }
+function set(id, v) { document.getElementById(id).textContent = v; }
+
+// ===== UIT =====
+function calcUIT() {
+  const m = N('monto-uit'); if (!m) { alert('Ingresa un monto'); return; }
   set('r-uit-monto', S(m));
   set('r-uit-val', (m/5500).toFixed(4) + ' UIT');
   mostrar('res-uit');
 }
 
-// ===================== IGV =====================
-function calcIGV(){
-  const monto = N('monto-igv'); if(!monto){ alert('Ingresa un monto'); return; }
+// ===== IGV =====
+function calcIGV() {
+  const monto = N('monto-igv'); if (!monto) { alert('Ingresa un monto'); return; }
   const tasa = parseFloat(R('tipo-igv')) / 100;
   const modo = R('modo-igv');
   let base, igv, total;
-  if(modo === 'sin'){ base = monto; igv = base * tasa; total = base + igv; }
+  if (modo === 'sin') { base = monto; igv = base * tasa; total = base + igv; }
   else { base = monto / (1 + tasa); igv = monto - base; total = monto; }
-  const tasaLabel = (tasa*100).toFixed(1) + '%';
-  const tipoLabel = tasa === 0.18 ? '18% — Tasa general' : '10.5% — MYPE Restaurantes/Hoteles/Alojamiento 2026';
-  set('r-igv-tasa', tasaLabel);
-  set('r-igv-tipo', tipoLabel);
+  set('r-igv-tasa', (tasa*100).toFixed(1) + '%');
+  set('r-igv-tipo', tasa === 0.18 ? '18% — Tasa general' : '10.5% — MYPE Restaurantes/Hoteles 2026');
   set('r-igv-base', S(base));
   set('r-igv-igv', S(igv));
   set('r-igv-total', S(total));
   mostrar('res-igv');
 }
 
-// ===================== REGIMEN =====================
-function calcRegimen(){
+// ===== REGIMEN =====
+function calcRegimen() {
   const ventas = R('ventas'), facturas = R('facturas'), estado = R('estado');
   let reg = '', desc = '';
-  if(estado === 'si'){ reg = '📋 RÉGIMEN GENERAL'; desc = 'Obligatorio si contratas con el Estado o exportas. IR: 29.5% sobre utilidades. IGV mensual obligatorio. Sin límite de ventas.'; }
-  else if(ventas === 'alto'){ reg = '📋 RÉGIMEN GENERAL'; desc = 'Ventas superan el límite del MYPE Tributario (1,700 UIT anuales). IR: 29.5% sobre utilidades.'; }
-  else if(facturas === 'si'){ reg = '📊 MYPE TRIBUTARIO'; desc = 'Ideal para vender a empresas. IR: 10% sobre primeras 15 UIT de utilidad, 29.5% sobre el exceso. Emite facturas y boletas. Hasta S/ 9,350,000 de ventas anuales.'; }
-  else if(ventas === 'medio'){ reg = '📝 RER (Régimen Especial de Renta)'; desc = 'Cuota mensual del 1.5% de tus ingresos netos. Puedes emitir facturas. No declaras utilidades. Hasta S/ 525,000 anuales.'; }
-  else { reg = '🟢 NRUS (Nuevo Régimen Único Simplificado)'; desc = 'La opción más sencilla. Pagas una cuota fija mensual: S/ 20 si vendes hasta S/ 5,000 al mes, o S/ 50 si vendes hasta S/ 8,000. Solo emites boletas. Sin declaración anual de IR.'; }
+  if (estado === 'si') { reg = '📋 RÉGIMEN GENERAL'; desc = 'Obligatorio si contratas con el Estado o exportas. IR: 29.5% sobre utilidades. Sin límite de ventas.'; }
+  else if (ventas === 'alto') { reg = '📋 RÉGIMEN GENERAL'; desc = 'Ventas superan el límite del MYPE Tributario (1,700 UIT anuales).'; }
+  else if (facturas === 'si') { reg = '📊 MYPE TRIBUTARIO'; desc = 'Ideal para vender a empresas. IR: 10% sobre primeras 15 UIT de utilidad, 29.5% sobre el exceso. Hasta S/ 9,350,000 de ventas anuales.'; }
+  else if (ventas === 'medio') { reg = '📝 RER (Régimen Especial de Renta)'; desc = 'Cuota mensual del 1.5% de tus ingresos netos. Puedes emitir facturas. Hasta S/ 525,000 anuales.'; }
+  else { reg = '🟢 NRUS'; desc = 'La opción más sencilla. Pagas una cuota fija mensual: S/ 20 si vendes hasta S/ 5,000/mes, o S/ 50 si vendes hasta S/ 8,000. Solo emites boletas.'; }
   document.getElementById('r-regimen-texto').innerHTML = '<strong style="color:var(--verde);font-size:1.05rem;">'+reg+'</strong><br><br>'+desc;
   mostrar('res-regimen');
 }
 
-// ===================== MULTAS =====================
-function calcMulta(){
+// ===== MULTAS =====
+function calcMulta() {
   const tipo = document.getElementById('tipo-multa').value;
   const grad = parseFloat(document.getElementById('gradualidad').value);
   const ing = N('ingresos-multa');
   const UIT = 5500;
   let base = 0, label = '';
-  if(tipo==='nodeclaro'){ base = Math.max(UIT*0.5, ing*0.01); label = 'No declaró a tiempo (50% UIT o 1% ingresos, el mayor)'; }
-  else if(tipo==='nocomprobante'){ base = UIT; label = 'No emitió comprobante (1 UIT)'; }
-  else if(tipo==='nolibros'){ base = UIT*0.75; label = 'No llevó libros contables (75% UIT)'; }
+  if (tipo==='nodeclaro') { base = Math.max(UIT*0.5, ing*0.01); label = 'No declaró a tiempo'; }
+  else if (tipo==='nocomprobante') { base = UIT; label = 'No emitió comprobante (1 UIT)'; }
+  else if (tipo==='nolibros') { base = UIT*0.75; label = 'No llevó libros contables (75% UIT)'; }
   else { base = UIT*0.5 + ing*0.005; label = 'Declaró datos falsos'; }
   const descuento = base * (1 - grad);
   const total = base - descuento;
@@ -926,7 +924,7 @@ function calcMulta(){
   mostrar('res-multa');
 }
 
-// ===================== CRONOGRAMA =====================
+// ===== CRONOGRAMA =====
 const cronogramaData = {
   '0': ['Ene: 13/01','Feb: 12/02','Mar: 12/03','Abr: 14/04','May: 13/05','Jun: 12/06','Jul: 14/07','Ago: 12/08','Set: 11/09','Oct: 13/10','Nov: 12/11','Dic: 11/12'],
   '1': ['Ene: 14/01','Feb: 13/02','Mar: 13/03','Abr: 15/04','May: 14/05','Jun: 15/06','Jul: 15/07','Ago: 13/08','Set: 14/09','Oct: 14/10','Nov: 13/11','Dic: 14/12'],
@@ -939,9 +937,9 @@ const cronogramaData = {
   '8': ['Ene: 23/01','Feb: 24/02','Mar: 24/03','Abr: 29/04','May: 23/05','Jun: 24/06','Jul: 24/07','Ago: 22/08','Set: 23/09','Oct: 23/10','Nov: 24/11','Dic: 23/12'],
   '9': ['Ene: 26/01','Feb: 25/02','Mar: 25/03','Abr: 30/04','May: 26/05','Jun: 25/06','Jul: 25/07','Ago: 25/08','Set: 24/09','Oct: 26/10','Nov: 25/11','Dic: 26/12'],
 };
-function mostrarCronograma(){
+function mostrarCronograma() {
   const d = document.getElementById('digito-ruc').value;
-  if(!d && d !== '0'){ document.getElementById('cronograma-resultado').style.display='none'; return; }
+  if (!d && d !== '0') { document.getElementById('cronograma-resultado').style.display='none'; return; }
   document.getElementById('digito-mostrado').textContent = d;
   const tabla = document.getElementById('crono-tabla');
   tabla.innerHTML = cronogramaData[d].map(m => {
@@ -951,127 +949,112 @@ function mostrarCronograma(){
   document.getElementById('cronograma-resultado').style.display='block';
 }
 
-// ===================== RENTA =====================
-function calcIR5ta(renta_neta_anual){
+// ===== RENTA =====
+function calcIR5ta(renta_neta_anual) {
   const UIT = 5500;
   let ir = 0;
   const tramos = [[5*UIT,0.08],[15*UIT,0.14],[15*UIT,0.17],[10*UIT,0.20],[Infinity,0.30]];
   let restante = renta_neta_anual;
-  for(let [limite,tasa] of tramos){
-    if(restante <= 0) break;
+  for (let [limite, tasa] of tramos) {
+    if (restante <= 0) break;
     const aplicable = Math.min(restante, limite);
     ir += aplicable * tasa;
     restante -= aplicable;
   }
   return ir;
 }
-function calcRenta(){
-  const s = N('sueldo-renta'); if(!s){ alert('Ingresa sueldo'); return; }
+function calcRenta() {
+  const s = N('sueldo-renta'); if (!s) { alert('Ingresa sueldo'); return; }
   const anual = s * 12;
   const deduccion = 7 * 5500;
   const neta = Math.max(0, anual - deduccion);
   const ir_anual = calcIR5ta(neta);
-  const ir_mensual = ir_anual / 12;
   set('r-renta-sueldo', S(s));
   set('r-renta-anual', S(anual));
   set('r-renta-neta', S(neta));
   set('r-renta-ir-anual', S(ir_anual));
-  set('r-renta-mensual', S(ir_mensual));
+  set('r-renta-mensual', S(ir_anual / 12));
   mostrar('res-renta');
 }
 
-// ===================== DETRACCIONES =====================
-function calcDetraccion(){
+// ===== DETRACCIONES =====
+function calcDetraccion() {
   const tasa = parseFloat(document.getElementById('tipo-detraccion').value) / 100;
-  const monto = N('monto-detraccion'); if(!monto){ alert('Ingresa monto'); return; }
+  const monto = N('monto-detraccion'); if (!monto) { alert('Ingresa monto'); return; }
   const det = monto * tasa;
-  const neto = monto - det;
   set('r-det-monto', S(monto));
   set('r-det-tasa', (tasa*100).toFixed(0) + '%');
   set('r-det-detraccion', S(det));
-  set('r-det-neto', S(neto));
+  set('r-det-neto', S(monto - det));
   mostrar('res-detraccion');
 }
 
-// ===================== RETENCIONES IGV =====================
-function calcRetencion(){
-  const monto = N('monto-retencion'); if(!monto){ alert('Ingresa monto'); return; }
+// ===== RETENCIONES =====
+function calcRetencion() {
+  const monto = N('monto-retencion'); if (!monto) { alert('Ingresa monto'); return; }
   const posicion = R('posicion-ret');
-  if(monto <= 700){
-    alert('La retención IGV NO aplica en operaciones de S/ 700 o menos.');
-    return;
-  }
+  if (monto <= 700) { alert('La retención IGV NO aplica en operaciones de S/ 700 o menos.'); return; }
   const retencion = monto * 0.03;
   const neto = monto - retencion;
   set('r-ret-total', S(monto));
   set('r-ret-monto', S(retencion));
-  if(posicion === 'comprador'){
+  if (posicion === 'comprador') {
     set('r-ret-label-neto', 'Monto a pagar al proveedor');
     set('r-ret-neto', S(neto));
-    document.getElementById('r-ret-nota').innerHTML = '📌 Como Agente de Retención debes: (1) Retener S/ '+retencion.toFixed(2)+' al momento de pagar. (2) Entregar comprobante de retención al proveedor. (3) Declarar y pagar mensualmente vía FV 626.';
+    document.getElementById('r-ret-nota').innerHTML = '📌 Como Agente de Retención debes retener S/ '+retencion.toFixed(2)+' y declarar mensualmente vía FV 626.';
   } else {
     set('r-ret-label-neto', 'Monto neto que recibirás');
     set('r-ret-neto', S(neto));
-    document.getElementById('r-ret-nota').innerHTML = '📌 Como proveedor recibirás S/ '+neto.toFixed(2)+' y el comprobante de retención por S/ '+retencion.toFixed(2)+'. Aplica ese monto como crédito en tu IGV mensual (FV 621).';
+    document.getElementById('r-ret-nota').innerHTML = '📌 Recibirás S/ '+neto.toFixed(2)+' y el comprobante de retención por S/ '+retencion.toFixed(2)+'. Aplícalo como crédito en tu IGV mensual (FV 621).';
   }
   mostrar('res-retencion');
 }
 
-// ===================== DEDUCCIONES IR =====================
-function calcDeducciones(){
+// ===== DEDUCCIONES =====
+function calcDeducciones() {
   const rest = N('ded-restaurantes') * 0.15;
   const med  = N('ded-medicos') * 0.30;
   const prof = N('ded-profesionales') * 0.30;
   const alq  = N('ded-alquiler') * 0.30;
   const ess  = N('ded-essalud') * 1.00;
   const subtotal = rest + med + prof + alq + ess;
-  const tope = 3 * 5500; // S/ 16,500
+  const tope = 3 * 5500;
   const final = Math.min(subtotal, tope);
-  set('r-ded-rest', S(rest));
-  set('r-ded-med', S(med));
-  set('r-ded-prof', S(prof));
-  set('r-ded-alq', S(alq));
-  set('r-ded-ess', S(ess));
-  set('r-ded-subtotal', S(subtotal));
-  set('r-ded-final', S(final));
-  if(final > 0){
-    const ahorro_estimado = final * 0.08;
-    const caja = document.getElementById('r-ded-ahorro-box');
-    caja.style.display = 'block';
-    document.getElementById('r-ded-ahorro').innerHTML =
-      'Con S/ '+final.toFixed(2)+' de deducciones adicionales, tu ahorro mínimo estimado en IR es aprox. <strong>S/ '+ahorro_estimado.toFixed(2)+'</strong> (aplicando tasa mínima 8%). El ahorro real depende de tu tramo de IR.';
+  set('r-ded-rest', S(rest)); set('r-ded-med', S(med)); set('r-ded-prof', S(prof));
+  set('r-ded-alq', S(alq)); set('r-ded-ess', S(ess));
+  set('r-ded-subtotal', S(subtotal)); set('r-ded-final', S(final));
+  if (final > 0) {
+    document.getElementById('r-ded-ahorro-box').style.display = 'block';
+    document.getElementById('r-ded-ahorro').innerHTML = 'Con S/ '+final.toFixed(2)+' de deducciones, ahorro mínimo estimado en IR: <strong>S/ '+(final*0.08).toFixed(2)+'</strong>';
   }
   mostrar('res-deducciones');
 }
 
-// ===================== PLANILLA =====================
-function calcPlanilla(){
-  const bruto = N('sueldo-planilla'); if(!bruto){ alert('Ingresa sueldo'); return; }
+// ===== PLANILLA =====
+function calcPlanilla() {
+  const bruto = N('sueldo-planilla'); if (!bruto) { alert('Ingresa sueldo'); return; }
   const pension = R('pension');
   const tasa_pension = pension === 'afp' ? 0.115 : 0.13;
   const desc_pension = bruto * tasa_pension;
-  const anual = bruto * 12;
-  const neta_ir = Math.max(0, anual - 7*5500);
-  const ir_anual = calcIR5ta(neta_ir);
-  const ir_mens = ir_anual / 12;
+  const neta_ir = Math.max(0, bruto * 12 - 7*5500);
+  const ir_mens = calcIR5ta(neta_ir) / 12;
   const neto = bruto - desc_pension - ir_mens;
   const essalud = bruto * 0.09;
-  const costo = bruto + essalud;
   set('r-plan-bruto', S(bruto));
   set('r-plan-pension', '- ' + S(desc_pension) + ' (' + (tasa_pension*100).toFixed(1) + '% ' + pension.toUpperCase() + ')');
   set('r-plan-ir', '- ' + S(ir_mens));
   set('r-plan-neto', S(neto));
   set('r-plan-essalud', S(essalud));
-  set('r-plan-costo', S(costo));
+  set('r-plan-costo', S(bruto + essalud));
   mostrar('res-planilla');
 }
 
-// ===================== HONORARIOS =====================
-function calcHonorarios(){
-  const neto = N('neto-honorarios'); if(!neto){ alert('Ingresa monto'); return; }
+// ===== HONORARIOS =====
+function calcHonorarios() {
+  const neto = N('neto-honorarios'); if (!neto) { alert('Ingresa monto'); return; }
   const retiene = R('retencion-hon');
   let bruto, ret;
-  if(retiene === 'si'){ bruto = neto / 0.92; ret = bruto * 0.08; }
+  if (retiene === 'si') { bruto = neto / 0.92; ret = bruto * 0.08; }
   else { bruto = neto; ret = 0; }
   set('r-hon-bruto', S(bruto));
   set('r-hon-retencion', ret > 0 ? '- ' + S(ret) + ' (8%)' : 'No aplica');
@@ -1079,176 +1062,148 @@ function calcHonorarios(){
   mostrar('res-honorarios');
 }
 
-// ===================== CTS =====================
-function calcCTS(){
-  const sueldo = N('sueldo-cts'); if(!sueldo){ alert('Ingresa sueldo'); return; }
+// ===== CTS =====
+function calcCTS() {
+  const sueldo = N('sueldo-cts'); if (!sueldo) { alert('Ingresa sueldo'); return; }
   const asig = N('asig-cts');
   const meses = N('meses-cts') || 6;
   const dias = N('dias-cts');
   const rem = sueldo + asig;
   const cts = (rem / 12) * meses + (rem / 360) * dias;
-  set('r-cts-rem', S(rem));
-  set('r-cts-meses', meses);
-  set('r-cts-dias', dias);
-  set('r-cts-total', S(cts));
+  set('r-cts-rem', S(rem)); set('r-cts-meses', meses);
+  set('r-cts-dias', dias); set('r-cts-total', S(cts));
   mostrar('res-cts');
 }
 
-// ===================== GRATIFICACIONES =====================
-function calcGratificacion(){
-  const sueldo = N('sueldo-grat'); if(!sueldo){ alert('Ingresa sueldo'); return; }
+// ===== GRATIFICACIONES =====
+function calcGratificacion() {
+  const sueldo = N('sueldo-grat'); if (!sueldo) { alert('Ingresa sueldo'); return; }
   const asig = N('asig-grat');
   const meses = N('meses-grat') || 6;
   const rem = sueldo + asig;
   const grat = (rem / 6) * meses;
   const bono = grat * 0.09;
-  set('r-grat-rem', S(rem));
-  set('r-grat-prop', S(grat));
-  set('r-grat-bono', S(bono) + ' (9%)');
-  set('r-grat-total', S(grat + bono));
+  set('r-grat-rem', S(rem)); set('r-grat-prop', S(grat));
+  set('r-grat-bono', S(bono) + ' (9%)'); set('r-grat-total', S(grat + bono));
   mostrar('res-grat');
 }
 
-// ===================== LIQUIDACION =====================
-function calcLiquidacion(){
-  const sueldo = N('sueldo-liq'); if(!sueldo){ alert('Ingresa sueldo'); return; }
-  const anos = N('anos-liq');
-  const meses_adic = N('meses-liq');
-  const cese = R('cese');
-  const vac_dias = N('vacaciones-liq');
+// ===== LIQUIDACION =====
+function calcLiquidacion() {
+  const sueldo = N('sueldo-liq'); if (!sueldo) { alert('Ingresa sueldo'); return; }
+  const anos = N('anos-liq'), meses_adic = N('meses-liq'), cese = R('cese'), vac_dias = N('vacaciones-liq');
   const tiempo_total = anos + meses_adic/12;
-  let indemnizacion = 0;
-  if(cese === 'despido') indemnizacion = sueldo * 1.5 * tiempo_total;
+  let indemnizacion = cese === 'despido' ? sueldo * 1.5 * tiempo_total : 0;
   const cts_acum = (sueldo / 12) * (anos * 12 + meses_adic);
   const grat = (sueldo / 6) * (meses_adic % 6 || 6);
   const vac = (sueldo / 30) * vac_dias;
-  const total = indemnizacion + cts_acum + grat + vac;
   set('r-liq-indemnizacion', cese === 'despido' ? S(indemnizacion) + ' (1.5 sueldos/año)' : 'S/ 0.00 — No aplica en renuncia');
-  set('r-liq-cts', S(cts_acum));
-  set('r-liq-grat', S(grat));
-  set('r-liq-vac', S(vac));
-  set('r-liq-total', S(total));
+  set('r-liq-cts', S(cts_acum)); set('r-liq-grat', S(grat));
+  set('r-liq-vac', S(vac)); set('r-liq-total', S(indemnizacion + cts_acum + grat + vac));
   mostrar('res-liq');
 }
 
-// ===================== FALTAS =====================
-function calcFaltas(){
-  const sueldo = N('sueldo-faltas'); if(!sueldo){ alert('Ingresa sueldo'); return; }
+// ===== FALTAS =====
+function calcFaltas() {
+  const sueldo = N('sueldo-faltas'); if (!sueldo) { alert('Ingresa sueldo'); return; }
   const faltas = N('num-faltas');
   const dias_lab = parseInt(R('dias-lab')) || 26;
   const val_dia = sueldo / dias_lab;
   const desc = val_dia * faltas;
-  set('r-falta-sueldo', S(sueldo));
-  set('r-falta-dia', S(val_dia));
-  set('r-falta-dias', faltas);
-  set('r-falta-descuento', '- ' + S(desc));
+  set('r-falta-sueldo', S(sueldo)); set('r-falta-dia', S(val_dia));
+  set('r-falta-dias', faltas); set('r-falta-descuento', '- ' + S(desc));
   set('r-falta-neto', S(sueldo - desc));
   mostrar('res-faltas');
 }
 
-// ===================== VACACIONES =====================
-function calcVacaciones(){
-  const sueldo = N('sueldo-vac'); if(!sueldo){ alert('Ingresa sueldo'); return; }
+// ===== VACACIONES =====
+function calcVacaciones() {
+  const sueldo = N('sueldo-vac'); if (!sueldo) { alert('Ingresa sueldo'); return; }
   const meses = N('meses-vac') || 12;
   const dias_reg = parseInt(document.getElementById('regimen-vac').value);
   const dobles = R('vac-dobles');
   const dias_prop = (dias_reg / 12) * meses;
   const valor = (sueldo / 30) * dias_prop;
   const pago_doble = dobles === 'si' ? valor : 0;
-  set('r-vac-dias-reg', dias_reg + ' días');
-  set('r-vac-dias-prop', dias_prop.toFixed(1) + ' días');
+  set('r-vac-dias-reg', dias_reg + ' días'); set('r-vac-dias-prop', dias_prop.toFixed(1) + ' días');
   set('r-vac-valor', S(valor));
   set('r-vac-doble', dobles === 'si' ? S(pago_doble) + ' (doble pago)' : 'No aplica');
   set('r-vac-total', S(valor + pago_doble));
   mostrar('res-vac');
 }
 
-// ===================== FRACCIONAMIENTO =====================
-function calcFraccionamiento(){
-  const deuda = N('deuda-frac'); if(!deuda){ alert('Ingresa deuda'); return; }
+// ===== FRACCIONAMIENTO =====
+function calcFraccionamiento() {
+  const deuda = N('deuda-frac'); if (!deuda) { alert('Ingresa deuda'); return; }
   const n = Math.min(N('cuotas-frac') || 12, 72);
   const tasa = 0.012;
   const cuota = deuda * (tasa * Math.pow(1+tasa,n)) / (Math.pow(1+tasa,n) - 1);
   const total = cuota * n;
-  set('r-frac-deuda', S(deuda));
-  set('r-frac-cuotas', n);
-  set('r-frac-cuota', S(cuota));
-  set('r-frac-total', S(total));
+  set('r-frac-deuda', S(deuda)); set('r-frac-cuotas', n);
+  set('r-frac-cuota', S(cuota)); set('r-frac-total', S(total));
   set('r-frac-intereses', S(total - deuda));
   mostrar('res-frac');
 }
 
-// ===================== UTILIDADES =====================
-function calcUtilidades(){
-  const util = N('utilidad-empresa'); if(!util){ alert('Ingresa utilidad'); return; }
+// ===== UTILIDADES =====
+function calcUtilidades() {
+  const util = N('utilidad-empresa'); if (!util) { alert('Ingresa utilidad'); return; }
   const pct = parseFloat(document.getElementById('actividad-empresa').value) / 100;
-  const dias_tot = N('dias-totales');
-  const rem_tot = N('rem-totales');
-  const dias_yo = N('dias-yo');
-  const faltas = N('faltas-yo');
-  const rem_yo = N('rem-yo');
-  const n_trab = N('total-trabajadores');
-  if(n_trab > 0 && n_trab <= 20){
+  const dias_tot = N('dias-totales'), rem_tot = N('rem-totales');
+  const dias_yo = N('dias-yo'), faltas = N('faltas-yo');
+  const rem_yo = N('rem-yo'), n_trab = N('total-trabajadores');
+  if (n_trab > 0 && n_trab <= 20) {
     document.getElementById('r-util-alerta').style.display='block';
-    document.getElementById('r-util-alerta').textContent = '⚠️ La empresa tiene 20 o menos trabajadores — NO está obligada a repartir utilidades según D.Leg. 892.';
-  } else {
-    document.getElementById('r-util-alerta').style.display='none';
-  }
+    document.getElementById('r-util-alerta').textContent = '⚠️ La empresa tiene 20 o menos trabajadores — NO está obligada a repartir utilidades (D.Leg. 892).';
+  } else { document.getElementById('r-util-alerta').style.display='none'; }
   const total_distrib = util * pct;
-  const pool_dias = total_distrib * 0.5;
-  const pool_rem = total_distrib * 0.5;
+  const pool_dias = total_distrib * 0.5, pool_rem = total_distrib * 0.5;
   const dias_efectivos = Math.max(0, dias_yo - faltas);
   const mi_parte_dias = dias_tot > 0 ? pool_dias * (dias_efectivos / dias_tot) : 0;
   const mi_parte_rem = rem_tot > 0 ? pool_rem * (rem_yo / rem_tot) : 0;
   const tope = rem_yo / 12 * 18;
   const mi_total = Math.min(mi_parte_dias + mi_parte_rem, tope);
   set('r-util-pct', (pct*100).toFixed(0) + '%');
-  set('r-util-total', S(total_distrib));
-  set('r-util-dias-pool', S(pool_dias));
-  set('r-util-rem-pool', S(pool_rem));
-  set('r-util-tu-dias', S(mi_parte_dias));
-  set('r-util-tu-rem', S(mi_parte_rem));
-  set('r-util-tu-total', S(mi_total));
+  set('r-util-total', S(total_distrib)); set('r-util-dias-pool', S(pool_dias));
+  set('r-util-rem-pool', S(pool_rem)); set('r-util-tu-dias', S(mi_parte_dias));
+  set('r-util-tu-rem', S(mi_parte_rem)); set('r-util-tu-total', S(mi_total));
   mostrar('res-util');
 }
 
-// ===================== GLOSARIO =====================
+// ===== GLOSARIO =====
 const glosarioTerminos = [
   {t:'UIT',d:'Unidad Impositiva Tributaria. Valor de referencia usado por SUNAT. En 2026 = S/ 5,500.'},
-  {t:'IGV',d:'Impuesto General a las Ventas. Tasa general 18%. Para MYPES de restaurantes/hoteles: 10.5% en 2026.'},
+  {t:'IGV',d:'Impuesto General a las Ventas. Tasa general 18%. Para MYPES de restaurantes/hoteles: 10.5% en 2026 (8% IGV + 2.5% IPM).'},
   {t:'RMV',d:'Remuneración Mínima Vital. Sueldo mínimo legal. En 2026 = S/ 1,130.'},
   {t:'SUNAT',d:'Superintendencia Nacional de Aduanas y Administración Tributaria. Administra impuestos en Perú.'},
-  {t:'Retención IGV',d:'Sistema por el cual el comprador (Agente de Retención) retiene el 3% del IGV al proveedor y lo paga directamente a SUNAT.'},
-  {t:'Detracción',d:'Sistema de pago de obligaciones tributarias (SPOT). El comprador descuenta un % de la factura y lo deposita en el Banco de la Nación.'},
-  {t:'NRUS',d:'Nuevo Régimen Único Simplificado. Cuota fija mensual (S/ 20 o S/ 50). Solo boletas. Hasta S/ 8,000 ventas/mes.'},
+  {t:'Retención IGV',d:'El Agente de Retención retiene el 3% del IGV al proveedor y lo paga directamente a SUNAT. Solo en operaciones > S/ 700.'},
+  {t:'Detracción',d:'Sistema SPOT. El comprador descuenta un % de la factura y lo deposita en el Banco de la Nación. Solo si supera 1/2 UIT (S/ 2,750).'},
+  {t:'NRUS',d:'Nuevo Régimen Único Simplificado. Cuota fija: S/ 20 o S/ 50 al mes. Solo boletas. Hasta S/ 8,000 ventas/mes.'},
   {t:'RER',d:'Régimen Especial de Renta. Cuota mensual 1.5% ingresos netos. Emite facturas. Hasta S/ 525,000 anuales.'},
   {t:'MYPE Tributario',d:'Régimen para MYPES. IR: 10% sobre primeras 15 UIT de utilidad, 29.5% exceso. Hasta 1,700 UIT anuales.'},
   {t:'Régimen General',d:'Sin límite de ventas. IR: 29.5% sobre utilidad. Obligatorio si contratas con el Estado.'},
-  {t:'CTS',d:'Compensación por Tiempo de Servicios. Equivale a 1 sueldo anual. Se deposita en mayo y noviembre.'},
+  {t:'CTS',d:'Compensación por Tiempo de Servicios. Equivale a 1 sueldo anual. Depósitos en mayo y noviembre.'},
   {t:'AFP',d:'Administradora de Fondos de Pensiones. Descuento: 10% + comisión (~1.5%). Fondo privado.'},
-  {t:'ONP',d:'Oficina de Normalización Previsional. Descuento: 13% del sueldo. Sistema público de pensiones.'},
+  {t:'ONP',d:'Oficina de Normalización Previsional. Descuento: 13% del sueldo. Sistema público.'},
   {t:'ESSALUD',d:'Seguro Social de Salud. Lo paga el empleador: 9% del sueldo bruto.'},
   {t:'4ta Categoría',d:'Renta de trabajadores independientes. Emiten Recibos por Honorarios. Retención del 8%.'},
   {t:'5ta Categoría',d:'Renta de trabajadores dependientes (planilla). El empleador retiene el IR mensualmente.'},
-  {t:'Gastos Deducibles',d:'Gastos permitidos por SUNAT para reducir el IR: Restaurantes 15%, Honorarios profesionales 30%, Alquiler 30%, EsSalud trabajador hogar 100%. Tope 3 UIT = S/ 16,500.'},
+  {t:'Gastos Deducibles',d:'Gastos permitidos para reducir el IR: Restaurantes 15%, Honorarios 30%, Alquiler 30%, EsSalud hogar 100%. Tope 3 UIT = S/ 16,500.'},
   {t:'Fraccionamiento SUNAT',d:'Pago de deuda tributaria en cuotas. Tasa: 1.2% mensual. Hasta 72 cuotas.'},
-  {t:'Deducción 7 UIT',d:'Todo trabajador deduce 7 UIT (S/ 38,500) de su renta anual bruta antes de calcular el IR.'},
-  {t:'Gradualidad de Multas',d:'Descuento sobre multas SUNAT según cuándo se subsana. Hasta 95% de descuento si subsanas antes de ser notificado.'},
-  {t:'Utilidades',d:'Participación de trabajadores en utilidades de empresa. Solo si la empresa tiene más de 20 trabajadores. D.Leg. 892.'},
-  {t:'RUC',d:'Registro Único de Contribuyentes. Número de 11 dígitos que identifica a todo contribuyente ante SUNAT.'},
-  {t:'Comprobante electrónico',d:'Factura, boleta o recibo de honorarios emitido a través del sistema de SUNAT (SEE). Obligatorio para todos los contribuyentes con RUC activo en 2026.'},
-  {t:'Agente de Retención',d:'Contribuyente designado por SUNAT que tiene la obligación de retener el IGV (3%) al pagar a sus proveedores.'},
-  {t:'Agente de Percepción',d:'Proveedor designado por SUNAT que cobra un porcentaje adicional del IGV a sus clientes como anticipo de futuros impuestos.'},
-  {t:'IPM',d:'Impuesto de Promoción Municipal. Se agrega al IGV. En 2026: 2% para el régimen general, 2.5% para restaurantes/hoteles MYPE.'},
-  {t:'Crédito fiscal',d:'IGV pagado en compras que se puede descontar del IGV cobrado en ventas. Solo si tienes RUC activo y afecto al IGV.'},
-  {t:'PDT / FV 621',d:'Formulario Virtual 621. Declaración mensual de IGV e IR ante SUNAT. Se presenta según cronograma por último dígito de RUC.'},
+  {t:'Deducción 7 UIT',d:'Todo trabajador deduce 7 UIT (S/ 38,500) de su renta anual antes de calcular el IR.'},
+  {t:'Gradualidad de Multas',d:'Descuento sobre multas SUNAT. Hasta 95% de descuento si subsanas antes de ser notificado.'},
+  {t:'Utilidades',d:'Participación de trabajadores en utilidades. Solo si la empresa tiene más de 20 trabajadores. D.Leg. 892.'},
+  {t:'RUC',d:'Registro Único de Contribuyentes. Número de 11 dígitos que identifica al contribuyente ante SUNAT.'},
+  {t:'IPM',d:'Impuesto de Promoción Municipal. Se agrega al IGV. En 2026: 2% régimen general, 2.5% restaurantes/hoteles MYPE.'},
+  {t:'Crédito fiscal',d:'IGV pagado en compras que se puede descontar del IGV cobrado en ventas.'},
+  {t:'FV 621',d:'Formulario Virtual 621. Declaración mensual de IGV e IR ante SUNAT.'},
 ];
-function renderGlosario(lista){
+function renderGlosario(lista) {
   document.getElementById('glosario-lista').innerHTML = lista.map(t =>
     `<div class="term"><strong>${t.t}</strong><br><span style="color:#8ab4c8;font-size:0.88rem;">${t.d}</span></div>`
   ).join('');
 }
-function filtrarGlosario(){
+function filtrarGlosario() {
   const q = document.getElementById('buscar-glosario').value.toLowerCase();
   renderGlosario(glosarioTerminos.filter(t => t.t.toLowerCase().includes(q) || t.d.toLowerCase().includes(q)));
 }
